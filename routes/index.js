@@ -1,19 +1,12 @@
-const router = require('koa-router')()
+/*
+*   接口层数据
+*   分为 两层  /api 为前端路由,路由存储在/index目录下   /admin 为后台管理路由，路由存储在/admin文件夹下
+*   ===========================================
+*   逻辑层
+*   同样也分为两层   
+*
+*/
+const adminRouter = require('./admin');
+const apiRouter = require('./api');
 
-router.get('/', async (ctx, next) => {
-  await ctx.render('index', {
-    title: 'Hello Koa 2!'
-  })
-})
-
-router.get('/string', async (ctx, next) => {
-  ctx.body = 'koa2 string'
-})
-
-router.get('/json', async (ctx, next) => {
-  ctx.body = {
-    title: 'koa2 json'
-  }
-})
-
-module.exports = router
+export { adminRouter, apiRouter };
