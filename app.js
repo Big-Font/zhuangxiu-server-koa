@@ -3,20 +3,58 @@ const cors = require('koa2-cors')
 const app = new Koa()
 const views = require('koa-views')
 const json = require('koa-json')
+const session = require('koa-session')
+const Redis = require('koa-redis')
+const jwt = require('jsonwebtoken');
+const jwtKoa= require('koa-jwt');
+// import errorHandle from './middlewares/errorHandle'
 const onerror = require('koa-onerror')
 const koaBody = require('koa-body')
 const logger = require('koa-logger')
+const config = require('./config');
 
 const { adminRouter, apiRouter } = require('./routes');
 
-app.use(cors())
+app.use(cors({
+  credentials: true,
+}))
 // error handler
 onerror(app)
+
+// 设置session
+app.keys = config[process.env.NODE_ENV].sessionKey;
+const CONFIG = {
+   key: config[process.env.NODE_ENV].cookieKey,   //cookie key (default is koa:sess)
+   maxAge: 86400000,  // cookie的过期时间 maxAge in ms (default is 1 days)
+   overwrite: true,  //是否可以overwrite    (默认default true)
+   httpOnly: true, //cookie是否只有服务器端可以访问 httpOnly or not (default true)
+   signed: true,   //签名默认true
+   rolling: true,  //在每次请求时强行设置cookie，这将重置cookie过期时间（默认：false）
+   renew: false,  //(boolean) renew session when session is nearly expired,
+   store: new Redis()
+};
+app.use(session(CONFIG, app));
 
 // middlewares
 app.use(json())
 app.use(logger())
 app.use(require('koa-static')(__dirname + '/public'))
+
+// 自定义 middlewares
+app.use((ctx, next) => {
+  return next().catch((err) => {
+      if (err.status === 401) {
+          ctx.status = 401;
+          ctx.body = {
+              code: -1,
+              msg: err.originalError ? err.originalError.message : err.message
+          }
+      } else {
+          throw err;
+      }
+  });
+});
+
 // 处理post请求和文件上传
 app.use(koaBody({
   formLimit: 1048576,  // 最大1M
@@ -33,6 +71,13 @@ app.use(koaBody({
 
 app.use(views(__dirname + '/views', {
   extension: 'pug'
+}))
+
+// jwt 设置和过滤
+app.use(jwtKoa({
+  secert: config[process.env.NODE_ENV].secret,
+}).unless({
+  path: [/\/register/, /\/login/, '/api', '/api/login', '/api/register','/api/captchas', '/admin/captcha', '/admin/login', '/admin/articleList'],
 }))
 
 // logger
