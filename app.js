@@ -13,7 +13,7 @@ const koaBody = require('koa-body')
 const logger = require('koa-logger')
 const config = require('./config');
 
-const { adminRouter, apiRouter } = require('./routes');
+const { adminRouter, apiRouter, ueditorRouter } = require('./routes');
 
 app.use(cors({
   credentials: true,
@@ -60,13 +60,15 @@ app.use(koaBody({
   formLimit: 1048576,  // 最大1M
   textLimit: 1048576,
   formidable:{
+    multipart: true,
     keepExtensions: true, // 带拓展名上传，否则上传的会是二进制文件而不是图片文件，保持文件后缀
+    maxFileSize: 200*1024*1024,    // 设置上传文件大小最大限制，默认2M
     onFileBegin(name,file){
       file.path = __dirname+'/public/images/'+file.name; // 重命名上传文件
     },
     uploadDir: __dirname+'/public/images'
   },  // 输出到images文件夹
-  multipart:true,  // 支持文件上传
+  multipart: true,  // 支持文件上传
 }))
 
 app.use(views(__dirname + '/views', {
@@ -77,7 +79,7 @@ app.use(views(__dirname + '/views', {
 app.use(jwtKoa({
   secert: config[process.env.NODE_ENV].secret,
 }).unless({
-  path: [/\/register/, /\/login/, '/api', '/api/login', '/api/register','/api/captchas', '/admin/captcha', '/admin/login', '/admin/articleList'],
+  path: [/\/register/, /\/login/, '/api', '/api/login', '/api/register','/api/captchas', '/admin/captcha', '/admin/login', '/admin/articleList', '/admin/wangeditor/upload'],
 }))
 
 // logger
@@ -92,7 +94,9 @@ app.use(async (ctx, next) => {
 app.use(adminRouter.routes())
 	 .use(adminRouter.allowedMethods())
 	 .use(apiRouter.routes())
-	 .use(apiRouter.allowedMethods());
+   .use(apiRouter.allowedMethods())
+   .use(ueditorRouter.routes())
+	 .use(ueditorRouter.allowedMethods())
 
 // error-handling
 app.on('error', (err, ctx) => {

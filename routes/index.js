@@ -8,5 +8,6 @@
 */
 const adminRouter = require('./admin');
 const apiRouter = require('./api');
+const ueditorRouter = require('./admin/ueditor');
 
-export { adminRouter, apiRouter };
+export { adminRouter, apiRouter, ueditorRouter };
