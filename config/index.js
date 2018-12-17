@@ -10,7 +10,7 @@ module.exports = {
       database : 'jason_blog'  // 选中数据库
     },
     // wangeditor 配置
-    address: 'http://127.0.0.1:4003'
+    address: 'http://127.0.0.1:4003',    
   },
   production: {
     

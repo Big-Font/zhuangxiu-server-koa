@@ -9,5 +9,6 @@
 const adminRouter = require('./admin');
 const apiRouter = require('./api');
 const ueditorRouter = require('./admin/ueditor');
+const uploadRouter = require('./admin/upload');
 
-export { adminRouter, apiRouter, ueditorRouter };
+export { adminRouter, apiRouter, ueditorRouter, uploadRouter };

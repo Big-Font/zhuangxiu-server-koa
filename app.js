@@ -12,8 +12,9 @@ const onerror = require('koa-onerror')
 const koaBody = require('koa-body')
 const logger = require('koa-logger')
 const config = require('./config');
+const checkJWT = require('./middlewares/checkJWT');
 
-const { adminRouter, apiRouter, ueditorRouter } = require('./routes');
+const { adminRouter, apiRouter, ueditorRouter, uploadRouter } = require('./routes');
 
 app.use(cors({
   credentials: true,
@@ -40,21 +41,6 @@ app.use(json())
 app.use(logger())
 app.use(require('koa-static')(__dirname + '/public'))
 
-// 自定义 middlewares
-app.use((ctx, next) => {
-  return next().catch((err) => {
-      if (err.status === 401) {
-          ctx.status = 401;
-          ctx.body = {
-              code: -1,
-              msg: err.originalError ? err.originalError.message : err.message
-          }
-      } else {
-          throw err;
-      }
-  });
-});
-
 // 处理post请求和文件上传
 app.use(koaBody({
   formLimit: 1048576,  // 最大1M
@@ -75,12 +61,30 @@ app.use(views(__dirname + '/views', {
   extension: 'pug'
 }))
 
+// 自定义 middlewares
+app.use((ctx, next) => {
+  return next().catch((err) => {
+      if (err.status === 401) {
+          ctx.status = 401;
+          ctx.body = {
+              code: -1,
+              msg: err.originalError ? err.originalError.message : err.message
+          }
+      } else {
+          throw err;
+      }
+  });
+});
+
 // jwt 设置和过滤
+console.log('koa-jwt====>', config[process.env.NODE_ENV].secret)
 app.use(jwtKoa({
-  secert: config[process.env.NODE_ENV].secret,
+  secret: config[process.env.NODE_ENV].secret,
 }).unless({
-  path: [/\/register/, /\/login/, '/api', '/api/login', '/api/register','/api/captchas', '/admin/captcha', '/admin/login', '/admin/articleList', '/admin/wangeditor/upload'],
+  path: [/\/register/, /\/login/, '/api', '/api/login', '/api/register','/api/captchas', '/admin/captcha', '/admin/login', '/admin/articleList', '/admin/wangeditor/upload', '/admin/upload'],
 }))
+
+app.use(checkJWT());
 
 // logger
 app.use(async (ctx, next) => {
@@ -90,13 +94,15 @@ app.use(async (ctx, next) => {
   console.log(`${ctx.method} ${ctx.url} - ${ms}ms`)
 })
 
-// routes
+// routes uploadRouter
 app.use(adminRouter.routes())
 	 .use(adminRouter.allowedMethods())
 	 .use(apiRouter.routes())
    .use(apiRouter.allowedMethods())
    .use(ueditorRouter.routes())
-	 .use(ueditorRouter.allowedMethods())
+   .use(ueditorRouter.allowedMethods())
+   .use(uploadRouter.routes())
+	 .use(uploadRouter.allowedMethods())
 
 // error-handling
 app.on('error', (err, ctx) => {

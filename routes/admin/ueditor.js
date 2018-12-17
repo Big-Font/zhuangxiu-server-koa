@@ -5,5 +5,4 @@ router.prefix('/admin')
 
 router.post('/wangeditor/upload', UeditorCtrl.upload)
 
-
 module.exports = router

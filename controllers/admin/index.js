@@ -29,7 +29,7 @@ class AdminControllers {
             ctx.body = {
                 code: 0,
                 msg: '登录成功',
-                token: getToken({ user: 'aaa', password: '123456' })
+                token: getToken({ username: 'aaa', password: '123456' })
             }
         }else{
             ctx.body = {
@@ -54,6 +54,18 @@ class AdminControllers {
         ctx.body = {
             code: 0,
             list: JSON.parse(JSON.stringify(results))
+        }
+   }
+    /*
+    *   发布资讯列表接口
+    */
+   async articlePublish(ctx) {
+        console.log('======》',ctx.user, ctx.request.user)
+        ctx.body = {
+            code: 0,
+            msg: '发布成功',
+            user: ctx.user.username,
+            password: ctx.user.password
         }
    }
 }
