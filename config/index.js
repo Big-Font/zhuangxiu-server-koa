@@ -10,7 +10,11 @@ module.exports = {
       database : 'jason_blog'  // 选中数据库
     },
     // wangeditor 配置
-    address: 'http://127.0.0.1:4003',    
+    address: 'http://127.0.0.1:4003', 
+    // md5 盐
+    MD5_SUFFIX: () => {
+      return 'sdfadfDFADFADFA_121$&^%&*!啊瞬间法律的类似阿里斯顿sdlfalsfasdfa'
+    }  
   },
   production: {
     

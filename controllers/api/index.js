@@ -1,5 +1,5 @@
 import captchapng from 'svg-captcha';
-import { getToken, getJWTPayload } from '../../config/user'
+import { getToken, getJWTPayload } from '../../lib/user'
 
 const user = {
     name: 'jason',
@@ -52,7 +52,7 @@ class ApiControllers {
         ctx.body = {
             code: 0,
             msg: '登录成功',
-            token: getToken({ user: 'aaa', password: '123456' })
+            token: getToken({ username: 'aaa', password: '123456' })
         }
     }
     // user

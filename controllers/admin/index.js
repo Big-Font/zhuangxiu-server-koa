@@ -1,6 +1,8 @@
 import captchapng from 'svg-captcha';
 import { query } from '../../sql';
-import { getToken, getJWTPayload } from '../../config/user';
+import { getToken, getJWTPayload } from '../../lib/user';
+import config from '../../config';
+import { md5 } from '../../lib/md5';
 
 class AdminControllers {
     /*
@@ -20,22 +22,40 @@ class AdminControllers {
         ctx.body = cap.data;
     }
     /*
-    *   登录接口
+    *   后台管理登录接口
+    *   @params  
+    *   username  账号
+    *   password  密码
+    *   capkey  图形验证码
     */
     async login(ctx) {
         let {capkey, username, password} = ctx.request.body;
         console.log(capkey, ctx.session.usernam)
-        if(capkey === ctx.session.usernam){
-            ctx.body = {
-                code: 0,
-                msg: '登录成功',
-                token: getToken({ username: 'aaa', password: '123456' })
+        password = md5(password + config[process.env.NODE_ENV].MD5_SUFFIX());
+        if(capkey.toLocaleLowerCase() !== ctx.session.usernam) {
+            ctx.error({msg: '验证码错误'})
+            return;
+        }
+
+        try{
+            let hasUser = await query(`SELECT username, password FROM t_sys_user WHERE username='${username}'`)
+            console.log(hasUser[0].password, password, hasUser[0].password !== password)
+            if(hasUser.length === 0) {
+                ctx.error({msg: '登录失败,用户名错误'})
+                return;
+            }else if(hasUser[0].password !== password) {
+                ctx.error({msg: '登录失败，密码错误'})
+                return;
+            }else {
+                ctx.success({
+                    msg: '登录成功',
+                    token: getToken({username: hasUser.user}), 
+                    user: username
+                })
+                return;
             }
-        }else{
-            ctx.body = {
-                code: -1,
-                msg: '验证码错误',
-            }
+        }catch(err) {
+            ctx.error({msg: err})
         }
     }
     /*
@@ -46,21 +66,18 @@ class AdminControllers {
         try {
             results = await query(`SELECT * FROM t_sys_articlelist`)
         }catch(err) {
-            ctx.body = {
-                code: -1,
-                msg: err.message
-            }
+            ctx.error({msg: err.message});
+            return;
         }
-        ctx.body = {
+        ctx.success({
             code: 0,
             list: JSON.parse(JSON.stringify(results))
-        }
+        })
    }
     /*
     *   发布资讯列表接口
     */
    async articlePublish(ctx) {
-        console.log('======》',ctx.user, ctx.request.user)
         ctx.body = {
             code: 0,
             msg: '发布成功',

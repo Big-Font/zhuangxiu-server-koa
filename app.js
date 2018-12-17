@@ -7,11 +7,11 @@ const session = require('koa-session')
 const Redis = require('koa-redis')
 const jwt = require('jsonwebtoken');
 const jwtKoa= require('koa-jwt');
-// import errorHandle from './middlewares/errorHandle'
 const onerror = require('koa-onerror')
 const koaBody = require('koa-body')
 const logger = require('koa-logger')
 const config = require('./config');
+const errorHandle = require('./middlewares/errorHandle');
 const checkJWT = require('./middlewares/checkJWT');
 
 const { adminRouter, apiRouter, ueditorRouter, uploadRouter } = require('./routes');
@@ -62,22 +62,9 @@ app.use(views(__dirname + '/views', {
 }))
 
 // 自定义 middlewares
-app.use((ctx, next) => {
-  return next().catch((err) => {
-      if (err.status === 401) {
-          ctx.status = 401;
-          ctx.body = {
-              code: -1,
-              msg: err.originalError ? err.originalError.message : err.message
-          }
-      } else {
-          throw err;
-      }
-  });
-});
+app.use(errorHandle);
 
 // jwt 设置和过滤
-console.log('koa-jwt====>', config[process.env.NODE_ENV].secret)
 app.use(jwtKoa({
   secret: config[process.env.NODE_ENV].secret,
 }).unless({
@@ -93,7 +80,8 @@ app.use(async (ctx, next) => {
   const ms = new Date() - start
   console.log(`${ctx.method} ${ctx.url} - ${ms}ms`)
 })
-
+// 
+app.use(require('./middlewares/response'));
 // routes uploadRouter
 app.use(adminRouter.routes())
 	 .use(adminRouter.allowedMethods())
