@@ -1,4 +1,5 @@
 import captchapng from 'svg-captcha';
+import uuid from 'uuid';
 import { query } from '../../sql';
 import { getToken, getJWTPayload } from '../../lib/user';
 import config from '../../config';
@@ -9,7 +10,6 @@ class AdminControllers {
     *   图形验证码接口
     */
     async captcha(ctx) {
-        console.log(ctx.session.views)
         const cap = captchapng.create({
             size: 4,
             ignoreChars: '0oli',
@@ -30,7 +30,6 @@ class AdminControllers {
     */
     async login(ctx) {
         let {capkey, username, password} = ctx.request.body;
-        console.log(capkey, ctx.session.usernam)
         password = md5(password + config[process.env.NODE_ENV].MD5_SUFFIX());
         if(capkey.toLocaleLowerCase() !== ctx.session.usernam) {
             ctx.error({msg: '验证码错误'})
@@ -71,20 +70,72 @@ class AdminControllers {
         }
         ctx.success({
             code: 0,
-            list: JSON.parse(JSON.stringify(results))
+            list: results
         })
    }
     /*
-    *   发布资讯列表接口
+    *   后台管理 文章发布接口
+    *   @params  
+    *   title      文章标题
+    *   author     文章作者
+    *   content    文章内容
     */
    async articlePublish(ctx) {
-        ctx.body = {
-            code: 0,
-            msg: '发布成功',
-            user: ctx.user.username,
-            password: ctx.user.password
+        let {
+            title,
+            author,
+            content
+        } = ctx.request.body;
+        console.log()
+        if(!title){
+            ctx.error({msg: '标题不能为空'});
+            return;
+        }else if(!author) {
+            ctx.error({msg: '作者不能为空'});
+            return;
+        }else if(!content) {
+            ctx.error({msg: '内容不能为空'});
+            return;
+        }
+        const artUUID = uuid.v1();
+        try{
+            let articles = await query(`INSERT INTO t_sys_articlelist (artlist_uuid, artlist_title, artlist_author) VALUES ('${artUUID}','${title}', '${author}')`)
+            try{
+                let atticleList = await query(`INSERT INTO t_sys_articles ( artlist_uuid, articles_content, articles_create_time, articles_update_time) VALUES ('${artUUID}', '${content}', NOW(), NOW())`)
+                ctx.success({msg: '文章发布成功'})
+            }catch(error) {
+                ctx.error({msg: error.message})
+                return;
+            }
+        }catch(err) {
+            ctx.error({msg: err.message})
         }
    }
+   /*
+   *   前台 获取文章详情
+   *   @params  
+   *   id      文章id
+   */
+    async getArticle(ctx) {
+        let {id} = ctx.request.body;
+        if(!id) {
+            ctx.error({msg: '文章id不能为空'});
+            return;
+        }
+        try{
+            let result = await query(`SELECT artlist_id, artlist_title, artlist_author, artlist_recommend, articles_content, articles_update_time FROM t_sys_articlelist AS a LEFT JOIN t_sys_articles AS b ON a.artlist_uuid=b.artlist_uuid WHERE artlist_id='${id}'`);
+            let resMsg = {};
+            for(let key in result[0]) {
+                resMsg[key.split('_')[1]] = result[0][key];
+            }
+            ctx.success({
+                msg: '查询成功！',
+                data: resMsg
+            })
+        }catch(err) {
+            ctx.error({msg: err})
+        }
+    }
 }
 
 module.exports = new AdminControllers();

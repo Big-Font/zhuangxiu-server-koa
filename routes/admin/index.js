@@ -9,9 +9,12 @@ router
     .get('/captcha', adminCtrl.captcha)
     // 登录接口
     .post('/login', adminCtrl.login)
+    // 查询文章列表接口
     .get('/articleList', adminCtrl.getList)
     // 发布资讯列表接口 articlePublish
     .post('/articlePublish', adminCtrl.articlePublish)
+    // 根据id查询文章接口
+    .post('/article', adminCtrl.getArticle);
 
 
 module.exports = router;
