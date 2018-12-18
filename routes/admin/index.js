@@ -21,6 +21,10 @@ router
     .post('/bannerPublic', adminCtrl.bannerPublic)
     // 获取装修案例列表
     .get('/caseList', adminCtrl.caseList)
+    // 发布装修案例
+    .post('/fitupCasePublic', adminCtrl.fitupCasePublic)
+    // 修改装修案例 
+    .post('/fitupcaseModify', adminCtrl.fitupcaseModify)
 
 
 module.exports = router;

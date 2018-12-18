@@ -7,7 +7,7 @@ module.exports = {
       host     : '127.0.0.1',   // 数据库地址
       user     : 'root',    // 数据库用户
       password : 'SHEN396689144@',   // 数据库密码
-      database : 'jason_blog'  // 选中数据库
+      database : 'jason_blog',  // 选中数据库
     },
     // wangeditor 配置
     address: 'http://127.0.0.1:4003', 
