@@ -4,6 +4,7 @@ import { query } from '../../sql';
 import { getToken, getJWTPayload } from '../../lib/user';
 import config from '../../config';
 import { md5 } from '../../lib/md5';
+import * as types from '../../lib/types';
 
 class AdminControllers {
     /*
@@ -112,7 +113,7 @@ class AdminControllers {
         }
    }
    /*
-   *   前台 获取文章详情
+   *   获取文章详情
    *   @params  
    *   id      文章id
    */
@@ -136,6 +137,99 @@ class AdminControllers {
             ctx.error({msg: err})
         }
     }
+    /*
+    *   banner管理 -- banner 列表查询
+    *   @params  
+    *   
+    */
+   async getBannerList(ctx) {
+        let results;
+        try {
+            results = await query(`SELECT * FROM t_sys_bannerlist`)
+        }catch(err) {
+            ctx.error({msg: err.message});
+            return;
+        }
+        ctx.success({
+            code: 0,
+            list: results
+        })
+   }
+   /*
+    *   banner管理 -- banner 添加 banner
+    *   @params  
+    *   url   图片地址
+    *   path  跳转地址
+    */
+   async bannerPublic(ctx) {
+        let { url, path } = ctx.request.body;
+        if(!url) {
+            ctx.error({msg: 'banner图片地址不能为空'})
+        }
+        try{
+            let result = await query(`INSERT INTO t_sys_bannerlist (banner_url, banner_path, banner_update_time) VALUES ('${url}', '${path}', NOW())`);
+            ctx.success({msg: 'banner更新成功'});
+        }catch(err) {
+            ctx.err({msg: err});
+        }
+   }
+    /*
+    *   装修案例列表 --- caseList
+    *   @params  
+    *   url   图片地址
+    *   path  跳转地址
+    */
+   async caseList(ctx) {
+        let results;
+        try {
+            results = await query(`SELECT * FROM t_sys_caselist`)
+        }catch(err) {
+            ctx.error({msg: err.message});
+            return;
+        }
+        ctx.success({
+            code: 0,
+            list: results
+        })
+   }
+    /*
+    *   发布装修案例 
+    *   @params  
+    *   title   标题
+    *   author  作者
+    *   recommend 是否推荐到首页
+    *   titleImg  列表图片
+    *   content   文章内容
+    */
+   async fitupCasePublic(ctx) {
+        let { title, author, recommend, titleImg, content} = ctx.request.body;
+        if(!title) {
+            ctx.error({msg: '标题不能为空'});
+        }else if(!author) {
+           author = types.FITUP_AUTHOR;
+        }else if(!recommend) {
+            recommend = 0;
+        }else if(!titleImg) {
+            ctx.error({msg: '默认图片不能为空'});
+        }else if(!content) {
+            ctx.error({msg: '文章内容不能为空'});
+        }
+
+        const fiupcaseUUID = uuid.v1();
+        const pageview = parseInt(Math.random()*100);
+        try{
+            let fitupCase = query(`INSERT INTO t_sys_fitupcase (caselist_uuid, fitupcase_content, fitupcase_create_time, fitupcase_update_time) VALUES ('${fiupcaseUUID}', '${content}', NOW(), NOW())`);
+            try{
+                let caselist = query(`INSERT INTO (caselist_uuid, caselist_title, caselist_author, caselist_recommend, caselist_img, caselist_pageview) VALUES ('${fiupcaseUUID}', '${title}', '${author}', '${recommend}', '${titleImg}', '${pageview}')`)
+                ctx.success({msg: '发布成功'});
+            }catch(error) {
+                ctx.error({msg: err});
+            }
+        }catch(err) {
+            ctx.error({msg: err});
+        }
+   }
+   
 }
 
 module.exports = new AdminControllers();
