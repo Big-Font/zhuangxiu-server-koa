@@ -4,6 +4,7 @@ import { query, execTrans } from '../../sql';
 import { getToken, getJWTPayload } from '../../lib/user';
 import config from '../../config';
 import { md5 } from '../../lib/md5';
+import { createTask } from '../../lib/task';
 import * as types from '../../lib/types';
 
 //初始化sql & params：
@@ -78,7 +79,7 @@ class AdminControllers {
    async getList(ctx) {
         let results;
         try {
-            results = await query(`SELECT * FROM t_sys_articlelist ORDER BY artlist_id DESC`)
+            results = await query(`SELECT * FROM t_sys_articlelist`)
         }catch(err) {
             ctx.error({msg: err.message});
             return;
@@ -279,7 +280,7 @@ class AdminControllers {
     *   content   文章内容
     */
    async fitupcaseModify(ctx) {
-    let { id, title, author, recommend, titleImg, content} = ctx.request.body;
+        let { id, title, author, recommend, titleImg, content} = ctx.request.body;
         if(!id) {
             ctx.error({msg: 'id不能为空'});
         }else if(!title) {
@@ -329,6 +330,40 @@ class AdminControllers {
         }catch(e) {
             ctx.error({msg: e});
         }
+   }
+   /*
+    *   秒杀活动查询 
+    *   @params
+    *   id      装修推荐列表id（根据列表id查询uuid并更新列表和详情表）  
+    *   title   标题
+    *   author  作者
+    *   recommend 是否推荐到首页
+    *   titleImg  列表图片
+    *   content   文章内容
+    */
+   async spikeActiveList(ctx) {
+       var date = new Date(2018,11,19,9,18,0);
+       async function task () {
+            try{
+                let result = await query(`INSERT INTO t_sys_walnuts (walnut_url, walnut_name, walnut_create_time) VALUES ('tast_miaosha1', 'tast_miaosha1', NOW())`)
+                console.log('task任务执行了')
+            }catch(err) {
+                console.log(err)
+            }
+        }
+        console.log('准备创建定时任务了')
+        createTask(task, date);
+        var date2 = new Date(2018,11,19,9,19,0);
+        async function task2 () {
+            try{
+                let result = await query(`INSERT INTO t_sys_walnuts (walnut_url, walnut_name, walnut_create_time) VALUES ('tast_miaosha2', 'tast_miaosha2', NOW())`)
+                console.log('task任务执行了')
+            }catch(err) {
+                console.log(err)
+            }
+        }
+        createTask(task2, date2);
+        ctx.success({msg: '已开启秒杀活动'})
    }
 }
 

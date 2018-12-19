@@ -25,6 +25,8 @@ router
     .post('/fitupCasePublic', adminCtrl.fitupCasePublic)
     // 修改装修案例 
     .post('/fitupcaseModify', adminCtrl.fitupcaseModify)
+    // 创建秒杀活动
+    .post('/spikeActiveList', adminCtrl.spikeActiveList)
 
 
 module.exports = router;
