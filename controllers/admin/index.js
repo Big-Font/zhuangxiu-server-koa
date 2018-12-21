@@ -1,25 +1,12 @@
 import captchapng from 'svg-captcha';
 import uuid from 'uuid';
-import { query, execTrans } from '../../sql';
+import { query, queryCount, sqlPage, execTrans, _getNewSqlParamEntity } from '../../sql';
+import SQL from '../../sql/admin';
 import { getToken, getJWTPayload } from '../../lib/user';
 import config from '../../config';
 import { md5 } from '../../lib/md5';
 import { createTask } from '../../lib/task';
 import * as types from '../../lib/types';
-
-//初始化sql & params：
-function _getNewSqlParamEntity(sql, params, callback) {
-     if (callback) {
-         return callback(null, {
-             sql: sql,
-             params: params
-         });
-     }
-     return {
-         sql: sql,
-         params: params
-     };
-}
 
 class AdminControllers {
     /*
@@ -53,7 +40,7 @@ class AdminControllers {
         }
 
         try{
-            let hasUser = await query(`SELECT username, password FROM t_sys_user WHERE username='${username}'`)
+            let hasUser = await query(`SELECT username, password FROM t_sys_user WHERE username=?`, [username])
             console.log(hasUser[0].password, password, hasUser[0].password !== password)
             if(hasUser.length === 0) {
                 ctx.error({msg: '登录失败,用户名错误'})
@@ -152,7 +139,7 @@ class AdminControllers {
             return;
         }
         try{
-            let result = await query(`SELECT artlist_id, artlist_title, artlist_author, artlist_recommend, articles_content, articles_update_time FROM t_sys_articlelist AS a LEFT JOIN t_sys_articles AS b ON a.artlist_uuid=b.artlist_uuid WHERE artlist_id='${id}'`);
+            let result = await query(`SELECT artlist_id, artlist_title, artlist_author, artlist_recommend, articles_content, articles_update_time FROM t_sys_articlelist AS a LEFT JOIN t_sys_articles AS b ON a.artlist_uuid=b.artlist_uuid WHERE artlist_id=?`, [id]);
             let resMsg = {};
             for(let key in result[0]) {
                 resMsg[key.split('_')[1]] = result[0][key];
@@ -314,7 +301,7 @@ class AdminControllers {
 
         // 事务处理版本
         try{
-            let res = query(`SELECT caselist_uuid FROM t_sys_caselist WHERE caselist_id='${id}'`);
+            let res = query(`SELECT caselist_uuid FROM t_sys_caselist WHERE caselist_id=？`, [id]);
             let caselist_uuid = res[0].caselist_uuid;
             let sqlArr = [];
             let fitupcaseSQL = `UPDATE t_sys_fitupcase SET fitupcase_content='${content}', fitupcase_update_time=NOW() WHERE caselist_uuid='${caselist_uuid}'`;
@@ -333,37 +320,118 @@ class AdminControllers {
    }
    /*
     *   秒杀活动查询 
-    *   @params
-    *   id      装修推荐列表id（根据列表id查询uuid并更新列表和详情表）  
-    *   title   标题
-    *   author  作者
-    *   recommend 是否推荐到首页
-    *   titleImg  列表图片
-    *   content   文章内容
+    *   @query
+    *   place       限时秒杀活动的位置： 1-首页推荐位， 2-首页列表位， 3-其他位置  
+    *   type        限时秒杀活动的状态： 1-进行中， 2-已结束, 3-未开始
+    *   page        要查询的页数 
+    *   total_page  总页数
     */
    async spikeActiveList(ctx) {
-       var date = new Date(2018,11,19,9,18,0);
-       async function task () {
-            try{
-                let result = await query(`INSERT INTO t_sys_walnuts (walnut_url, walnut_name, walnut_create_time) VALUES ('tast_miaosha1', 'tast_miaosha1', NOW())`)
-                console.log('task任务执行了')
-            }catch(err) {
-                console.log(err)
-            }
+        let { place, type, page} = ctx.request.query;
+        let queryValues = [], values = [],pageValues = [], sql, page_num, total_page;
+        try{
+            let res = await sqlPage(page, 't_sys_spikelist');
+            pageValues = res.pageValues;
+            page_num = res.page_num;
+            total_page = res.total_page;
+        }catch(err) {
+            ctx.error({msg: err});
         }
-        console.log('准备创建定时任务了')
-        createTask(task, date);
-        var date2 = new Date(2018,11,19,9,19,0);
-        async function task2 () {
-            try{
-                let result = await query(`INSERT INTO t_sys_walnuts (walnut_url, walnut_name, walnut_create_time) VALUES ('tast_miaosha2', 'tast_miaosha2', NOW())`)
-                console.log('task任务执行了')
-            }catch(err) {
-                console.log(err)
-            }
+        
+
+        if(!!place && (place === '1' || place === '2'|| place === '3')) {
+            values.push('spike_place');
+            values.push(place);
         }
-        createTask(task2, date2);
-        ctx.success({msg: '已开启秒杀活动'})
+        if(!!type && (type === '1' || type === '2')) {
+            values.push('spike_type');
+            values.push(type);
+        }
+        // start end 
+        queryValues = values.concat(pageValues);
+        
+
+        if(values.length === 6){
+            sql = SQL.spikeActiveListSQL.queryTwo;
+        }else if(values.length === 4) {
+            sql = SQL.spikeActiveListSQL.queryOne;
+        }else {
+            sql = SQL.spikeActiveListSQL.queryALL;
+        }
+        
+        try{
+            let list = await query(sql, queryValues);
+            ctx.success({
+                msg: '查询成功',
+                total_page,
+                page,
+                list
+            })
+        }catch(err) {
+            ctx.error({msg: err})
+        }
+   }
+   /*
+    *   添加限时秒杀活动
+    *   @params
+    *    stock,         商品库存
+    *    seller,        商家介绍
+    *    goods,         商品介绍
+    *    activity,      活动介绍
+    *    price,         产品价格
+    *    name,          活动名称
+    *    startTime,     活动开始时间
+    *    endTime,       活动结束时间
+    *    type,          活动状态  1-进行中  2--已结束 3-未开始
+    *    img,           产品图片
+    *    place,         活动显示位置  1-首页推荐位  2-首页列表  3-其他位置
+    */
+   async spikeActivePublish(ctx) {
+        // 前端传过来的时间是 2018-11-11 12:00:00
+        let {
+            stock,
+            seller,
+            goods,
+            activity,
+            price,
+            name,
+            startTime,
+            endTime,
+            img,
+            place,
+        } = ctx.request.body;
+        if(!goods) {
+            ctx.error({msg: '商品介绍不能为空'});
+        }else if(!name) {
+            ctx.error({msg: '活动名称不能为空'});
+        }else if(!startTime) {
+            ctx.error({msg: '活动开始时间不能为空'});
+        }else if(!endTime) {
+            ctx.error({msg: '活动结束时间不能为空'});
+        }else if(endTime <= startTime) {
+            ctx.error({msg: '活动结束时间不能小于活动开始时间'});
+        }else if(!img) {
+            ctx.error({msg: '产品图片不能为空'})
+        }else if(!place) {
+            place = 3;
+        }
+
+        let sqlArr = [];
+        let listSQL = `INSERT INTO t_sys_spikelist (spike_name, spike_start_time, spike_end_time, spike_update_time, spike_type, spike_img, spike_place) VALUES (?, ? , ?, NOW(), 3, ?, ?)`;
+        let listParams = [name, startTime, endTime, type, img, place];
+        let infoSQL = `INSERT INTO t_sys_spikes (spike_stock, spike_seller, spike_goods, spike_activity, spike_price) VALUES (?, ?, ?, ?, ?)`;
+        let infoParams = [stock, seller, goods, activity, price];
+        sqlArr.push(_getNewSqlParamEntity(listSQL, listParams));
+        sqlArr.push(_getNewSqlParamEntity(infoSQL, infoParams));
+        
+        try{
+            let info = await execTrans(sqlArr)
+            createTask() 
+            ctx.success({msg: '发布成功'});
+        }catch(err) {
+            ctx.error({msg: err});
+        }
+
    }
 }
 
