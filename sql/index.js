@@ -78,7 +78,7 @@ export let sqlPage = async (page, tables) => {
         }
         if(!parseInt(page) || parseInt(page) < 0) {
             page = 1;
-        }else if(parseInt(page) > total_page) {
+        }else if(parseInt(page) > total_page && total_page !== 0) {
             page = total_page;
         }else {
             page = parseInt(page);
@@ -108,6 +108,10 @@ export let _getNewSqlParamEntity = function(sql, params, callback) {
             params: params
         });
     }
+    console.log({
+        sql: sql,
+        params: params
+    })
     return {
         sql: sql,
         params: params
@@ -128,6 +132,7 @@ export let execTrans = function(sqlparamsEntities) {
                 reject(err);
             }
             connection.beginTransaction(function (err) {
+                console.log('进入事务操作了')
                 if (err) {
                     reject(err)
                 }
