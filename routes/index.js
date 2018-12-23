@@ -6,6 +6,10 @@
 *   同样也分为两层   
 *
 */
+import { batchProcessTask } from '../lib/task';
+
+let res = batchProcessTask();
+
 const adminRouter = require('./admin');
 const apiRouter = require('./api');
 const ueditorRouter = require('./admin/ueditor');

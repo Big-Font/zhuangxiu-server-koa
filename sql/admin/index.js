@@ -220,7 +220,29 @@ module.exports = {
     *   添加限时秒杀活动
     */
     spikeActivePublish: {
-        list: `INSERT INTO t_sys_spikelist (spike_name, spike_start_time, spike_end_time, spike_update_time, spike_type, spike_img, spike_place) VALUES (?, ? , ?, NOW(), 3, ?, ?)`,
-        detail: `INSERT INTO t_sys_spikes (spike_stock, spike_seller, spike_goods, spike_activity, spike_price) VALUES (?, ?, ?, ?, ?)`
+        list: `
+            INSERT INTO 
+                t_sys_spikelist 
+                (spike_uuid,
+                spike_name, 
+                spike_start_time, 
+                spike_end_time, 
+                spike_update_time, 
+                spike_type, 
+                spike_img, 
+                spike_place) 
+            VALUES  
+                (?,?, ? , ?, NOW(), 3, ?, ?)`,
+        detail: `
+            INSERT INTO 
+                t_sys_spikes 
+                (spike_uuid,
+                spike_stock, 
+                spike_seller, 
+                spike_goods, 
+                spike_activity, 
+                spike_price) 
+            VALUES 
+                (?, ?, ?, ?, ?, ?)`
     }
 }

@@ -13,7 +13,7 @@ const pool = mysql.createPool(config[process.env.NODE_ENV].mysql);
 */
 export let query = function( sql, values ) {
     return new Promise(( resolve, reject ) => {
-        console.log('进入sql：', values)
+        console.log('进入sql：', sql)
         pool.getConnection(function(err, connection) {
             if (err) {
                 console.log('数据库连接错误:'+err)
@@ -25,7 +25,7 @@ export let query = function( sql, values ) {
                         console.log('sql错误信息:'+error)
                         reject( error )
                     } else {
-                        console.log('连接成功')
+                        console.log('连接成功====>'+JSON.parse(JSON.stringify(rows))[0])
                         resolve( JSON.parse(JSON.stringify(rows)) )
                     }
                     connection.release()

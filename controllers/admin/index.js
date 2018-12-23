@@ -2,10 +2,12 @@ import captchapng from 'svg-captcha';
 import uuid from 'uuid';
 import { query, queryCount, sqlPage, execTrans, _getNewSqlParamEntity } from '../../sql';
 import SQL from '../../sql/admin';
+import TASK_SQL from '../../sql/admin/task';
 import { getToken, getJWTPayload } from '../../lib/user';
 import config from '../../config';
 import { md5 } from '../../lib/md5';
 import { createTask } from '../../lib/task';
+import $Date_Format from '../../lib/dateFormat';
 import * as types from '../../lib/types';
 
 class AdminControllers {
@@ -121,7 +123,7 @@ class AdminControllers {
         sqlArr.push(_getNewSqlParamEntity(SQL.articlePublish.list, [artUUID, title, author]));
         sqlArr.push(_getNewSqlParamEntity(SQL.articlePublish.detail, [artUUID, content]));
         try{
-            let info = await execTrans(sqlArr)
+            let info = await execTrans(sqlArr);
             ctx.success({msg: '文章发布成功', info: info});
         }catch(err) {
             ctx.error({msg: err});
@@ -364,7 +366,7 @@ class AdminControllers {
     *    name,          活动名称
     *    startTime,     活动开始时间
     *    endTime,       活动结束时间
-    *    type,          活动状态  1-进行中  2--已结束 3-未开始
+    *    type,          活动状态  1-未开始， 2-进行中， 3- 已结束
     *    img,           产品图片
     *    place,         活动显示位置  1-首页推荐位  2-首页列表  3-其他位置
     */
@@ -397,18 +399,49 @@ class AdminControllers {
         }else if(!place) {
             place = 3;
         }
-
+        
+        if(new Date(startTime).getTime() > new Date().getTime()) {
+            type = 1;
+        }else{
+            type = 2
+        }
+        var spikeUUID = uuid.v1();
         let sqlArr = [];
         // let listSQL = `INSERT INTO t_sys_spikelist (spike_name, spike_start_time, spike_end_time, spike_update_time, spike_type, spike_img, spike_place) VALUES (?, ? , ?, NOW(), 3, ?, ?)`;
         // let listParams = [name, startTime, endTime, type, img, place];
         // let infoSQL = `INSERT INTO t_sys_spikes (spike_stock, spike_seller, spike_goods, spike_activity, spike_price) VALUES (?, ?, ?, ?, ?)`;
         // let infoParams = [stock, seller, goods, activity, price];
-        sqlArr.push(_getNewSqlParamEntity(SQL.spikeActivePublish.list, [name, startTime, endTime, type, img, place]));
-        sqlArr.push(_getNewSqlParamEntity(SQL.spikeActivePublish.detail, [stock, seller, goods, activity, price]));
+        sqlArr.push(_getNewSqlParamEntity(SQL.spikeActivePublish.list, [spikeUUID, name, startTime, endTime, type, img, place]));
+        sqlArr.push(_getNewSqlParamEntity(SQL.spikeActivePublish.detail, [spikeUUID, stock, seller, goods, activity, price]));
         
         try{
-            let info = await execTrans(sqlArr)
-            // createTask() 
+            let info = await execTrans(sqlArr); 
+            /*
+            *
+            * 如果 startTime 小于当前时间，马上开启，不需要经过 定时任务， 
+            * 如果 startTime 大于当前任务， 开启两个定时任务， 一条用于创建活动，一条用于修改活动状态为已下架
+            * 
+            */
+            function spikeActiveStart() {
+                try {
+                    let start = query(TASK_SQL.spikeActiveStartTask, [spikeUUID]) 
+                }catch(e) {
+                    console.log(`===> 定时活动开启失败， 活动uuid：${spikeUUID}`)
+                }
+            }
+            function spikeActiveEnd() {
+                try{
+                    let end = query(TASK_SQL.spikeActiveEndTask, [spikeUUID])
+                }catch(e) {
+                    console.log(`===> 定时活动结束失败， 活动uuid：${spikeUUID}`)
+                }
+            }
+            // 2018-12-01 12:09:12  ===> return new Date(2012, 11, 21, 5, 30, 0);
+            function startTime(time) {
+                var oDate = new Date(time);
+                return new Date(oDate.getFullYear(), oDate.getMonth(), oDate.getDate(), oDate.getHours(), oDate.getMinutes(), oDate.getSeconds())
+            }
+            createTask(spikeActiveStart, $Date_Format.date2task(startTime))
             ctx.success({msg: '发布成功'});
         }catch(err) {
             ctx.error({msg: err});
