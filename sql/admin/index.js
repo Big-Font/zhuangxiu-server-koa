@@ -74,7 +74,7 @@ module.exports = {
         FROM 
             t_sys_bannerlist 
         ORDER BY 
-            bannerlist_id 
+            banner_id 
         DESC`,
     /*
     *   banner添加接口

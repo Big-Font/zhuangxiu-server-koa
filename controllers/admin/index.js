@@ -75,6 +75,7 @@ class AdminControllers {
             pageValues = res.pageValues;
             page_num = res.page_num;
             total_page = res.total_page;
+            page = res.page;
         }catch(err) {
             ctx.error({msg: err}); 
         }
@@ -162,13 +163,13 @@ class AdminControllers {
         let results;
         try {
             results = await query( SQL.getBannerList)
+            ctx.success({
+                msg: '查询成功',
+                list: results
+            })
         }catch(err) {
             ctx.error({msg: err.message});
         }
-        ctx.success({
-            code: 0,
-            list: results
-        })
    }
    /*
     *   banner管理 -- banner 添加 banner

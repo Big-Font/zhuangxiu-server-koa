@@ -6,8 +6,8 @@ router.prefix('/api')
 
 router
     .get('/register', apiCtrl.register)
-    .post('/login', apiCtrl.login)
-    .get('/captchas', apiCtrl.captchas)
+    .post('/login', adminCtrl.login)
+    .get('/captcha', adminCtrl.captcha)
     // 获取banner
     .get('/banner', adminCtrl.getBannerList)
     // 获取装修列表

@@ -87,7 +87,8 @@ export let sqlPage = async (page, tables) => {
         resolve({
             pageValues,
             page_num,
-            total_page
+            total_page, 
+            page
         })
     })
     
