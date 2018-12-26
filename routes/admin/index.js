@@ -26,7 +26,7 @@ router
     // 修改装修案例 
     .post('/fitupcaseModify', adminCtrl.fitupcaseModify)
     // 查询秒杀活动列表
-    .get('/spikeActiveList', adminCtrl.spikeActiveList)
+    .post('/spikeActiveList', adminCtrl.spikeActiveList)
     // 发布秒杀活动接口
     .post('/spikeActivePublish', adminCtrl.spikeActivePublish)
 

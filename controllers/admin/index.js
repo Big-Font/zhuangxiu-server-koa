@@ -105,7 +105,8 @@ class AdminControllers {
         let {
             title,
             author,
-            content
+            content,
+            img
         } = ctx.request.body;
         if(!title){
             ctx.error({msg: '标题不能为空'});
@@ -121,11 +122,11 @@ class AdminControllers {
         
         // 事务修改版本
         let sqlArr = []; 
-        sqlArr.push(_getNewSqlParamEntity(SQL.articlePublish.list, [artUUID, title, author]));
+        sqlArr.push(_getNewSqlParamEntity(SQL.articlePublish.list, [artUUID, title, author, img]));
         sqlArr.push(_getNewSqlParamEntity(SQL.articlePublish.detail, [artUUID, content]));
         try{
             let info = await execTrans(sqlArr);
-            ctx.success({msg: '文章发布成功', info: info});
+            ctx.success({msg: '文章发布成功'});
         }catch(err) {
             ctx.error({msg: err});
         }
@@ -270,6 +271,7 @@ class AdminControllers {
     */
    async fitupcaseModify(ctx) {
         let { id, title, author, recommend, titleImg, content} = ctx.request.body;
+        let caselist_uuid;
         if(!id) {
             ctx.error({msg: 'id不能为空'});
         }else if(!title) {
@@ -286,21 +288,19 @@ class AdminControllers {
 
         // 事务处理版本
         try{
-            let res = query(SQL.fitupcaseModify.uuid, [id]);
-            let caselist_uuid = res[0].caselist_uuid;
+            let res = await query(SQL.fitupcaseModify.uuid, [id]);
+            caselist_uuid = res[0].caselist_uuid;
             let sqlArr = [];
-            // let fitupcaseSQL = `UPDATE t_sys_fitupcase SET fitupcase_content='${content}', fitupcase_update_time=NOW() WHERE caselist_uuid='${caselist_uuid}'`;
-            // let caselistSQL = `UPDATE t_sys_caselist SET caselist_title='${title}', caselist_author='${author}', caselist_recommend='${recommend}', caselist_img='${titleImg}' WHERE caselist_uuid='${caselist_uuid}'`;
             sqlArr.push(_getNewSqlParamEntity(SQL.fitupcaseModify.detail, [content, caselist_uuid]));
             sqlArr.push(_getNewSqlParamEntity(SQL.fitupcaseModify.list, [title, author, recommend, titleImg, caselist_uuid]));
             try{
                 let info = await execTrans(sqlArr)
-                ctx.success({msg: '发布成功'});
+                ctx.success({msg: '更新成功'});
             }catch(err) {
-                ctx.error({msg: err});
+                ctx.error({msg: err.message, msge: '事务报错了'});
             }
         }catch(e) {
-            ctx.error({msg: e});
+            ctx.error({msg: e.message, msge: '第一个sql就报错了'});
         }
    }
    /*
@@ -312,18 +312,19 @@ class AdminControllers {
     *   total_page  总页数
     */
    async spikeActiveList(ctx) {
-        let { place, type, page} = ctx.request.query;
+        let { place, type, page} = ctx.request.body;
         let queryValues = [], values = [],pageValues = [], sql, page_num, total_page;
         try{
             let res = await sqlPage(page, 't_sys_spikelist');
             pageValues = res.pageValues;
             page_num = res.page_num;
             total_page = res.total_page;
+            page = res.page;
         }catch(err) {
             ctx.error({msg: err});
         }
         
-
+ 
         if(!!place && (place === '1' || place === '2'|| place === '3')) {
             values.push('spike_place');
             values.push(place);
@@ -336,9 +337,9 @@ class AdminControllers {
         queryValues = values.concat(pageValues);
         
 
-        if(values.length === 6){
+        if(queryValues.length === 6){
             sql = SQL.spikeActiveListSQL.queryTwo;
-        }else if(values.length === 4) {
+        }else if(queryValues.length === 4) {
             sql = SQL.spikeActiveListSQL.queryOne;
         }else {
             sql = SQL.spikeActiveListSQL.queryALL;
@@ -346,11 +347,13 @@ class AdminControllers {
         
         try{
             let list = await query(sql, queryValues);
+            
             ctx.success({
                 msg: '查询成功',
                 total_page,
                 page,
-                list
+                list,
+                nowTime: new Date().getTime()
             })
         }catch(err) {
             ctx.error({msg: err})
@@ -385,6 +388,7 @@ class AdminControllers {
             img,
             place,
         } = ctx.request.body;
+        let type;
         if(!goods) {
             ctx.error({msg: '商品介绍不能为空'});
         }else if(!name) {
@@ -401,18 +405,18 @@ class AdminControllers {
             place = 3;
         }
         
-        if(new Date(startTime).getTime() > new Date().getTime()) {
-            type = 1;
-        }else{
-            type = 2
-        }
+        // if(new Date(startTime).getTime() > new Date().getTime()) {
+        //     type = 1;
+        // }else{
+        //     type = 2
+        // }
         var spikeUUID = uuid.v1();
         let sqlArr = [];
         // let listSQL = `INSERT INTO t_sys_spikelist (spike_name, spike_start_time, spike_end_time, spike_update_time, spike_type, spike_img, spike_place) VALUES (?, ? , ?, NOW(), 3, ?, ?)`;
         // let listParams = [name, startTime, endTime, type, img, place];
         // let infoSQL = `INSERT INTO t_sys_spikes (spike_stock, spike_seller, spike_goods, spike_activity, spike_price) VALUES (?, ?, ?, ?, ?)`;
         // let infoParams = [stock, seller, goods, activity, price];
-        sqlArr.push(_getNewSqlParamEntity(SQL.spikeActivePublish.list, [spikeUUID, name, startTime, endTime, type, img, place]));
+        sqlArr.push(_getNewSqlParamEntity(SQL.spikeActivePublish.list, [spikeUUID, name, startTime, endTime, img, place]));
         sqlArr.push(_getNewSqlParamEntity(SQL.spikeActivePublish.detail, [spikeUUID, stock, seller, goods, activity, price]));
         
         try{

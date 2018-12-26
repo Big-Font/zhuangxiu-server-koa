@@ -31,9 +31,10 @@ module.exports = {
                 t_sys_articlelist 
                     (artlist_uuid, 
                     artlist_title, 
-                    artlist_author) 
+                    artlist_author,
+                    artlist_img) 
             VALUES  
-            (?,?, ?)`,
+            (?, ?, ?, ?)`,
         detail: `
             INSERT INTO 
                 t_sys_articles 
@@ -54,7 +55,8 @@ module.exports = {
             artlist_author, 
             artlist_recommend, 
             articles_content, 
-            articles_update_time 
+            articles_update_time,
+            artlist_img 
         FROM 
             t_sys_articlelist AS a 
         LEFT JOIN 
@@ -123,7 +125,7 @@ module.exports = {
                 caselist_img, 
                 caselist_pageview) 
             VALUES 
-                (?, ?, ?', ?, ?, ?)`
+                (?, ?, ?, ?, ?, ?)`
     },
     /*
     *   修改装修案例
@@ -135,7 +137,7 @@ module.exports = {
             FROM 
                 t_sys_caselist 
             WHERE 
-                caselist_id=？`,
+                caselist_id=?`,
         detail: `
             UPDATE 
                 t_sys_fitupcase 
@@ -232,7 +234,7 @@ module.exports = {
                 spike_img, 
                 spike_place) 
             VALUES  
-                (?,?, ? , ?, NOW(), 3, ?, ?)`,
+                (?, ?, ?, ?, NOW(), 3, ?, ?)`,
         detail: `
             INSERT INTO 
                 t_sys_spikes 

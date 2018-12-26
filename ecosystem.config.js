@@ -6,7 +6,7 @@ module.exports = {
     interpreter: "babel-node",
     node_args: "--harmony",
     // Options reference: https://pm2.io/doc/en/runtime/reference/ecosystem-file/
-    args: 'one two',
+    args: '',
     instances: 1,
     autorestart: true,
     watch: false,

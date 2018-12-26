@@ -69,7 +69,7 @@ export let queryCount = async (table) => {
 // }
 export let sqlPage = async (page, tables) => {
     return new Promise( async (resolve, reject) => {
-        let pageValues = [], page_num = 1, total_page;
+        let pageValues = [], page_num = 10, total_page;
         try{
             total_page = await queryCount(tables);
             total_page = total_page%page_num == 0 ? total_page/page_num : total_page/page_num + 1;
