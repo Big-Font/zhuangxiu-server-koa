@@ -19,6 +19,8 @@ router
     .get('/getBannerList', adminCtrl.getBannerList)
     // 发布首页banner接口
     .post('/bannerPublic', adminCtrl.bannerPublic)
+    // 修改首页banner接口
+    .post('/bannerModify', adminCtrl.bannerModify)
     // 获取装修案例列表
     .get('/caseList', adminCtrl.caseList)
     // 发布装修案例

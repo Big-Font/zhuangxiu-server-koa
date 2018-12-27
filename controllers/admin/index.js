@@ -77,13 +77,13 @@ class AdminControllers {
             total_page = res.total_page;
             page = res.page;
         }catch(err) {
-            ctx.error({msg: err}); 
+            ctx.error({msg: err.message}); 
+            return;
         }
 
         try {
             let results = await query(SQL.getList, pageValues);
             ctx.success({
-                code: 0,
                 page,
                 total_page,
                 list: results
@@ -179,16 +179,42 @@ class AdminControllers {
     *   path  跳转地址
     */
    async bannerPublic(ctx) {
-        let { url, path } = ctx.request.body;
+        let { url, path, name } = ctx.request.body;
         if(!url) {
-            ctx.error({msg: 'banner图片地址不能为空'})
+            ctx.error({msg: 'banner图片地址不能为空'});
+            return;
         }
         try{
-            let result = await query(SQL.bannerPublic, [url, path]);
+            let result = await query(SQL.bannerPublic, [url, path, name]);
             ctx.success({msg: 'banner更新成功'});
         }catch(err) {
             ctx.err({msg: err});
         }
+   }
+   /*
+    *   banner管理 -- 修改
+    *   @params  
+    *   url   图片地址
+    *   path  跳转地址
+    */
+   async bannerModify(ctx) {
+       let { banner_id, banner_name, banner_url, banner_path} = ctx.request.body;
+       console.log(ctx.request.body)
+       if(!banner_id) {
+           ctx.error({msg: 'id不能为空'});
+           return;
+       }else if(!banner_url) {
+           console.log('请求地址不能为空')
+           ctx.error({msg: '图片地址不能为空'});
+           return;
+       }
+       console.log('没走错误处理')
+       try{
+           let res = await query(SQL.bannerModify, [banner_name, banner_url, banner_path, banner_id]);
+           ctx.success({msg: 'banner更新成功'});
+       }catch(err) {
+           ctx.error({msg: err.message});
+       }
    }
     /*
     *   装修案例列表 --- caseList
@@ -207,7 +233,8 @@ class AdminControllers {
             page_num = res.page_num;
             total_page = res.total_page;
         }catch(err) {
-            ctx.error({msg: err}); 
+            ctx.error({msg: err.message}); 
+            return;
         }
 
         try {
@@ -217,7 +244,6 @@ class AdminControllers {
             return;
         }
         ctx.success({
-            code: 0,
             list: results
         })
    }
@@ -234,14 +260,17 @@ class AdminControllers {
         let { title, author, recommend, titleImg, content} = ctx.request.body;
         if(!title) {
             ctx.error({msg: '标题不能为空'});
+            return;
         }else if(!author) {
            author = types.FITUP_AUTHOR;
         }else if(!recommend) {
             recommend = 0;
         }else if(!titleImg) {
             ctx.error({msg: '默认图片不能为空'});
+            return;
         }else if(!content) {
             ctx.error({msg: '文章内容不能为空'});
+            return;
         }
 
         const fiupcaseUUID = uuid.v1();
@@ -274,16 +303,20 @@ class AdminControllers {
         let caselist_uuid;
         if(!id) {
             ctx.error({msg: 'id不能为空'});
+            return;
         }else if(!title) {
             ctx.error({msg: '标题不能为空'});
+            return;
         }else if(!author) {
            author = types.FITUP_AUTHOR;
         }else if(!recommend) {
             recommend = 0;
         }else if(!titleImg) {
             ctx.error({msg: '默认图片不能为空'});
+            return;
         }else if(!content) {
             ctx.error({msg: '文章内容不能为空'});
+            return;
         }
 
         // 事务处理版本
@@ -298,6 +331,7 @@ class AdminControllers {
                 ctx.success({msg: '更新成功'});
             }catch(err) {
                 ctx.error({msg: err.message, msge: '事务报错了'});
+                return;
             }
         }catch(e) {
             ctx.error({msg: e.message, msge: '第一个sql就报错了'});
@@ -321,7 +355,8 @@ class AdminControllers {
             total_page = res.total_page;
             page = res.page;
         }catch(err) {
-            ctx.error({msg: err});
+            ctx.error({msg: err.message});
+            return;
         }
         
  
@@ -356,7 +391,7 @@ class AdminControllers {
                 nowTime: new Date().getTime()
             })
         }catch(err) {
-            ctx.error({msg: err})
+            ctx.error({msg: err.message})
         }
    }
    /*
@@ -391,16 +426,22 @@ class AdminControllers {
         let type;
         if(!goods) {
             ctx.error({msg: '商品介绍不能为空'});
+            return;
         }else if(!name) {
             ctx.error({msg: '活动名称不能为空'});
+            return;
         }else if(!startTime) {
             ctx.error({msg: '活动开始时间不能为空'});
+            return;
         }else if(!endTime) {
             ctx.error({msg: '活动结束时间不能为空'});
+            return;
         }else if(endTime <= startTime) {
             ctx.error({msg: '活动结束时间不能小于活动开始时间'});
+            return;
         }else if(!img) {
             ctx.error({msg: '产品图片不能为空'})
+            return;
         }else if(!place) {
             place = 3;
         }
@@ -449,7 +490,7 @@ class AdminControllers {
             createTask(spikeActiveStart, $Date_Format.date2task(startTime))
             ctx.success({msg: '发布成功'});
         }catch(err) {
-            ctx.error({msg: err});
+            ctx.error({msg: err.message});
         }
 
    }

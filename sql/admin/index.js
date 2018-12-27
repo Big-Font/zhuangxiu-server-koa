@@ -72,12 +72,16 @@ module.exports = {
     */
     getBannerList: `
         SELECT 
-            * 
+            banner_id,
+            banner_url,
+            banner_path,
+            banner_name,
+            Date_Format(banner_update_time,'%Y-%m-%d %H:%i:%s') as banner_update_time
         FROM 
             t_sys_bannerlist 
         ORDER BY 
             banner_id 
-        DESC`,
+        ASC`,
     /*
     *   banner添加接口
     */
@@ -86,9 +90,25 @@ module.exports = {
             t_sys_bannerlist 
             (banner_url, 
             banner_path, 
+            banner_name,
             banner_update_time) 
         VALUES 
-            (?, ?, NOW())`,
+            (?, ?, ?, NOW())`
+    ,
+    /*
+    *   banner修改接口
+    */
+    bannerModify: `
+        UPDATE
+            t_sys_bannerlist 
+        SET
+            banner_name=?,
+            banner_url=?,
+            banner_path=?,
+            banner_update_time=NOW()
+        WHERE
+            banner_id=?
+    `,
     /*
     *   装修案例列表 
     */
