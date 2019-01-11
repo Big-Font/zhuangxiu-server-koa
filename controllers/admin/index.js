@@ -36,7 +36,7 @@ class AdminControllers {
     async login(ctx) {
         let {capkey, username, password} = ctx.request.body;
         password = md5(password + config[process.env.NODE_ENV].MD5_SUFFIX());
-        if(capkey.toLocaleLowerCase() !== ctx.session.usernam) {
+        if(capkey.toLocaleLowerCase() !== ctx.session.username) {
             ctx.error({msg: '验证码错误'})
             return;
         }
