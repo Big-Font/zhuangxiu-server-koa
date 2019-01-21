@@ -2,6 +2,7 @@ import captchapng from 'svg-captcha';
 import uuid from 'uuid';
 import { query, queryCount, sqlPage, execTrans, _getNewSqlParamEntity } from '../../sql';
 import SQL from '../../sql/admin';
+import MWorkerSQL from '../../sql/api/worker';
 import TASK_SQL from '../../sql/admin/task';
 import { getToken, getJWTPayload } from '../../lib/user';
 import config from '../../config';
@@ -14,7 +15,7 @@ class WorkerControllers {
     /*
     *   找师傅列表接口
     */
-    async gerWorkerList(ctx) {
+    async getWorkerList(ctx) {
         let { page } = ctx.request.body;
         // 分页
         let queryValues = [],pageValues = [], page_num, total_page;
@@ -41,6 +42,34 @@ class WorkerControllers {
             return;
         }
     }
+    /*
+    *   找师傅接口状态更改
+    */
+   async modifyWorker(ctx) {
+       let {id, state} = ctx.request.body;
+       let uuid;
+       if(!id) {
+           ctx.error({msg: 'id不能为空'});
+           return;
+       }
+       if(!state) {
+           ctx.error({msg: '状态不能为空'});
+           return;
+       }
+
+       try{
+            let res = await query(MWorkerSQL.worker.uuid, [id]);
+            uuid = res[0].uuid;
+            try{
+                let modify = await query(MWorkerSQL.worker.update, [type, state]);
+                ctx.success({msg: '修改成功'});
+            }catch(e) {
+                ctx.error({msg: e.message});
+            }
+       }catch(err) {
+            ctx.error({msg: err.message});
+       }
+   }
 }
 
 module.exports = new WorkerControllers();

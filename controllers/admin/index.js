@@ -22,7 +22,7 @@ class AdminControllers {
             color: true,
             background: '#fff'
         })
-        ctx.session.usernam = cap.text.toLocaleLowerCase();
+        ctx.session.cap = cap.text.toLocaleLowerCase();
         ctx.response.type ='svg';
         ctx.body = cap.data;
     }
@@ -36,7 +36,7 @@ class AdminControllers {
     async login(ctx) {
         let {capkey, username, password} = ctx.request.body;
         password = md5(password + config[process.env.NODE_ENV].MD5_SUFFIX());
-        if(capkey.toLocaleLowerCase() !== ctx.session.username) {
+        if(capkey.toLocaleLowerCase() !== ctx.session.cap) {
             ctx.error({msg: '验证码错误'})
             return;
         }
@@ -50,6 +50,7 @@ class AdminControllers {
                 ctx.error({msg: '登录失败，密码错误'})
                 return;
             }else {
+                ctx.session.userid = hasUser[0].userid;
                 ctx.success({
                     msg: '登录成功',
                     token: getToken({username: hasUser.user}), 
@@ -199,16 +200,13 @@ class AdminControllers {
     */
    async bannerModify(ctx) {
        let { banner_id, banner_name, banner_url, banner_path} = ctx.request.body;
-       console.log(ctx.request.body)
        if(!banner_id) {
            ctx.error({msg: 'id不能为空'});
            return;
        }else if(!banner_url) {
-           console.log('请求地址不能为空')
            ctx.error({msg: '图片地址不能为空'});
            return;
        }
-       console.log('没走错误处理')
        try{
            let res = await query(SQL.bannerModify, [banner_name, banner_url, banner_path, banner_id]);
            ctx.success({msg: 'banner更新成功'});

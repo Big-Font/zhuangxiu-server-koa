@@ -5,7 +5,8 @@ module.exports = {
     login: `
         SELECT 
             username, 
-            password 
+            password,
+            userid 
         FROM 
             t_sys_user 
         WHERE 
@@ -267,28 +268,4 @@ module.exports = {
             VALUES 
                 (?, ?, ?, ?, ?, ?)`
     },
-    gerWorkerList: {
-        list: `
-            SELECT 
-                id,
-                title,
-                address,
-                classify,
-                type,
-                createTime,
-                isOver,
-                name,
-            FROM
-                t_sys_workerlist AS a
-            LEFT JOIN
-                m_sys_userinfo AS b
-            ON
-                a.userid=b.userid
-            ORDER BY
-                createTime
-            DESC
-            LIMIT
-                ? OFFSET ?
-        `
-    }
 }
