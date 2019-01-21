@@ -1,15 +1,6 @@
-import captchapng from 'svg-captcha';
 import uuid from 'uuid';
 import { query, queryCount, sqlPage, execTrans, _getNewSqlParamEntity } from '../../sql';
-import SQL from '../../sql/admin';
 import MWorkerSQL from '../../sql/api/worker';
-import TASK_SQL from '../../sql/admin/task';
-import { getToken, getJWTPayload } from '../../lib/user';
-import config from '../../config';
-import { md5 } from '../../lib/md5';
-import { createTask } from '../../lib/task';
-import $Date_Format from '../../lib/dateFormat';
-import * as types from '../../lib/types';
 
 class WorkerControllers {
     /*

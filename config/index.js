@@ -14,7 +14,29 @@ module.exports = {
     // md5 盐
     MD5_SUFFIX: () => {
       return 'sdfadfDFADFADFA_121$&^%&*!啊瞬间法律的类似阿里斯顿sdlfalsfasdfa'
-    }  
+    },
+    // 邮箱验证码服务配置
+    mailConfig: {
+      host: 'smtp.qq.com',
+      port: 587,
+      auth: {
+        user: '773983210@qq.com',
+        pass: 'jacbkwmzdxcxbdbd'
+      }
+    },
+    mail: {
+      get code() {
+        return () => {
+          return Math.random().toString(16).slice(2,6).toUpperCase();
+        }
+      },
+      // 过期时间 3分钟
+      get expire() {
+        return () => {
+          return new Date().getTime()+3*60*60*1000
+        }
+      }
+    }
   },
   production: {
     secret: 'jwt_secret',
@@ -31,6 +53,28 @@ module.exports = {
     // md5 盐
     MD5_SUFFIX: () => {
       return 'sdfadfDFADFADFA_121$&^%&*!啊瞬间法律的类似阿里斯顿sdlfalsfasdfa'
-    }  
+    },
+    // 邮箱验证码服务配置
+    mailConfig: {
+      host: 'smtp.qq.com',
+      port: 587,
+      auth: {
+        user: '773983210@qq.com',
+        pass: 'jacbkwmzdxcxbdbd'
+      }
+    }, 
+    mail: {
+      get code() {
+        return () => {
+          return Math.random().toString(16).slice(2,6).toUpperCase();
+        }
+      },
+      // 过期时间 3分钟
+      get expire() {
+        return () => {
+          return new Date().getTime()+3*60*60*1000
+        }
+      }
+    } 
   }
 }
