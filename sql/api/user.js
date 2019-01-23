@@ -30,6 +30,16 @@ module.exports = {
         VALUES 
             (?,?,?,?,?,?,NOW())
     `,
+    createUserInfo: `
+        INSERT INTO
+            m_sys_userinfo
+            (
+                userid,
+                updateTime
+            )
+        VALUES
+            (?, NOW())
+    `,
     // 删除用户(仅用于注册失败回滚)
     deleteUser: `
         DELETE 

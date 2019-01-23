@@ -40,10 +40,23 @@ export let query = function( sql, values ) {
 *   @args
 *    table   表名
 */
-export let queryCount = async (table) => {
+// export let queryCount = async (table) => {
+//     return new Promise(async(resolve, reject) => {
+//         try{
+//             let res = await query(`SELECT COUNT(*) as total_page FROM ??`, [table])
+//             let total_page = res.length ? res[0].total_page : 0;
+//             resolve(total_page)
+//         }catch(err) {
+//             reject(err)  
+//         }
+//     })
+// }
+
+// 查询某个查询下的总条数，做分页的总页数
+export let queryCount = async (info, values) => {
     return new Promise(async(resolve, reject) => {
         try{
-            let res = await query(`SELECT COUNT(*) as total_page FROM ??`, [table])
+            let res = await query(`SELECT COUNT(*) as total_page FROM ${info}`, values)
             let total_page = res.length ? res[0].total_page : 0;
             resolve(total_page)
         }catch(err) {
@@ -67,11 +80,44 @@ export let queryCount = async (table) => {
 // }catch(err) {
 //     ctx.error({msg: err});
 // }
-export let sqlPage = async (page, tables) => {
+// export let sqlPage = async (page, tables) => {
+//     return new Promise( async (resolve, reject) => {
+//         let pageValues = [], page_num = 10, total_page;
+//         try{
+//             total_page = await queryCount(tables);
+//             total_page = Math.ceil(total_page/page_num);
+//         }catch(e){
+//             reject(e);
+//         }
+//         if(!parseInt(page) || parseInt(page) < 0) {
+//             page = 1;
+//         }else if(parseInt(page) > total_page && total_page !== 0) {
+//             page = total_page;
+//         }else {
+//             page = parseInt(page);
+//         }
+//         pageValues.push(page_num, page_num*(page-1))
+//         resolve({
+//             pageValues,
+//             page_num,
+//             total_page, 
+//             page
+//         })
+//     })  
+// }
+/*
+*   处理分页逻辑
+*   @args
+*     page      页码
+*     sql       最终查询sql语句
+*     values    查询参数
+*/
+export let sqlPage = async (page, sql, values) => {
     return new Promise( async (resolve, reject) => {
         let pageValues = [], page_num = 10, total_page;
+        let info = sql.split('FROM')[1].split('LIMIT')[0];
         try{
-            total_page = await queryCount(tables);
+            total_page = await queryCount(info, values);
             total_page = Math.ceil(total_page/page_num);
         }catch(e){
             reject(e);
@@ -90,9 +136,7 @@ export let sqlPage = async (page, tables) => {
             total_page, 
             page
         })
-    })
-    
-    
+    })  
 }
 
 /*

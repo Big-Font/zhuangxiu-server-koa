@@ -29,22 +29,98 @@ module.exports = {
         `,
         query:`
             SELECT 
-                id,
+                a.id,
                 title,
-                address,
+                a.address,
                 classify,
                 type,
-                createTime,
+                a.createTime,
                 isOver,
-                name,
+                username,
+                phone
             FROM
                 t_sys_workerlist AS a
             LEFT JOIN
-                m_sys_userinfo AS b
+                m_sys_user AS b
             ON
                 a.userid=b.userid
             ORDER BY
-                createTime
+                a.createTime
+            DESC
+            LIMIT
+                ? OFFSET ?
+        `,
+        queryOne:`
+            SELECT 
+                a.id,
+                title,
+                a.address,
+                classify,
+                type,
+                a.createTime,
+                isOver,
+                username,
+                phone
+            FROM
+                t_sys_workerlist AS a
+            LEFT JOIN
+                m_sys_user AS b
+            ON
+                a.userid=b.userid
+            WHERE
+                ??=?
+            ORDER BY
+                a.createTime
+            DESC
+            LIMIT
+                ? OFFSET ?
+        `,
+        queryTwo:`
+            SELECT 
+                a.id,
+                title,
+                a.address,
+                classify,
+                type,
+                a.createTime,
+                isOver,
+                username,
+                phone
+            FROM
+                t_sys_workerlist AS a
+            LEFT JOIN
+                m_sys_user AS b
+            ON
+                a.userid=b.userid
+            WHERE
+                ??=? AND ??=?
+            ORDER BY
+                a.createTime
+            DESC
+            LIMIT
+                ? OFFSET ?
+        `,
+        queryThree:`
+            SELECT 
+                a.id,
+                title,
+                a.address,
+                classify,
+                type,
+                a.createTime,
+                isOver,
+                username,
+                phone
+            FROM
+                t_sys_workerlist AS a
+            LEFT JOIN
+                m_sys_user AS b
+            ON
+                a.userid=b.userid
+            WHERE
+                ??=? AND ??=? AND ??=?
+            ORDER BY
+                a.createTime
             DESC
             LIMIT
                 ? OFFSET ?

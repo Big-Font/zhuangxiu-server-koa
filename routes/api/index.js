@@ -2,6 +2,7 @@ const router = require('koa-router')()
 const apiCtrl = require('../../controllers/api');
 const apiUserCtrl = require('../../controllers/api/user');
 const adminCtrl = require('../../controllers/admin');
+const workerCtrl = require('../../controllers/api/worker');
 
 router.prefix('/api')
 
@@ -24,5 +25,7 @@ router
     .get('/caseList', adminCtrl.caseList)
     // 查询秒杀活动列表
     .post('/spikeActiveList', adminCtrl.spikeActiveList)
+    // 发布找师傅资讯
+    .post('/addWorkerMsg', workerCtrl.addWorkerMsg)
 
 module.exports = router;

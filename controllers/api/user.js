@@ -43,7 +43,6 @@ class MUserControllers {
             subject: `${types.FITUP_AUTHOR}在线注册码`,
             html: `尊敬的”${ko.phone}“, 欢迎您在《${types.FITUP_AUTHOR}》中注册，您的验证码是 ${ko.code} ，有效期3分钟`
         }
-        console.log(mailOptions)
         await transporter.sendMail(mailOptions, (error, info) => {
             if(error) {
                 // 报警信息
@@ -57,6 +56,10 @@ class MUserControllers {
     }
     /*
     *   前端用户注册接口
+    *   @params   phone    手机号
+    *   @params   password 登录密码
+    *   @params   email    接收验证码的邮箱
+    *   @params   code     邮箱接收到的验证码 
     */
     async mUserRegister(ctx) {
         let { phone, password, email, code } = ctx.request.body;
@@ -105,28 +108,28 @@ class MUserControllers {
         //  2.入库
         let userid = uuid.v1();
         let pwd = md5(password + config[process.env.NODE_ENV].MD5_SUFFIX());
+        // 事务处理 用户表、用户信息表同时添加
+        let sqlArr = []; 
+        sqlArr.push(_getNewSqlParamEntity(M_USER_SQL.createUser, [userid, null, pwd, phone, email, null]));
+        sqlArr.push(_getNewSqlParamEntity(M_USER_SQL.createUserInfo, [userid]));
         try {
-            let res = await query(M_USER_SQL.createUser, [userid, null, pwd, phone, email, null]);
-            if(res){
-                // 3.调登录服务
-                // let captcha = await axios.get('/api/captcha');
-                let login = await axios.post('/api/login', {
+            let res = await execTrans(sqlArr)
+            // 3.调登录服务
+            let login = await axios.post('/api/login', {
                     capkey: ctx.session.cap,
                     phone,
                     password,
                     isServer: 1
                 });
-                console.log('登录接口的返回结果', login.data)
-                if(login.data.code === 0) {
-                    ctx.success({
-                        msg: '恭喜您注册成功',
-                        token: login.data.token
-                    })
-                }else {
-                    // 登录失败，回滚删除用户
-                    let errReg = await query(M_USER_SQL.deleteUser, [userid]);
-                    ctx.error({msg: '注册失败，请重新尝试'});
-                }
+            if(login.data.code === 0) {
+                ctx.success({
+                    msg: '恭喜您注册成功',
+                    token: login.data.token
+                })
+            }else {
+                // 登录失败，回滚删除用户
+                let errReg = await query(M_USER_SQL.deleteUser, [userid]);
+                ctx.error({msg: '注册失败，请重新尝试'});
             }
         }catch(err) {
             ctx.error({msg: err.message});
@@ -143,14 +146,17 @@ class MUserControllers {
             color: true,
             background: '#fff'
         })
-        console.log('=======>',ctx.session)
-        // Store.set(`captcha`, cap.text.toLocaleLowerCase());
+        console.log('=======>',ctx.session);
         ctx.session.cap = cap.text.toLocaleLowerCase();
         ctx.response.type ='svg';
         ctx.body = cap.data;
     }
     /*
-    *    前端用户登录接口
+    *   前端用户登录接口
+    *   @params  capkey    图形验证码
+    *   @params  phone     手机号
+    *   @params  password  登录密码
+    *   @params  isServer  是否是服务端调用(非必填)
     */
     async mUserLogin(ctx) {
         console.log(`图形验证码是：${ctx.session.cap}`);
@@ -178,7 +184,6 @@ class MUserControllers {
 
         try{
             let hasUser = await query(M_USER_SQL.queryUserInfo, [phone]);
-            console.log('登录接口拿到的user的密码')
             if(hasUser.length === 0) {
                 ctx.error({msg: '登录失败，无此用户'});
                 return;

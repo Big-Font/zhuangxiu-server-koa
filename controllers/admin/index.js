@@ -72,7 +72,7 @@ class AdminControllers {
         // 分页
         let queryValues = [],pageValues = [], page_num, total_page;
         try{
-            let res = await sqlPage(page, 't_sys_articlelist');
+            let res = await sqlPage(page, SQL.getList, []);
             pageValues = res.pageValues;
             page_num = res.page_num;
             total_page = res.total_page;
@@ -81,7 +81,7 @@ class AdminControllers {
             ctx.error({msg: err.message}); 
             return;
         }
-
+        
         try {
             let results = await query(SQL.getList, pageValues);
             ctx.success({
@@ -226,7 +226,7 @@ class AdminControllers {
         // 分页
         let queryValues = [],pageValues = [], page_num, total_page, results;
         try{
-            let res = await sqlPage(page, 't_sys_caselist');
+            let res = await sqlPage(page, SQL.caseList, []);
             pageValues = res.pageValues;
             page_num = res.page_num;
             total_page = res.total_page;
@@ -345,18 +345,7 @@ class AdminControllers {
     */
    async spikeActiveList(ctx) {
         let { place, type, page} = ctx.request.body;
-        let queryValues = [], values = [],pageValues = [], sql, page_num, total_page;
-        try{
-            let res = await sqlPage(page, 't_sys_spikelist');
-            pageValues = res.pageValues;
-            page_num = res.page_num;
-            total_page = res.total_page;
-            page = res.page;
-        }catch(err) {
-            ctx.error({msg: err.message});
-            return;
-        }
-        
+        let queryValues = [], values = [],pageValues = [], sql, page_num, total_page;      
  
         if(!!place && (place === '1' || place === '2'|| place === '3')) {
             values.push('spike_place');
@@ -366,21 +355,31 @@ class AdminControllers {
             values.push('spike_type');
             values.push(type);
         }
-        // start end 
-        queryValues = values.concat(pageValues);
-        
 
-        if(queryValues.length === 6){
+        if(values.length === 4){
             sql = SQL.spikeActiveListSQL.queryTwo;
-        }else if(queryValues.length === 4) {
+        }else if(values.length === 2) {
             sql = SQL.spikeActiveListSQL.queryOne;
         }else {
             sql = SQL.spikeActiveListSQL.queryALL;
         }
+
+        try{
+            let res = await sqlPage(page, sql, values);
+            pageValues = res.pageValues;
+            page_num = res.page_num;
+            total_page = res.total_page;
+            page = res.page;
+        }catch(err) {
+            ctx.error({msg: err.message});
+            return;
+        }
+
+        // start end 
+        queryValues = values.concat(pageValues);
         
         try{
             let list = await query(sql, queryValues);
-            
             ctx.success({
                 msg: '查询成功',
                 total_page,

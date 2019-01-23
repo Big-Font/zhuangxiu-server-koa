@@ -1,6 +1,6 @@
 const router = require('koa-router')()
 const adminCtrl = require('../../controllers/admin');
-const checkJWT = require('../../middlewares/checkJWT');
+const workerCtrl = require('../../controllers/admin/worker');
 
 router.prefix('/admin')
 
@@ -31,6 +31,8 @@ router
     .post('/spikeActiveList', adminCtrl.spikeActiveList)
     // 发布秒杀活动接口
     .post('/spikeActivePublish', adminCtrl.spikeActivePublish)
+    // 查询找师傅列表接口
+    .post('/getFindWorkerList', workerCtrl.getWorkerList)
 
 
 module.exports = router;

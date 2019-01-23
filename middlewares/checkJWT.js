@@ -14,7 +14,7 @@ module.exports = function () {
                 if (!!payload) {
                     ctx.user = {
                         username: payload.username,
-                        password: payload.password
+                        userid: payload.userid
                     }
                 } else {
                     console.log('解析出来的域账号不在数据库中')
