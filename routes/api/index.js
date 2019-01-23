@@ -1,13 +1,19 @@
 const router = require('koa-router')()
 const apiCtrl = require('../../controllers/api');
+const apiUserCtrl = require('../../controllers/api/user');
 const adminCtrl = require('../../controllers/admin');
 
 router.prefix('/api')
 
 router
-    .get('/register', apiCtrl.register)
-    .post('/login', adminCtrl.login)
-    .get('/captcha', adminCtrl.captcha)
+    // 前端用户注册邮箱验证码接口
+    .post('/mailVerify', apiUserCtrl.mailVerify)
+    // 前端用户注册接口
+    .post('/register', apiUserCtrl.mUserRegister)
+    // 登录图形验证码接口
+    .get('/captcha', apiUserCtrl.captcha)
+    // 前端用户登录接口
+    .post('/login', apiUserCtrl.mUserLogin)
     // 获取banner
     .get('/banner', adminCtrl.getBannerList)
     // 获取资讯列表

@@ -7,6 +7,14 @@ module.exports = {
         WHERE
             phone=?
     `,
+    queryUserInfo: `
+        SELECT
+            *
+        FROM
+            m_sys_user
+        WHERE
+            phone=?
+    `,
     createUser: `
         INSERT INTO
             m_sys_user
@@ -20,7 +28,7 @@ module.exports = {
                 createTime
             )
         VALUES 
-            (?,?,?,?,?,NOW())
+            (?,?,?,?,?,?,NOW())
     `,
     // 删除用户(仅用于注册失败回滚)
     deleteUser: `

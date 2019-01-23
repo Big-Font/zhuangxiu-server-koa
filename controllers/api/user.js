@@ -1,7 +1,8 @@
 import captchapng from 'svg-captcha';
 import uuid from 'uuid';
+// import Store from '../../lib/store';
 import Redis from 'koa-redis';
-import nodemail from 'nodemail';
+import nodeMailer from 'nodemailer';
 import axios from '../../lib/axios';
 import { query, queryCount, sqlPage, execTrans, _getNewSqlParamEntity } from '../../sql';
 import SQL from '../../sql/admin';
@@ -11,20 +12,24 @@ import config from '../../config';
 import { md5 } from '../../lib/md5';
 import * as types from '../../lib/types';
 
+let Store = new Redis().client;
+
 class MUserControllers {
     /*
     *   邮箱验证码的发送
+    *   @params  phone  手机号
+    *   @params  email  邮箱
     */
     async mailVerify(ctx) {
-        let { phone, email, } = ctx.request.body;
-        const saveExpire = await Store.hget(`nodemail:${phone}`, 'expire');
+        let { phone, email } = ctx.request.body;
+        const saveExpire = await Store.hget(`nodemail${phone}`, 'expire');
         if(saveExpire && new Date().getTime() - saveExpire < 0) {
             ctx.error({msg: '验证请求过于频繁，请稍后再试'});
             return;
         } 
         // 发送邮件
         let conf = config[process.env.NODE_ENV];
-        let transporter = nodemail.createTransport(conf.mailConfig);
+        let transporter = nodeMailer.createTransport(conf.mailConfig);
         let ko = {
             code: conf.mail.code(),
             expire: conf.mail.expire(),
@@ -33,19 +38,21 @@ class MUserControllers {
         }
         // 邮件中显示的内容
         let mailOptions = {
-            from: `”认证邮件“<${phone}>`,
+            from: `”认证邮件“<${conf.mailConfig.auth.user}>`,
             to: ko.email,
             subject: `${types.FITUP_AUTHOR}在线注册码`,
-            html: `尊敬的”${phone}“, 欢迎您在《${types.FITUP_AUTHOR}》中注册，您的验证码是 ${ko.code} ，有效期3分钟`
+            html: `尊敬的”${ko.phone}“, 欢迎您在《${types.FITUP_AUTHOR}》中注册，您的验证码是 ${ko.code} ，有效期3分钟`
         }
+        console.log(mailOptions)
         await transporter.sendMail(mailOptions, (error, info) => {
             if(error) {
-                // 此处应该添加报警信息
-                return console.log(error);
+                // 报警信息
+                return console.log(error)
             }else {
-                Store.hmset(`nodemail:${phone}`, 'code', ko.code, 'expire', ko.expire, 'email', ko.email);
+                console.log(`注册邮件发送成功：${mailOptions.to}`, `nodemail${phone}`)
+                Store.hmset(`nodemail${phone}`, 'code', ko.code, 'expire', ko.expire, 'email', ko.email);
             }
-        });
+        })
         ctx.success({msg: '邮件已发送，可能会有延迟，验证码有效期3分钟'});
     }
     /*
@@ -61,7 +68,7 @@ class MUserControllers {
             ctx.error({msg: '请填写密码'});
             return;
         }
-        if(!mail) {
+        if(!email) {
             ctx.error({msg: '请填写邮箱'});
             return;
         }
@@ -71,6 +78,7 @@ class MUserControllers {
         }
         const saveCode = await Store.hget(`nodemail${phone}`, 'code');
         const saveExpire = await Store.hget(`nodemail${phone}`, 'expire');
+        console.log(`saveCode:${saveCode},code:${code},saveExpire:${saveExpire}`)
         if(code === saveCode) {
             if(new Date().getTime() - saveExpire > 0) {
                 ctx.error({msg: '验证码已过期， 请重新尝试'});
@@ -92,20 +100,23 @@ class MUserControllers {
             }
         }catch(err) {
                 ctx.error({msg: err.message});
+                return;
         }
         //  2.入库
         let userid = uuid.v1();
-        password = md5(password + config[process.env.NODE_ENV].MD5_SUFFIX());
+        let pwd = md5(password + config[process.env.NODE_ENV].MD5_SUFFIX());
         try {
-            let res = await query(M_USER_SQL.createUser, [userid, null, password, phone, email, null]);
+            let res = await query(M_USER_SQL.createUser, [userid, null, pwd, phone, email, null]);
             if(res){
                 // 3.调登录服务
-                let captcha = await axios.get('/api/captcha');
+                // let captcha = await axios.get('/api/captcha');
                 let login = await axios.post('/api/login', {
                     capkey: ctx.session.cap,
                     phone,
-                    password
+                    password,
+                    isServer: 1
                 });
+                console.log('登录接口的返回结果', login.data)
                 if(login.data.code === 0) {
                     ctx.success({
                         msg: '恭喜您注册成功',
@@ -118,14 +129,74 @@ class MUserControllers {
                 }
             }
         }catch(err) {
-            ctx.error({msg: error.message});
+            ctx.error({msg: err.message});
         }
+    }
+    /*
+    *   图形验证码接口
+    */
+    async captcha(ctx) {
+        const cap = captchapng.create({
+            size: 4,
+            ignoreChars: '0oli',
+            noise: 4,
+            color: true,
+            background: '#fff'
+        })
+        console.log('=======>',ctx.session)
+        // Store.set(`captcha`, cap.text.toLocaleLowerCase());
+        ctx.session.cap = cap.text.toLocaleLowerCase();
+        ctx.response.type ='svg';
+        ctx.body = cap.data;
     }
     /*
     *    前端用户登录接口
     */
     async mUserLogin(ctx) {
+        console.log(`图形验证码是：${ctx.session.cap}`);
+        let { phone, password, capkey, isServer } = ctx.request.body;
+        if(!phone) {
+            ctx.error({msg: '手机号不能为空'});
+            return;
+        }
+        if(!password) {
+            ctx.error({msg: '密码不能为空'});
+            return;
+        }
+        if(!isServer) {
+            if(!capkey) {
+                ctx.error({msg: '验证码不能为空'});
+                return;
+            }
+            if(capkey.toLocaleLowerCase() !== ctx.session.cap) {
+                ctx.error({msg: '验证码错误'});
+                return;
+            }
+        }
+        
+        password = md5(password + config[process.env.NODE_ENV].MD5_SUFFIX());
 
+        try{
+            let hasUser = await query(M_USER_SQL.queryUserInfo, [phone]);
+            console.log('登录接口拿到的user的密码')
+            if(hasUser.length === 0) {
+                ctx.error({msg: '登录失败，无此用户'});
+                return;
+            }else if(hasUser[0].pwd !== password){
+                ctx.error({msg: '登录失败，密码错误'});
+                return;
+            }else {
+                ctx.session.userid = hasUser[0].userid;
+                console.log(`session中存储的userid是：${ctx.session.userid}`);
+                ctx.success({
+                    msg: '登录成功',
+                    token: getToken({userid: hasUser[0].userid})
+                })
+            }
+        }catch(err) {
+            ctx.error({msg: err.message});
+            return;
+        }
     }
     /*
     *     前端用户个人信息修改接口

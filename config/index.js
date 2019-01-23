@@ -62,7 +62,7 @@ module.exports = {
         user: '773983210@qq.com',
         pass: 'jacbkwmzdxcxbdbd'
       }
-    }, 
+    },
     mail: {
       get code() {
         return () => {
@@ -75,6 +75,6 @@ module.exports = {
           return new Date().getTime()+3*60*60*1000
         }
       }
-    } 
+    }
   }
 }

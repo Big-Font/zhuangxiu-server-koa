@@ -3,6 +3,9 @@ const cors = require('koa2-cors')
 const app = new Koa()
 const views = require('koa-views')
 const json = require('koa-json')
+// const session = require("koa-session2")
+// import RedisStore from './lib/store'
+// const RedisStore = require('./lib/store')
 const session = require('koa-session')
 const Redis = require('koa-redis')
 const jwt = require('jsonwebtoken');
@@ -35,6 +38,9 @@ const CONFIG = {
    store: new Redis()
 };
 app.use(session(CONFIG, app));
+// app.use(session({
+//   store: new RedisStore()
+// }));
 
 // middlewares
 app.use(json())
@@ -68,7 +74,7 @@ app.use(errorHandle);
 app.use(jwtKoa({
   secret: config[process.env.NODE_ENV].secret,
 }).unless({
-  path: [/\/register/, /\/login/, '/api', '/api/login', '/api/register','/api/captcha', '/admin/captcha', '/admin/login', '/admin/wangeditor/upload', '/admin/upload','/admin/articleList'],
+  path: [/\/register/, /\/login/, '/api', '/api/login', '/api/mailVerify', '/api/register','/api/captcha', '/admin/captcha', '/admin/login', '/admin/wangeditor/upload', '/admin/upload','/admin/articleList'],
 }))
 
 app.use(checkJWT());

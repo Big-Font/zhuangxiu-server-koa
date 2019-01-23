@@ -15,3 +15,12 @@ pm2 start --name "name" -- run centos
 
 查看监控日志 ： pm2 monit   
 
+## session机制从 koa-session koa-redis 升级为 koa-session2 ioredis
+
+{
+    "presets": ["es2015"]
+}
+
+
+babel-plugin-transform-es2015-modules-commonjs
+
