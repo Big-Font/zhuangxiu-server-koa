@@ -24,19 +24,38 @@ class ApiControllers {
     async getBanner(ctx) {
 
     }
+    /*
+    *   装修案例列表 --- caseList
+    *   @params  
+    *   page  当前页数
+    *   url   图片地址
+    *   path  跳转地址
+    */
+    async caseList(ctx) {
+        let { page } = ctx.request.query;
+        // 分页
+        let queryValues = [],pageValues = [], page_num, total_page, results;
+        try{
+            let res = await sqlPage(page, SQL.caseList, []);
+            pageValues = res.pageValues;
+            page_num = res.page_num;
+            total_page = res.total_page;
+        }catch(err) {
+            ctx.error({msg: err.message}); 
+            return;
+        }
 
-    // 注册
-    async register(ctx) {
-        
+        try {
+            results = await query(SQL.caseList, pageValues)
+        }catch(err) {
+            ctx.error({msg: err.message});
+            return;
+        }
+        ctx.success({
+            list: results
+        })
     }
-    // 登录
-    async login(ctx) {
-        
-    }
-    // user
-    async getuser(ctx) {
-        
-    }
+    
 }
 
 module.exports = new ApiControllers();

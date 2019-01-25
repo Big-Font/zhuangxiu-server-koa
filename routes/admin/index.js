@@ -22,7 +22,7 @@ router
     // 修改首页banner接口
     .post('/bannerModify', adminCtrl.bannerModify)
     // 获取装修案例列表
-    .get('/caseList', adminCtrl.caseList)
+    .post('/caseList', adminCtrl.caseList)
     // 发布装修案例
     .post('/fitupCasePublic', adminCtrl.fitupCasePublic)
     // 修改装修案例 

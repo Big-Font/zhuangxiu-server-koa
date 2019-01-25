@@ -215,18 +215,18 @@ class AdminControllers {
        }
    }
     /*
-    *   装修案例列表 --- caseList
+    *   装修案例列表
     *   @params  
     *   page  当前页数
     *   url   图片地址
     *   path  跳转地址
     */
    async caseList(ctx) {
-        let { page } = ctx.request.query;
+        let { page } = ctx.request.body;
         // 分页
         let queryValues = [],pageValues = [], page_num, total_page, results;
         try{
-            let res = await sqlPage(page, SQL.caseList, []);
+            let res = await sqlPage(page, SQL.queryCaseDetail, []);
             pageValues = res.pageValues;
             page_num = res.page_num;
             total_page = res.total_page;
@@ -236,13 +236,15 @@ class AdminControllers {
         }
 
         try {
-            results = await query(SQL.caseList, pageValues)
+            results = await query(SQL.queryCaseDetail, pageValues)
         }catch(err) {
             ctx.error({msg: err.message});
             return;
         }
         ctx.success({
-            list: results
+            list: results,
+            total_page,
+            page,
         })
    }
     /*
@@ -250,23 +252,39 @@ class AdminControllers {
     *   @params  
     *   title   标题
     *   author  作者
-    *   recommend 是否推荐到首页
+    *   recommend 是否推荐到首页  0--不推荐，1--推荐
     *   titleImg  列表图片
     *   content   文章内容
     */
    async fitupCasePublic(ctx) {
-        let { title, author, recommend, titleImg, content} = ctx.request.body;
+        let { 
+            title, 
+            author, 
+            recommend, 
+            titleImg, 
+            content, 
+            area,
+            apartment,
+            spend,
+            style,
+            company,
+            label
+        } = ctx.request.body;
         if(!title) {
             ctx.error({msg: '标题不能为空'});
             return;
-        }else if(!author) {
+        }
+        if(!author) {
            author = types.FITUP_AUTHOR;
-        }else if(!recommend) {
+        }
+        if(!recommend) {
             recommend = 0;
-        }else if(!titleImg) {
+        }
+        if(!titleImg) {
             ctx.error({msg: '默认图片不能为空'});
             return;
-        }else if(!content) {
+        }
+        if(!content) {
             ctx.error({msg: '文章内容不能为空'});
             return;
         }
@@ -277,7 +295,7 @@ class AdminControllers {
         let sqlArr = [];
         // let fitupcaseSQL = `INSERT INTO t_sys_fitupcase (caselist_uuid, fitupcase_content, fitupcase_create_time, fitupcase_update_time) VALUES ('${fiupcaseUUID}', '${content}', NOW(), NOW())`;
         // let caselistSQL = `INSERT INTO t_sys_caselist (caselist_uuid, caselist_title, caselist_author, caselist_recommend, caselist_img, caselist_pageview) VALUES ('${fiupcaseUUID}', '${title}', '${author}', '${recommend}', '${titleImg}', '${pageview}')`;
-        sqlArr.push(_getNewSqlParamEntity(SQL.fitupCasePublic.detail, [fiupcaseUUID, content]));
+        sqlArr.push(_getNewSqlParamEntity(SQL.fitupCasePublic.detail, [fiupcaseUUID, content, area, apartment, spend, style, company, label]));
         sqlArr.push(_getNewSqlParamEntity(SQL.fitupCasePublic.list, [fiupcaseUUID, title, author, recommend, titleImg, pageview]));
         try{
             let info = await execTrans(sqlArr)

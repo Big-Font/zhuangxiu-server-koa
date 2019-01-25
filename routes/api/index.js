@@ -22,7 +22,7 @@ router
     // 获取资讯详情
     .post('/article', adminCtrl.getArticle)
     // 获取装修列表
-    .get('/caseList', adminCtrl.caseList)
+    .get('/caseList', apiCtrl.caseList)
     // 查询秒杀活动列表
     .post('/spikeActiveList', adminCtrl.spikeActiveList)
     // 发布找师傅资讯
