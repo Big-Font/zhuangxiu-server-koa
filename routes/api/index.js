@@ -21,8 +21,10 @@ router
     .get('/articleList', adminCtrl.getList)
     // 获取资讯详情
     .post('/article', adminCtrl.getArticle)
-    // 获取装修列表
+    // 获取装修案例列表
     .get('/caseList', apiCtrl.caseList)
+    // 根据id查找装修案例详情
+    .post('/caseDetail', apiCtrl.queryFitupcaseDetail)
     // 查询秒杀活动列表
     .post('/spikeActiveList', adminCtrl.spikeActiveList)
     // 发布找师傅资讯

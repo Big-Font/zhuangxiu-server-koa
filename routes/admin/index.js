@@ -33,6 +33,8 @@ router
     .post('/spikeActivePublish', adminCtrl.spikeActivePublish)
     // 查询找师傅列表接口
     .post('/getFindWorkerList', workerCtrl.getWorkerList)
+    // 找师傅状态更改
+    .post('/handleWorkerType', workerCtrl.modifyWorker)
 
 
 module.exports = router;

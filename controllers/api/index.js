@@ -1,4 +1,7 @@
 import captchapng from 'svg-captcha';
+import { query, queryCount, sqlPage, execTrans, _getNewSqlParamEntity } from '../../sql';
+import SQL from '../../sql/admin';
+import API_SQL from '../../sql/api';
 
 class ApiControllers {
     // 图形验证码
@@ -54,6 +57,44 @@ class ApiControllers {
         ctx.success({
             list: results
         })
+    }
+    /*
+    *   装修案例详情查询 --- caseList
+    *   @params  
+    *   id  装修案例列表的id
+    */
+    async queryFitupcaseDetail(ctx) {
+        let { id } = ctx.request.body;
+        let uuidRes, uuid;
+        if(!id) {
+            ctx.error({msg: 'id不能为空'});
+            return;
+        }
+        // 根据id查询uuid
+        try{
+            uuidRes = await query(API_SQL.queryById, [id]);
+            if(!uuidRes.length) {
+                ctx.error({msg: '没有查询到对应详情'});
+                return;
+            }
+            console.log(JSON.stringify(uuidRes))
+            uuid = uuidRes[0].uuid;
+        }catch(error) {
+            ctx.error({msg: error.message});
+            return;
+        }
+        
+        console.log('uuid====>', uuid);
+        // 查询详情
+        try{
+            let data = await query(API_SQL.fitupDetail, [uuid]);
+            ctx.success({
+                msg: '查询成功',
+                data: data.length ? data[0] : {},
+            })
+        }catch(err) {
+            ctx.error({msg: err.message})
+        }
     }
     
 }

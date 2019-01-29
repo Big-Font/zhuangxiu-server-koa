@@ -66,6 +66,8 @@ class WorkerControllers {
     }
     /*
     *   找师傅接口状态更改
+    *   @params id     找师傅列表的id
+    *   @params state  isOver的状态  1--未结束  2--已结束
     */
    async modifyWorker(ctx) {
        let {id, state} = ctx.request.body;
@@ -78,12 +80,18 @@ class WorkerControllers {
            ctx.error({msg: '状态不能为空'});
            return;
        }
+       if(state !== '1') {
+           ctx.error({msg: '此条找师傅状态不是未结束'});
+           return;
+       }else {
+           state = '2';
+       }
 
        try{
             let res = await query(MWorkerSQL.worker.uuid, [id]);
             uuid = res[0].uuid;
             try{
-                let modify = await query(MWorkerSQL.worker.update, [type, state]);
+                let modify = await query(MWorkerSQL.worker.update, [state, uuid]);
                 ctx.success({msg: '修改成功'});
             }catch(e) {
                 ctx.error({msg: e.message});

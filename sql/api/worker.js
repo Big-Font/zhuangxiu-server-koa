@@ -37,13 +37,19 @@ module.exports = {
                 a.createTime,
                 isOver,
                 username,
-                phone
+                phone,
+                details,
+                imgs
             FROM
                 t_sys_workerlist AS a
             LEFT JOIN
                 m_sys_user AS b
             ON
                 a.userid=b.userid
+            LEFT JOIN
+                t_sys_workers AS c
+            ON
+                a.uuid=c.uuid
             ORDER BY
                 a.createTime
             DESC
@@ -60,13 +66,19 @@ module.exports = {
                 a.createTime,
                 isOver,
                 username,
-                phone
+                phone,
+                details,
+                imgs
             FROM
                 t_sys_workerlist AS a
             LEFT JOIN
                 m_sys_user AS b
             ON
                 a.userid=b.userid
+            LEFT JOIN
+                t_sys_workers AS c
+            ON
+                a.uuid=c.uuid
             WHERE
                 ??=?
             ORDER BY
@@ -85,13 +97,19 @@ module.exports = {
                 a.createTime,
                 isOver,
                 username,
-                phone
+                phone,
+                details,
+                imgs
             FROM
                 t_sys_workerlist AS a
             LEFT JOIN
                 m_sys_user AS b
             ON
                 a.userid=b.userid
+            LEFT JOIN
+                t_sys_workers AS c
+            ON
+                a.uuid=c.uuid
             WHERE
                 ??=? AND ??=?
             ORDER BY
@@ -110,13 +128,19 @@ module.exports = {
                 a.createTime,
                 isOver,
                 username,
-                phone
+                phone,
+                details,
+                imgs
             FROM
                 t_sys_workerlist AS a
             LEFT JOIN
                 m_sys_user AS b
             ON
                 a.userid=b.userid
+            LEFT JOIN
+                t_sys_workers AS c
+            ON
+                a.uuid=c.uuid
             WHERE
                 ??=? AND ??=? AND ??=?
             ORDER BY
