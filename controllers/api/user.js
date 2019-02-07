@@ -209,6 +209,61 @@ class MUserControllers {
     async mUserInfo(ctx) {
         
     }
+    /*
+    *     后台管理用户列表
+    */
+    async mUserList(ctx) {
+        let { page, phone, username, name } = ctx.request.body;
+        let queryValues = [], values = [],pageValues = [], sql, page_num, total_page; 
+        if(!!phone) {
+            values.push('phone');
+            values.push(`%${phone}%`);
+        }
+        if(!!username) {
+            values.push('username');
+            values.push(`%${username}%`);
+        }
+        if(!!name) {
+            values.push('name');
+            values.push(`%${name}%`);
+        }
+
+        if(values.length === 6) {
+            sql = M_USER_SQL.queryUserListThree;
+        }else if(values.length === 4) {
+            sql = M_USER_SQL.queryUserListTwo;
+        }else if(values.length === 2) {
+            sql = M_USER_SQL.queryUserListOne;
+        }else {
+            sql = M_USER_SQL.queryUserListAll;
+        }
+
+        try{
+            let res = await sqlPage(page, sql, values);
+            pageValues = res.pageValues;
+            page_num = res.page_num;
+            total_page = res.total_page;
+            page = res.page;
+        }catch(err) {
+            ctx.error({msg: err.message});
+            return;
+        }
+
+        // start end 
+        queryValues = values.concat(pageValues);
+
+        try{
+            let list = await query(sql, queryValues);
+            ctx.success({
+                msg: '查询成功',
+                total_page,
+                page,
+                list,
+            })
+        }catch(err) {
+            ctx.error({msg: err.message})
+        }
+    }
 }
 
 module.exports = new MUserControllers();

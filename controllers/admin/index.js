@@ -369,7 +369,7 @@ class AdminControllers {
             values.push('spike_place');
             values.push(place);
         }
-        if(!!type && (type === '1' || type === '2')) {
+        if(!!type && (type === '1' || type === '2' || type === '3')) {
             values.push('spike_type');
             values.push(type);
         }

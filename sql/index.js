@@ -22,10 +22,8 @@ export let query = function( sql, values ) {
                 console.log('连接数据库成功')
                 connection.query(sql, values, ( error, rows) => {
                     if ( error ) {
-                        console.log('sql错误信息:'+error)
                         reject( error )
                     } else {
-                        console.log('连接成功====>'+JSON.parse(JSON.stringify(rows))[0])
                         resolve( JSON.parse(JSON.stringify(rows)) )
                     }
                     connection.release()

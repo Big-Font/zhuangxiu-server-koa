@@ -1,6 +1,7 @@
 const router = require('koa-router')()
 const adminCtrl = require('../../controllers/admin');
 const workerCtrl = require('../../controllers/admin/worker');
+const apiUserCtrl = require('../../controllers/api/user');
 
 router.prefix('/admin')
 
@@ -9,6 +10,8 @@ router
     .get('/captcha', adminCtrl.captcha)
     // 登录接口
     .post('/login', adminCtrl.login)
+    // 前端用户列表查询
+    .post('/mUserList', apiUserCtrl.mUserList)
     // 查询文章列表接口
     .get('/articleList', adminCtrl.getList)
     // 发布资讯列表接口 

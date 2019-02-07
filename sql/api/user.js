@@ -47,5 +47,112 @@ module.exports = {
             m_sys_user
         WHERE
             userid=?
+    `,
+    // 查询用户列表（后台管理)
+    queryUserListAll: `
+        SELECT
+            a.id,
+            a.userid,
+            username,
+            phone,
+            email,
+            img,
+            Date_Format(createTime,'%Y-%m-%d') AS createTime,
+            sex,
+            age,
+            address,
+            name
+        FROM
+            m_sys_user AS a
+        LEFT JOIN
+            m_sys_userinfo AS b
+        ON
+            a.userid=b.userid
+        ORDER BY
+            createTime
+        DESC
+        LIMIT 
+            ? OFFSET ? 
+    `,
+    queryUserListOne: `
+        SELECT
+            a.id,
+            a.userid,
+            username,
+            phone,
+            email,
+            img,
+            Date_Format(createTime,'%Y-%m-%d') AS createTime,
+            sex,
+            age,
+            address,
+            name
+        FROM
+            m_sys_user AS a
+        LEFT JOIN
+            m_sys_userinfo AS b
+        ON
+            a.userid=b.userid
+        WHERE
+            ?? like ?
+        ORDER BY
+            createTime
+        DESC
+        LIMIT 
+            ? OFFSET ? 
+    `,
+    queryUserListTwo: `
+        SELECT
+            a.id,
+            a.userid,
+            username,
+            phone,
+            email,
+            img,
+            Date_Format(createTime,'%Y-%m-%d') AS createTime,
+            sex,
+            age,
+            address,
+            name
+        FROM
+            m_sys_user AS a
+        LEFT JOIN
+            m_sys_userinfo AS b
+        ON
+            a.userid=b.userid
+        WHERE
+            ??=? AND ??=?
+        ORDER BY
+            createTime
+        DESC
+        LIMIT 
+            ? OFFSET ?  
+    `,
+    queryUserListThree: `
+        SELECT
+            a.id,
+            a.userid,
+            username,
+            phone,
+            email,
+            img,
+            Date_Format(createTime,'%Y-%m-%d') AS createTime,
+            sex,
+            age,
+            address,
+            name
+        FROM
+            m_sys_user AS a
+        LEFT JOIN
+            m_sys_userinfo AS b
+        ON
+            a.userid=b.userid
+        WHERE
+            ??=? AND ??=? AND ??=?
+        ORDER BY
+            createTime
+        DESC
+        LIMIT 
+            ? OFFSET ? 
     `
 }

@@ -25,10 +25,6 @@ module.exports = {
                 spike_uuid
             FROM 
                 t_sys_spikelist
-            WHERE
-                spike_start_time>=NOW()
-            AND 
-                spike_type=1
         `,
         spikeInitStart:  `
             UPDATE 
