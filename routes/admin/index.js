@@ -2,6 +2,7 @@ const router = require('koa-router')()
 const adminCtrl = require('../../controllers/admin');
 const workerCtrl = require('../../controllers/admin/worker');
 const apiUserCtrl = require('../../controllers/api/user');
+const goodsCtrl = require('./../../controllers/admin/goods');
 
 router.prefix('/admin')
 
@@ -38,6 +39,8 @@ router
     .post('/getFindWorkerList', workerCtrl.getWorkerList)
     // 找师傅状态更改
     .post('/handleWorkerType', workerCtrl.modifyWorker)
+    // 商品分类查询
+    .post('/categoryList', goodsCtrl.categoryList)
 
 
 module.exports = router;

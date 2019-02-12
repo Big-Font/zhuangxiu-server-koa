@@ -26,3 +26,21 @@ pm2 start --name "name" -- run centos
 
 babel-plugin-transform-es2015-modules-commonjs
 
+
+## 商品分类模块查询
+新建c_sp_genre_type表关联c_sp_genre表的type
+```
+SELECT 
+	a.`id`,
+	a.`pid`,
+	a.`name`,
+	b.`name` 
+FROM 
+	`c_sp_genre` a
+JOIN 
+	`c_sp_genre_type` b 
+ON 
+	a.`type` = b.`id`
+WHERE 
+	a.`pid` = 0 AND b.`id` = 1
+```

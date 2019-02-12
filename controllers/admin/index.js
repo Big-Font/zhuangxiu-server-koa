@@ -159,6 +159,8 @@ class AdminControllers {
     }
     /*
     *   banner管理 -- banner 列表查询
+    *   type: 类型：0-外部链接， 1-装修案例，2-秒杀活动，3-资讯，
+    *   infoId: 装修案例，资讯,秒杀活动的id
     *   @params  
     */
    async getBannerList(ctx) {
@@ -180,13 +182,17 @@ class AdminControllers {
     *   path  跳转地址
     */
    async bannerPublic(ctx) {
-        let { url, path, name } = ctx.request.body;
+        let { url, path, name, type, infoId } = ctx.request.body;
         if(!url) {
             ctx.error({msg: 'banner图片地址不能为空'});
             return;
         }
+        if(!type) {
+            ctx.error({msg: 'banner类型不能为空'});
+            return;
+        }
         try{
-            let result = await query(SQL.bannerPublic, [url, path, name]);
+            let result = await query(SQL.bannerPublic, [url, path, name, type, infoId]);
             ctx.success({msg: 'banner更新成功'});
         }catch(err) {
             ctx.err({msg: err});
@@ -199,16 +205,21 @@ class AdminControllers {
     *   path  跳转地址
     */
    async bannerModify(ctx) {
-       let { banner_id, banner_name, banner_url, banner_path} = ctx.request.body;
+       let { banner_id, banner_name, banner_url, banner_path, type, infoId} = ctx.request.body;
        if(!banner_id) {
            ctx.error({msg: 'id不能为空'});
            return;
-       }else if(!banner_url) {
+       }
+       if(!banner_url) {
            ctx.error({msg: '图片地址不能为空'});
            return;
        }
+       if(!type) {
+            ctx.error({msg: 'banner类型不能为空'});
+            return;
+       }
        try{
-           let res = await query(SQL.bannerModify, [banner_name, banner_url, banner_path, banner_id]);
+           let res = await query(SQL.bannerModify, [banner_name, banner_url, banner_path, type, infoId, banner_id,]);
            ctx.success({msg: 'banner更新成功'});
        }catch(err) {
            ctx.error({msg: err.message});

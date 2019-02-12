@@ -77,6 +77,8 @@ module.exports = {
             banner_url,
             banner_path,
             banner_name,
+            banner_type as type,
+            banner_info_id as infoId,
             Date_Format(banner_update_time,'%Y-%m-%d %H:%i:%s') as banner_update_time
         FROM 
             t_sys_bannerlist 
@@ -92,9 +94,11 @@ module.exports = {
             (banner_url, 
             banner_path, 
             banner_name,
+            banner_type,
+            banner_info_id,
             banner_update_time) 
         VALUES 
-            (?, ?, ?, NOW())`
+            (?, ?, ?, ?, ? NOW())`
     ,
     /*
     *   banner修改接口
@@ -106,6 +110,8 @@ module.exports = {
             banner_name=?,
             banner_url=?,
             banner_path=?,
+            banner_type=?,
+            banner_info_id=?,
             banner_update_time=NOW()
         WHERE
             banner_id=?
