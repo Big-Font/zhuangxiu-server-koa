@@ -41,6 +41,12 @@ router
     .post('/handleWorkerType', workerCtrl.modifyWorker)
     // 商品分类查询
     .post('/categoryList', goodsCtrl.categoryList)
+    // 商品列表查询
+    .post('/getGoods', goodsCtrl.getGoods)
+    // 查询品牌列表 
+    .post('/getBrandList', goodsCtrl.getBrandList)
+    // 查询商家列表 getSellersList
+    .post('/getSellersList', goodsCtrl.getSellersList)
 
 
 module.exports = router;

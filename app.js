@@ -74,7 +74,7 @@ app.use(errorHandle);
 app.use(jwtKoa({
   secret: config[process.env.NODE_ENV].secret,
 }).unless({
-  path: [/\/register/, /\/login/, /^\/images\/*/, '/api', '/api/login', '/api/mailVerify', '/api/register','/api/captcha', '/admin/captcha', '/admin/login', '/admin/wangeditor/upload', '/admin/upload','/admin/articleList'],
+  path: [/\/register/, /\/login/, /^\/images\/*/, /^\/api\/v1\/*/,  '/admin/captcha', '/admin/login', '/admin/wangeditor/upload', '/admin/upload','/admin/articleList'],
 }))
 
 app.use(checkJWT());
