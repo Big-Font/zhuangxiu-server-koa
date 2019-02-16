@@ -45,8 +45,19 @@ router
     .post('/getGoods', goodsCtrl.getGoods)
     // 查询品牌列表 
     .post('/getBrandList', goodsCtrl.getBrandList)
-    // 查询商家列表 getSellersList
+    // 查询商家列表 
     .post('/getSellersList', goodsCtrl.getSellersList)
-
+    // 发布商品品牌信息  
+    .post('/publicBrandInfo', goodsCtrl.publicBrandInfo)
+    // 修改品牌信息  
+    .post('/modeifyBrandInfo', goodsCtrl.modeifyBrandInfo)
+    // 添加商家接口 
+    .post('/publicSellerInfo', goodsCtrl.publicSellerInfo)
+    // 商家信息修改接口 
+    .post('/modeifySellerInfo', goodsCtrl.modeifySellerInfo)
+    // 查询所有商家（不分页） 
+    .post('/getSellersListNoPage', goodsCtrl.getSellersListNoPage)
+    // 商品列表中品牌、商家、类别查询接口--用于商品信息修改和发布
+    .post('/goodsInfoUpdateList', goodsCtrl.goodsInfoUpdateList)
 
 module.exports = router;
