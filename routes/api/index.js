@@ -16,6 +16,10 @@ router
     .get('/v1/captcha', apiUserCtrl.captcha)
     // 前端用户登录接口
     .post('/v1/login', apiUserCtrl.mUserLogin)
+    // 获取前端用户的用户信息 
+    .post('/getUserInfo', apiUserCtrl.getmUserInfo)
+    // 修改前端用户个人信息 
+    .post('/modeifymUserInfo', apiUserCtrl.modeifymUserInfo)
     // 获取banner
     .get('/v1/banner', adminCtrl.getBannerList)
     // 获取资讯列表
@@ -23,7 +27,7 @@ router
     // 获取资讯详情
     .post('/v1/article', adminCtrl.getArticle)
     // 获取装修案例列表
-    .get('/v1/caseList', apiCtrl.caseList)
+    .post('/v1/caseList', apiCtrl.caseList)
     // 根据id查找装修案例详情
     .post('/v1/caseDetail', apiCtrl.queryFitupcaseDetail)
     // 查询秒杀活动列表

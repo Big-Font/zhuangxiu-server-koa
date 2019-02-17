@@ -204,10 +204,45 @@ class MUserControllers {
         }
     }
     /*
-    *     前端用户个人信息修改接口
+    *     获取前端用户个人信息接口
     */
-    async mUserInfo(ctx) {
-        
+    async getmUserInfo(ctx) {
+        let userid = ctx.user.userid;
+        console.log(`当前用户是:${ctx.user.username}, 当前用户userid是：${userid}`);
+        try{
+            let res = await query(M_USER_SQL.getmUserInfo, [userid]);
+            ctx.success({
+                msg: '查询成功',
+                data: res
+            })
+        }catch(err) {
+            ctx.error({msg: err.message});
+        }
+    }
+    /*
+    *     前端用户个人信息修改接口
+    *     @params  sex, age, address, name, username, phone, email, img
+    */
+    async modeifymUserInfo(ctx) {
+        let { sex, age, address, name, username, phone, email, img } = ctx.request.body;
+        let userid = ctx.user.userid;
+
+        if(!phone) {
+            ctx.error({msg: '手机号不能为空!'});
+            return;
+        }
+        if(!email) {
+            ctx.error({msg: '邮箱不能设置为空!'});
+            return;
+        }
+
+        try{
+            let res = query(M_USER_SQL.modeifymUserInfo, [sex, age, address, name, username, phone, email, img, userid, userid]);
+            ctx.success({msg: '用户个人心修改成功'});
+        }catch(err) {
+            ctx.error({msg: err.error});
+        }
+
     }
     /*
     *     后台管理用户列表

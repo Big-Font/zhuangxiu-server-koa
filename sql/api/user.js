@@ -7,6 +7,47 @@ module.exports = {
         WHERE
             phone=?
     `,
+    /*
+    *   查询前端用户用户信息
+    */
+    getmUserInfo: `
+        SELECT
+            b.phone,
+            b.email,
+            b.img,
+            b.username,
+            a.age,
+            a.sex,
+            a.address,
+            a.name
+        FROM
+            m_sys_userinfo AS a
+        JOIN
+            m_sys_user AS b
+        ON
+            a.userid=b.userid
+        WHERE
+            a.userid=?
+    `,
+    /*
+    *   修改前端用户个人信息  sex, age, address, name, username, phone, email, img
+    */
+    modeifymUserInfo: `
+        UPDATE
+            m_sys_userinfo AS a,
+            m_sys_user AS b
+        SET
+            a.sex=?,
+            a.age=?,
+            a.address=?,
+            a.name=?,
+            b.username=?,
+            b.phone=?,
+            b.email=?,
+            b.img=?
+        WHERE
+            a.userid=? AND b.userid=?
+    `,
     queryUserInfo: `
         SELECT
             *

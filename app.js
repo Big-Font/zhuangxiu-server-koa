@@ -54,7 +54,7 @@ app.use(koaBody({
   formidable:{
     multipart: true,
     keepExtensions: true, // 带拓展名上传，否则上传的会是二进制文件而不是图片文件，保持文件后缀
-    maxFileSize: 200*1024*1024,    // 设置上传文件大小最大限制，默认2M
+    maxFileSize: 400*1024*1024,    // 设置上传文件大小最大限制，默认4M
     onFileBegin(name,file){
       file.path = __dirname+'/public/images/'+file.name; // 重命名上传文件
     },

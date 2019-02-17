@@ -36,6 +36,9 @@ class ApiControllers {
     */
     async caseList(ctx) {
         let { page } = ctx.request.query;
+        if(!page) {
+            page = 1;
+        }
         // 分页
         let queryValues = [],pageValues = [], page_num, total_page, results;
         try{
@@ -55,7 +58,9 @@ class ApiControllers {
             return;
         }
         ctx.success({
-            list: results
+            list: results,
+            total_page,
+            page,
         })
     }
     /*
@@ -77,14 +82,12 @@ class ApiControllers {
                 ctx.error({msg: '没有查询到对应详情'});
                 return;
             }
-            console.log(JSON.stringify(uuidRes))
             uuid = uuidRes[0].uuid;
         }catch(error) {
             ctx.error({msg: error.message});
             return;
         }
         
-        console.log('uuid====>', uuid);
         // 查询详情
         try{
             let data = await query(API_SQL.fitupDetail, [uuid]);
