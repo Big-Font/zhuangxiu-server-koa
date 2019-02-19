@@ -33,8 +33,12 @@ router
     .post('/fitupcaseModify', adminCtrl.fitupcaseModify)
     // 查询秒杀活动列表
     .post('/spikeActiveList', adminCtrl.spikeActiveList)
+    // 根据id查询秒杀活动详情
+    .post('/querySpikeDetail', adminCtrl.querySpikeDetail)
     // 发布秒杀活动接口
     .post('/spikeActivePublish', adminCtrl.spikeActivePublish)
+    // 修改秒杀活动
+    .post('/modifySpikeActive', adminCtrl.modifySpikeActive)
     // 查询找师傅列表接口
     .post('/getFindWorkerList', workerCtrl.getWorkerList)
     // 找师傅状态更改

@@ -129,6 +129,9 @@ module.exports = {
         DESC
         LIMIT 
             ? OFFSET ?`,
+    /*
+    *   装修案例列表查询（全部）
+    */
     queryCaseDetail: `
         SELECT 
             a.caselist_id AS id,
@@ -158,6 +161,176 @@ module.exports = {
         LIMIT 
             ? OFFSET ?   
     `,
+    /*
+    *   装修案例列表查询：一个模糊查询
+    */
+    queryCaseDetailOne: `
+        SELECT 
+            a.caselist_id AS id,
+            caselist_title AS title, 
+            caselist_author AS author, 
+            caselist_recommend AS recommend, 
+            caselist_img AS img, 
+            caselist_pageview AS pageview,
+            fitupcase_content AS content,
+            area,
+            apartment,
+            spend,
+            style,
+            company,
+            label, 
+            Date_Format(fitupcase_create_time,'%Y-%m-%d') AS create_time, 
+            Date_Format(fitupcase_update_time,'%Y-%m-%d') AS update_time
+        FROM 
+            t_sys_caselist AS a
+        LEFT JOIN
+            t_sys_fitupcase AS b
+        ON
+            a.caselist_uuid=b.caselist_uuid
+        WHERE
+            ?? like ?
+        ORDER BY 
+            a.caselist_id 
+        DESC
+        LIMIT 
+            ? OFFSET ?   
+    `,
+    /*
+    *   装修案例列表查询：一个模糊查询
+    */
+    queryCaseDetailTwo: `
+        SELECT 
+            a.caselist_id AS id,
+            caselist_title AS title, 
+            caselist_author AS author, 
+            caselist_recommend AS recommend, 
+            caselist_img AS img, 
+            caselist_pageview AS pageview,
+            fitupcase_content AS content,
+            area,
+            apartment,
+            spend,
+            style,
+            company,
+            label, 
+            Date_Format(fitupcase_create_time,'%Y-%m-%d') AS create_time, 
+            Date_Format(fitupcase_update_time,'%Y-%m-%d') AS update_time
+        FROM 
+            t_sys_caselist AS a
+        LEFT JOIN
+            t_sys_fitupcase AS b
+        ON
+            a.caselist_uuid=b.caselist_uuid
+        WHERE
+            ?? like ? AND ?? like ?
+        ORDER BY 
+            a.caselist_id 
+        DESC
+        LIMIT 
+            ? OFFSET ?   
+    `,
+    /*
+    *   装修案例列表查询：一个模糊查询
+    */
+    queryCaseDetailThree: `
+        SELECT 
+            a.caselist_id AS id,
+            caselist_title AS title, 
+            caselist_author AS author, 
+            caselist_recommend AS recommend, 
+            caselist_img AS img, 
+            caselist_pageview AS pageview,
+            fitupcase_content AS content,
+            area,
+            apartment,
+            spend,
+            style,
+            company,
+            label, 
+            Date_Format(fitupcase_create_time,'%Y-%m-%d') AS create_time, 
+            Date_Format(fitupcase_update_time,'%Y-%m-%d') AS update_time
+        FROM 
+            t_sys_caselist AS a
+        LEFT JOIN
+            t_sys_fitupcase AS b
+        ON
+            a.caselist_uuid=b.caselist_uuid
+        WHERE
+            ?? like ? AND ?? like ? AND ?? like ?
+        ORDER BY 
+            a.caselist_id 
+        DESC
+        LIMIT 
+            ? OFFSET ?   
+    `,
+    /*
+    *   装修案例列表查询：一个模糊查询
+    */
+    queryCaseDetailFour: `
+        SELECT 
+            a.caselist_id AS id,
+            caselist_title AS title, 
+            caselist_author AS author, 
+            caselist_recommend AS recommend, 
+            caselist_img AS img, 
+            caselist_pageview AS pageview,
+            fitupcase_content AS content,
+            area,
+            apartment,
+            spend,
+            style,
+            company,
+            label, 
+            Date_Format(fitupcase_create_time,'%Y-%m-%d') AS create_time, 
+            Date_Format(fitupcase_update_time,'%Y-%m-%d') AS update_time
+        FROM 
+            t_sys_caselist AS a
+        LEFT JOIN
+            t_sys_fitupcase AS b
+        ON
+            a.caselist_uuid=b.caselist_uuid
+        WHERE
+            ?? like ? AND ?? like ? AND ?? like ? AND ?? like ?
+        ORDER BY 
+            a.caselist_id 
+        DESC
+        LIMIT 
+            ? OFFSET ?   
+    `,  
+    /*
+    *   装修案例列表查询：一个模糊查询
+    */
+    queryCaseDetailFive: `
+        SELECT 
+            a.caselist_id AS id,
+            caselist_title AS title, 
+            caselist_author AS author, 
+            caselist_recommend AS recommend, 
+            caselist_img AS img, 
+            caselist_pageview AS pageview,
+            fitupcase_content AS content,
+            area,
+            apartment,
+            spend,
+            style,
+            company,
+            label, 
+            Date_Format(fitupcase_create_time,'%Y-%m-%d') AS create_time, 
+            Date_Format(fitupcase_update_time,'%Y-%m-%d') AS update_time
+        FROM 
+            t_sys_caselist AS a
+        LEFT JOIN
+            t_sys_fitupcase AS b
+        ON
+            a.caselist_uuid=b.caselist_uuid
+        WHERE
+            ?? like ? AND ?? like ? AND ?? like ? AND ?? like ? AND ?? like ?
+        ORDER BY 
+            a.caselist_id 
+        DESC
+        LIMIT 
+            ? OFFSET ?   
+    `, 
     /*
     *   发布装修案例 
     */
@@ -220,8 +393,7 @@ module.exports = {
                 caselist_img=? 
             WHERE 
                 caselist_uuid=?`
-   },
-
+    },
     /*
     *   秒杀活动查询 
     *   queryTwo    同时限制 spike_type 和 spike_place
@@ -231,13 +403,13 @@ module.exports = {
     spikeActiveListSQL: {
         queryTwo: 
             `SELECT 
-                spike_id, 
-                spike_name, 
-                Date_Format(spike_start_time,'%Y-%m-%d %H:%i:%s') as spike_start_time, 
-                Date_Format(spike_end_time,'%Y-%m-%d %H:%i:%s') as spike_end_time, 
-                spike_type, 
-                spike_img, 
-                spike_place 
+                spike_id AS id, 
+                spike_name AS name, 
+                Date_Format(spike_start_time,'%Y-%m-%d %H:%i:%s') as startTime, 
+                Date_Format(spike_end_time,'%Y-%m-%d %H:%i:%s') as endTime, 
+                spike_type AS type, 
+                spike_img AS img, 
+                spike_place AS place 
             FROM 
                 t_sys_spikelist 
             WHERE 
@@ -249,13 +421,13 @@ module.exports = {
                 ? OFFSET ?`,
         queryOne: 
             `SELECT 
-                spike_id, 
-                spike_name, 
-                Date_Format(spike_start_time,'%Y-%m-%d %H:%i:%s') as spike_start_time, 
-                Date_Format(spike_end_time,'%Y-%m-%d %H:%i:%s') as spike_end_time, 
-                spike_type, 
-                spike_img, 
-                spike_place 
+                spike_id AS id, 
+                spike_name AS name, 
+                Date_Format(spike_start_time,'%Y-%m-%d %H:%i:%s') as startTime, 
+                Date_Format(spike_end_time,'%Y-%m-%d %H:%i:%s') as endTime, 
+                spike_type AS type, 
+                spike_img AS img, 
+                spike_place AS place 
             FROM 
                 t_sys_spikelist 
             WHERE 
@@ -267,13 +439,13 @@ module.exports = {
                 ? OFFSET ?`,
         queryALL: 
             `SELECT 
-                spike_id, 
-                spike_name, 
-                Date_Format(spike_start_time,'%Y-%m-%d %H:%i:%s') as spike_start_time, 
-                Date_Format(spike_end_time,'%Y-%m-%d %H:%i:%s') as spike_end_time, 
-                spike_type, 
-                spike_img, 
-                spike_place 
+                spike_id AS id, 
+                spike_name AS name, 
+                Date_Format(spike_start_time,'%Y-%m-%d %H:%i:%s') as startTime, 
+                Date_Format(spike_end_time,'%Y-%m-%d %H:%i:%s') as endTime, 
+                spike_type AS type, 
+                spike_img AS img, 
+                spike_place AS place 
             FROM 
                 t_sys_spikelist
             ORDER BY 
@@ -282,6 +454,32 @@ module.exports = {
             LIMIT 
                 ? OFFSET ?`
     },
+    /*
+    *   根据id查询秒杀活动详情
+    */
+    querySpikeDetail: `
+        SELECT
+            a.spike_id AS id,
+            a.spike_name AS name, 
+            Date_Format(a.spike_start_time,'%Y-%m-%d %H:%i:%s') as startTime, 
+            Date_Format(a.spike_end_time,'%Y-%m-%d %H:%i:%s') as endTime,  
+            a.spike_img AS img, 
+            a.spike_place AS place,
+            b.spike_stock AS stock, 
+            b.spike_seller AS seller, 
+            b.spike_goods AS goods, 
+            b.spike_activity AS activity, 
+            b.spike_price AS price,
+            a.spike_type AS type
+        FROM
+            t_sys_spikelist as a
+        JOIN
+            t_sys_spikes as b
+        on 
+            a.spike_uuid=b.spike_uuid
+        WHERE
+            a.spike_id=?
+    `,
     /*
     *   添加限时秒杀活动
     */
@@ -311,4 +509,30 @@ module.exports = {
             VALUES 
                 (?, ?, ?, ?, ?, ?)`
     },
+    /*
+    *   修改限时秒杀活动
+    */
+    modifySpikeActive: `
+        UPDATE
+            t_sys_spikelist AS a
+        LEFT JOIN
+            t_sys_spikes AS b
+        ON
+            a.spike_uuid=b.spike_uuid
+        SET
+            a.spike_name=?, 
+            a.spike_start_time=?, 
+            a.spike_end_time=?, 
+            a.spike_img=?, 
+            a.spike_place=?,
+            b.spike_stock=?, 
+            b.spike_seller=?, 
+            b.spike_goods=?, 
+            b.spike_activity=?, 
+            b.spike_price=?,
+            a.spike_type=?,
+            a.spike_update_time=NOW()
+        WHERE
+            a.spike_id=?
+    `
 }

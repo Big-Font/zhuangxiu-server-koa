@@ -32,6 +32,8 @@ router
     .post('/v1/caseDetail', apiCtrl.queryFitupcaseDetail)
     // 查询秒杀活动列表
     .post('/v1/spikeActiveList', adminCtrl.spikeActiveList)
+    // 根据秒杀活动列表id查询秒杀活动详情  
+    .post('/v1/querySpikeDetail', adminCtrl.querySpikeDetail)
     // 发布找师傅资讯
     .post('/addWorkerMsg', workerCtrl.addWorkerMsg)
     // 查询商品列表

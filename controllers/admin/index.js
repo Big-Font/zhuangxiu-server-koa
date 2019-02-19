@@ -228,16 +228,64 @@ class AdminControllers {
     /*
     *   装修案例列表
     *   @params  
-    *   page  当前页数
-    *   url   图片地址
-    *   path  跳转地址
+    *   page         当前页数
+    *   recommend    是否推荐 0-不推荐  1--推荐 
+    *   模糊搜索项：
+    *   title        标题
+    *   author       作者
+    *   recommend    是否推荐 0-不推荐  1--推荐
+    *   style        装修风格
+    *   company      装修公司
     */
    async caseList(ctx) {
-        let { page } = ctx.request.body;
+        let { title, author, recommend, style, company, page } = ctx.request.body;
         // 分页
-        let queryValues = [],pageValues = [], page_num, total_page, results;
+        let queryValues = [], values = [],pageValues = [], sql, page_num, total_page, results;
+        if(!page) {
+            page = 1;
+        }
+        if((recommend != null || !!recommend ) && (recommend !== '0' && recommend !== '1')) {
+            ctx.error({msg: '用户推荐类型错误'});
+            return;
+        }
+
+        if(!!title) {
+            values.push('caselist_title');
+            values.push(`%${title}%`);
+        }
+        if(!!author) {
+            values.push('caselist_author');
+            values.push(`%${author}%`);
+        }
+        if(!!style) {
+            values.push('style');
+            values.push(`%${style}%`);
+        }
+        if(!!company) {
+            values.push('company');
+            values.push(`%${company}%`);
+        }
+        if(!!recommend) {
+            values.push('caselist_recommend');
+            values.push(`%${recommend}%`);
+        }
+
+        if(values.length === 10) {
+            sql = SQL.queryCaseDetailFive;
+        }else if(values.length === 8) {
+            sql = SQL.queryCaseDetailFour;
+        }else if(values.length === 6) {
+            sql = SQL.queryCaseDetailThree;
+        }else if(values.length === 4) {
+            sql = SQL.queryCaseDetailTwo;
+        }else if(values.length === 2) {
+            sql = SQL.queryCaseDetailOne;
+        }else {
+            sql = SQL.queryCaseDetail;
+        }
+
         try{
-            let res = await sqlPage(page, SQL.queryCaseDetail, []);
+            let res = await sqlPage(page, sql, values);
             pageValues = res.pageValues;
             page_num = res.page_num;
             total_page = res.total_page;
@@ -246,8 +294,10 @@ class AdminControllers {
             return;
         }
 
+        queryValues = values.concat(pageValues);
+        
         try {
-            results = await query(SQL.queryCaseDetail, pageValues)
+            results = await query(sql, queryValues)
         }catch(err) {
             ctx.error({msg: err.message});
             return;
@@ -421,6 +471,29 @@ class AdminControllers {
         }
    }
    /*
+    *   根据秒杀活动列表id查询秒杀活动详情
+    *   @params id-秒杀活动列表id
+    */
+    async querySpikeDetail(ctx) {
+        let { id } = ctx.request.body;
+        if(!id) {
+            ctx.error({msg: '秒杀活动id不能为空'});
+            return;
+        }
+
+        try{
+            let res = await query(SQL.querySpikeDetail, [id]);
+            ctx.success({
+                msg: '查询成功',
+                nowTime: new Date().getTime(),
+                data: res[0]
+            })
+        }catch(err) {
+            ctx.error({msg: err.message});
+            return;
+        }
+    }
+   /*
     *   添加限时秒杀活动
     *   @params
     *    stock,         商品库存
@@ -449,7 +522,7 @@ class AdminControllers {
             img,
             place,
         } = ctx.request.body;
-        let type;
+        let type=1;
         if(!goods) {
             ctx.error({msg: '商品介绍不能为空'});
             return;
@@ -517,8 +590,115 @@ class AdminControllers {
             ctx.success({msg: '发布成功'});
         }catch(err) {
             ctx.error({msg: err.message});
+            return;
+        }
+   }
+   /*
+   *     修改秒杀活动
+   */
+   async modifySpikeActive(ctx) {
+        let {
+            id,
+            stock,
+            seller,
+            goods,
+            activity,
+            price,
+            name,
+            startTime,
+            endTime,
+            img,
+            place
+        } = ctx.request.body;
+        // startTime 是 mysql 的保留字
+        let startTime2 = startTime;
+        let type=1, spikeUUID;
+        if(!id) {
+            ctx.error({msg: '秒杀活动id不能为空'});
+            return;
+        }
+        if(!goods) {
+            ctx.error({msg: '商品介绍不能为空'});
+            return;
+        }
+        if(!name) {
+            ctx.error({msg: '活动名称不能为空'});
+            return;
+        }
+        if(!startTime) {
+            ctx.error({msg: '活动开始时间不能为空'});
+            return;
+        }
+        if(!endTime) {
+            ctx.error({msg: '活动结束时间不能为空'});
+            return;
+        }
+        if(endTime <= startTime) {
+            ctx.error({msg: '活动结束时间不能小于活动开始时间'});
+            return;
+        }
+        if(!img) {
+            ctx.error({msg: '产品图片不能为空'})
+            return;
+        }
+        if(!place) {
+            place = 3;
         }
 
+        /*
+            a.spike_name=?,             name
+            a.spike_start_time=?,       startTime
+            a.spike_end_time=?,         endTime 
+            a.spike_img=?,              img
+            a.spike_place=?,            place
+            b.spike_stock=?,            stock
+            b.spike_seller=?,           seller
+            b.spike_goods=?,            goods
+            b.spike_activity=?,         activity
+            b.spike_price=?,            price
+            a.spike_type=?,             type
+        */
+        try{
+            let res = await query(SQL.querySpikeActiveUUID, [id]);
+            spikeUUID = res[0].spike_uuid;
+        }catch(e) {
+            ctx.error({msg: e.message});
+        }
+        console.log(`开始时间====>${startTime2}`)
+        try{
+            console.log([name, startTime2, endTime, img, place, stock, seller, goods, activity, price, type, id])
+            let info = await query(SQL.modifySpikeActive, [name, startTime2 , endTime, img, place, stock, seller, goods, activity, price, type, id]); 
+            /*
+            *
+            * 如果 startTime 小于当前时间，马上开启，不需要经过 定时任务， 
+            * 如果 startTime 大于当前任务， 开启两个定时任务， 一条用于创建活动，一条用于修改活动状态为已下架
+            * 
+            */
+            function spikeActiveStart() {
+                try {
+                    let start = query(TASK_SQL.spikeActiveStartTask, [spikeUUID]) 
+                }catch(e) {
+                    console.log(`===> 定时活动开启失败， 活动uuid：${spikeUUID}`)
+                }
+            }
+            function spikeActiveEnd() {
+                try{
+                    let end = query(TASK_SQL.spikeActiveEndTask, [spikeUUID])
+                }catch(e) {
+                    console.log(`===> 定时活动结束失败， 活动uuid：${spikeUUID}`)
+                }
+            }
+            // 2018-12-01 12:09:12  ===> return new Date(2012, 11, 21, 5, 30, 0);
+            function startTime(time) {
+                var oDate = new Date(time);
+                return new Date(oDate.getFullYear(), oDate.getMonth(), oDate.getDate(), oDate.getHours(), oDate.getMinutes(), oDate.getSeconds())
+            }
+            createTask(spikeActiveStart, $Date_Format.date2task(startTime))
+            ctx.success({msg: '更新成功'});
+        }catch(err) {
+            ctx.error({msg: err.message});
+            return;
+        }
    }
 }
 

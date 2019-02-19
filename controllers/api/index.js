@@ -99,7 +99,6 @@ class ApiControllers {
             ctx.error({msg: err.message})
         }
     }
-    
 }
 
 module.exports = new ApiControllers();
