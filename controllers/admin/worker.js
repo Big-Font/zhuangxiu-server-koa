@@ -17,15 +17,15 @@ class WorkerControllers {
         if(type && type !== '0') {
             // 查询全部类型：1-安装，2-维修
             sqlValues.push('type');
-            sqlValues.push(type)
+            sqlValues.push(`%${type}%`)
         }
         if(isOver && isOver !== '0') {
             sqlValues.push('isOver');
-            sqlValues.push(isOver);
+            sqlValues.push(`%${isOver}%`);
         }
         if(!!phone) {
             sqlValues.push('phone');
-            sqlValues.push(phone);
+            sqlValues.push(`%${phone}%`);
         }
 
         if(sqlValues.length === 2) {

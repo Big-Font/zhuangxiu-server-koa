@@ -45,6 +45,12 @@ router
     .post('/handleWorkerType', workerCtrl.modifyWorker)
     // 商品分类查询
     .post('/categoryList', goodsCtrl.categoryList)
+    // 添加商品分类 
+    .post('/publicCategory', goodsCtrl.publicCategory)
+    // 删除商品分类
+    .post('/deleteCategory', goodsCtrl.deleteCategory)
+    // 修改商品分类名称 
+    .post('/modeifyCategory', goodsCtrl.modeifyCategory)
     // 商品列表查询
     .post('/getGoods', goodsCtrl.getGoods)
     // 查询品牌列表 

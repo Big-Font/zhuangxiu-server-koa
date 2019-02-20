@@ -244,7 +244,7 @@ class AdminControllers {
         if(!page) {
             page = 1;
         }
-        if((recommend != null || !!recommend ) && (recommend !== '0' && recommend !== '1')) {
+        if(!!recommend && (recommend !== '0' && recommend !== '1')) {
             ctx.error({msg: '用户推荐类型错误'});
             return;
         }

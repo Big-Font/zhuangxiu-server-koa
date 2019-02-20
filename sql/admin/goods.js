@@ -4,6 +4,7 @@ module.exports = {
             s.id AS value,
             s.pid,
             s.label,
+            s.tree,
             p.label as type
         FROM
             c_sp_genre as s
@@ -11,6 +12,47 @@ module.exports = {
             c_sp_genre as p
         ON
             s.pid=p.id
+        WHERE
+            s.del_flag=0
+    `,
+    /*
+    *   添加商品分类
+    */
+    publicCategory: `
+        INSERT INTO
+            c_sp_genre 
+            (
+                pid,
+                label,
+                tree,
+                del_flag,
+                create_time,
+                update_time
+            )
+        VALUES
+            (?,?,?,0,NOW(),NOW())
+    `,
+    /*
+    *   商品分类的删除
+    */
+    deleteCategory: `
+        UPDATE 
+            c_sp_genre
+        SET
+            del_flag=1
+        WHERE
+            id=?
+    `,
+    /*
+    *   商品分类名称的修改
+    */  
+    modeifyCategory: `
+        UPDATE 
+            c_sp_genre
+        SET
+            label=?
+        WHERE
+            id=?
     `,
     /*
     *   品牌管理--后台管理

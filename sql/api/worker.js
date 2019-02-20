@@ -80,7 +80,7 @@ module.exports = {
             ON
                 a.uuid=c.uuid
             WHERE
-                ??=?
+                ?? like ?
             ORDER BY
                 a.createTime
             DESC
@@ -111,7 +111,7 @@ module.exports = {
             ON
                 a.uuid=c.uuid
             WHERE
-                ??=? AND ??=?
+                ?? like ? AND ?? like ?
             ORDER BY
                 a.createTime
             DESC
@@ -142,7 +142,7 @@ module.exports = {
             ON
                 a.uuid=c.uuid
             WHERE
-                ??=? AND ??=? AND ??=?
+                ?? like ? AND ?? like ? AND ?? like ?
             ORDER BY
                 a.createTime
             DESC
