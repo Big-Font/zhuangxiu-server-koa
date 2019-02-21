@@ -53,6 +53,10 @@ router
     .post('/modeifyCategory', goodsCtrl.modeifyCategory)
     // 商品列表查询
     .post('/getGoods', goodsCtrl.getGoods)
+    // 添加产品
+    .post('/publicGood', goodsCtrl.publicGood)
+    // 修改商品属性
+    .post('/modeifyGood', goodsCtrl.modeifyGood)
     // 查询品牌列表 
     .post('/getBrandList', goodsCtrl.getBrandList)
     // 查询商家列表 

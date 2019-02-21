@@ -462,6 +462,74 @@ module.exports = {
             ? OFFSET ? 
     `,
     /*
+    *   添加商品信息
+    */   
+    publicGood:{
+        list: `
+            INSERT INTO
+                c_sp_goodslist
+                (
+                    goods_uuid,
+                    genre_id,
+                    goods_name,
+                    goods_brand_id,
+                    goods_price,
+                    tag,
+                    introduce,
+                    goods_img,
+                    seller_id,
+                    del_flag,
+                    create_time,
+                    update_time
+                )
+            VALUES
+                (?,?,?,?,?,?,?,?,?,0,NOW(),NOW())
+        `,
+        detail: `
+            INSERT INTO
+                c_sp_goodsdetail
+                (
+                    goods_uuid,
+                    detail
+                )
+            VALUES
+                (?,?)
+        `
+    },  
+    /*
+    *   修改商品详情
+    *   brandId
+    *   genreId
+    *   name
+    *   price
+    *   tag
+    *   introduce
+    *   goods_img
+    *   sellerId
+    *   detail
+    */
+    modeifyGood: `
+        UPDATE 
+            c_sp_goodslist AS l  
+        JOIN
+            c_sp_goodsdetail AS e
+        ON
+            l.goods_uuid=e.goods_uuid
+        SET
+            l.goods_brand_id=?,
+            l.genre_id=?,
+            goods_name=?,
+            goods_price=?,
+            tag=?,
+            introduce=?,
+            goods_img=?,
+            l.seller_id=?,
+            e.detail=?,
+            l.update_time=NOW()
+        WHERE
+            l.id=?
+    `,
+    /*
     *   修改商家信息
     */
     modeifySellerInfo: `

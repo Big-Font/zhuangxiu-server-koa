@@ -127,6 +127,139 @@ class GoodsControllers {
         })
     }
     /*
+    *   添加商品
+    */ 
+    async publicGood(ctx) {
+        let { brandId, genreId, name, price, tag, introduce, img, sellerId, detail } = ctx.request.body;
+        if(!brandId) {
+            ctx.error({msg: '品牌id不能为空'});
+            return;
+        }
+        if(!genreId) {
+            ctx.error({msg: '商品类型id不能为空'});
+            return;
+        }
+        if(!sellerId) {
+            ctx.error({msg: '商家id不能为空'});
+            return;
+        }
+        if(!name) {
+            ctx.error({msg: '商品名称不能为空'});
+            return;
+        }
+        if(!price) {
+            ctx.error({msg: '商品价格不能为空'});
+            return;
+        }
+        if(!introduce) {
+            ctx.error({msg: '商品简介不能为空'});
+            return;
+        }
+        if(!img) {
+            ctx.error({msg: '商品简图不能为空'});
+            return;
+        }
+        if(!detail) {
+            ctx.error({msg: '商品详情不能为空'});
+            return;
+        }
+        const UUID = uuid.v1();
+        // 应用事务操作插入 list和detail表
+        /* genreId
+        * name
+        *   brandId
+        *   price
+        * tag
+        *   introduce
+        * goods_img
+        * sellerId
+        */
+        let sqlArr = []; 
+        sqlArr.push(_getNewSqlParamEntity(MGoodsSQL.publicGood.list, [UUID, genreId, name, brandId, price, tag, introduce, img, sellerId]));
+        sqlArr.push(_getNewSqlParamEntity(MGoodsSQL.publicGood.detail, [UUID, detail]));
+        try{
+            let res = await execTrans(sqlArr);
+            ctx.success({msg: '商品添加成功'});
+        }catch(err) {
+            ctx.error({msg: err.message});
+            return;
+        }
+    }
+    /*
+    *   商品属性修改
+    *   "id": 2,
+        "brandId": 2,
+        "genreId": 8,
+        "tree": "2",
+        "name": "科勒虹吸马桶",
+        "brand": "科勒",
+        "price": "2599",
+        "tag": "爆款",
+        "introduce": "不溅屁股",
+        "img": "http://127.0.0.1:5000/images/ueditor/guize.png",
+        "seller": "涞水科勒专卖店",
+        "sellerId": 1,
+        "type": "马桶",
+        "detail": "<h2>科勒大排量马桶</h2>"
+    */
+    async modeifyGood(ctx) {
+        let {id, brandId, genreId, name, price, tag, introduce, img, sellerId, detail} = ctx.request.body;
+        if(!id) {
+            ctx.error({msg: '商品id不能为空'});
+            return;
+        }
+        if(!brandId) {
+            ctx.error({msg: '品牌id不能为空'});
+            return;
+        }
+        if(!genreId) {
+            ctx.error({msg: '商品类型id不能为空'});
+            return;
+        }
+        if(!sellerId) {
+            ctx.error({msg: '商家id不能为空'});
+            return;
+        }
+        if(!name) {
+            ctx.error({msg: '商品名称不能为空'});
+            return;
+        }
+        if(!price) {
+            ctx.error({msg: '商品价格不能为空'});
+            return;
+        }
+        if(!introduce) {
+            ctx.error({msg: '商品简介不能为空'});
+            return;
+        }
+        if(!img) {
+            ctx.error({msg: '商品简图不能为空'});
+            return;
+        }
+        if(!detail) {
+            ctx.error({msg: '商品详情不能为空'});
+            return;
+        }
+        /*   brandId
+        *   genreId
+        *   name
+        *   price
+        *   tag
+        *   introduce
+        *   goods_img
+        *   sellerId
+        *   detail
+        *   id
+        */
+        try{
+            let res = await query(MGoodsSQL.modeifyGood, [brandId, genreId, name, price, tag, introduce, img, sellerId, detail, id]);
+            ctx.success({msg: '商品属性修改成功'});
+        }catch(err) {
+            ctx.error({msg: err.message});
+            return;
+        }
+    }
+    /*
     *   商品品牌查询搜索
     *   @params name:商品品牌  seller:商家名称 page页码
     */
