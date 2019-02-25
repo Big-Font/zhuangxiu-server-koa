@@ -115,7 +115,7 @@ class MUserControllers {
         try {
             let res = await execTrans(sqlArr)
             // 3.调登录服务
-            let login = await axios.post('/api/login', {
+            let login = await axios.post('/api/v1/login', {
                     capkey: ctx.session.cap,
                     phone,
                     password,

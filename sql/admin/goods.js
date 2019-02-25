@@ -462,6 +462,47 @@ module.exports = {
             ? OFFSET ? 
     `,
     /*
+    *   根据id查询商品详情
+    */
+    getGoodDetail: `
+        SELECT
+            l.id,
+            c.id AS brandId,
+            genre_id AS genreId,
+            tree,
+            goods_name AS name,
+            c.name AS brand,
+            goods_price AS price,
+            tag,
+            introduce,
+            goods_img AS img,
+            s.name AS seller,
+            s.img AS sellerImg,
+            s.id AS sellerId,
+            g.label AS type,
+            e.detail
+        FROM
+            c_sp_goodslist AS l
+        JOIN
+            c_sp_genre AS g
+        ON
+            l.genre_id=g.id
+        JOIN
+            c_sp_goods_brand AS c
+        ON
+            l.goods_brand_id=c.id
+        JOIN
+            c_sp_sellers AS s
+        ON
+            l.seller_id=s.id
+        JOIN
+            c_sp_goodsdetail AS e
+        ON
+            l.goods_uuid=e.goods_uuid
+        WHERE
+            l.id=?
+    `,
+    /*
     *   添加商品信息
     */   
     publicGood:{

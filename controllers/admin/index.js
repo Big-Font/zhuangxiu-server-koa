@@ -376,42 +376,38 @@ class AdminControllers {
     *   content   文章内容
     */
    async fitupcaseModify(ctx) {
-        let { id, title, author, recommend, titleImg, content} = ctx.request.body;
+        let { id, title, author, recommend, titleImg, content, spend, pageview, style, area, apartment, company} = ctx.request.body;
         let caselist_uuid;
         if(!id) {
             ctx.error({msg: 'id不能为空'});
             return;
-        }else if(!title) {
+        }
+        if(!title) {
             ctx.error({msg: '标题不能为空'});
             return;
-        }else if(!author) {
+        }
+        if(!author) {
            author = types.FITUP_AUTHOR;
-        }else if(!recommend) {
+        }
+        if(!recommend) {
             recommend = 0;
-        }else if(!titleImg) {
+        }
+        if(!titleImg) {
             ctx.error({msg: '默认图片不能为空'});
             return;
-        }else if(!content) {
+        }
+        if(!content) {
             ctx.error({msg: '文章内容不能为空'});
             return;
         }
-
+        pageview += parseInt(Math.random()*100);
         // 事务处理版本
         try{
-            let res = await query(SQL.fitupcaseModify.uuid, [id]);
-            caselist_uuid = res[0].caselist_uuid;
-            let sqlArr = [];
-            sqlArr.push(_getNewSqlParamEntity(SQL.fitupcaseModify.detail, [content, caselist_uuid]));
-            sqlArr.push(_getNewSqlParamEntity(SQL.fitupcaseModify.list, [title, author, recommend, titleImg, caselist_uuid]));
-            try{
-                let info = await execTrans(sqlArr)
-                ctx.success({msg: '更新成功'});
-            }catch(err) {
-                ctx.error({msg: err.message, msge: '事务报错了'});
-                return;
-            }
+            let res = await query(SQL.fitupcaseModify, [title, author, recommend, titleImg, pageview, content, spend,style, area, apartment, company, id]);
+            ctx.success({msg: '装修案例更新成功'});
         }catch(e) {
-            ctx.error({msg: e.message, msge: '第一个sql就报错了'});
+            ctx.error({msg: e.message});
+            return;
         }
    }
    /*

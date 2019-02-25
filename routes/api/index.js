@@ -4,10 +4,14 @@ const apiUserCtrl = require('../../controllers/api/user');
 const adminCtrl = require('../../controllers/admin');
 const workerCtrl = require('../../controllers/api/worker');
 const goodsCtrl = require('./../../controllers/admin/goods');
+const shopcarCtrl = require('./../../controllers/api/shopcar');
+const UploadControllers = require('../../controllers/admin/upload');
 
 router.prefix('/api')
 
 router
+    // 上传图片的接口
+    .post('/upload', UploadControllers.upload)
     // 前端用户注册邮箱验证码接口
     .post('/v1/mailVerify', apiUserCtrl.mailVerify)
     // 前端用户注册接口
@@ -38,5 +42,13 @@ router
     .post('/addWorkerMsg', workerCtrl.addWorkerMsg)
     // 查询商品列表
     .post('/v1/getGoods', goodsCtrl.getGoods)
+    // 根据商品列表id查询商品详情 getGoodDetail
+    .post('/v1/getGoodDetail', goodsCtrl.getGoodDetail)
+    // 添加购物车 addShopcar
+    .post('/addShopcar', shopcarCtrl.addShopcar)
+    // 查询购物车列表
+    .post('/queryShopcarList', shopcarCtrl.queryShopcarList)
+    // 修改购物车信息
+    .post('/modeifyShopcar', shopcarCtrl.modeifyShopcar)
 
 module.exports = router;

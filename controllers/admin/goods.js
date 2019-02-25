@@ -127,6 +127,28 @@ class GoodsControllers {
         })
     }
     /*
+    *   根据id查询商品详情
+    *   @params id:商品列表id
+    */
+    async getGoodDetail(ctx) {
+        let { id } = ctx.request.body;
+        if(!id) {
+            ctx.error({msg: '商品列表id不能为空'});
+            return;
+        }
+
+        try{
+            let res = await query(MGoodsSQL.getGoodDetail, [id]);
+            ctx.success({
+                data: res[0],
+                msg: '查询成功'
+            })
+        }catch(err) {
+            ctx.error({msg: err.message});
+            return;
+        }
+    }
+    /*
     *   添加商品
     */ 
     async publicGood(ctx) {

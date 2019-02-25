@@ -365,35 +365,31 @@ module.exports = {
                 (?, ?, ?, ?, ?, ?)`
     },
     /*
-    *   修改装修案例
+    *   修改装修案例   title, author, recommend, img,pageview, content, spend, style, area, apartment, company
     */
-   fitupcaseModify: {
-        uuid: `
-            SELECT 
-                caselist_uuid 
-            FROM 
-                t_sys_caselist 
-            WHERE 
-                caselist_id=?`,
-        detail: `
-            UPDATE 
-                t_sys_fitupcase 
-            SET 
-                fitupcase_content=?, 
-                fitupcase_update_time=NOW() 
-            WHERE 
-                caselist_uuid=?`,
-        list: `
-            UPDATE 
-                t_sys_caselist 
-            SET 
-                caselist_title=?, 
-                caselist_author=?, 
-                caselist_recommend=?, 
-                caselist_img=? 
-            WHERE 
-                caselist_uuid=?`
-    },
+    fitupcaseModify: `
+        UPDATE
+            t_sys_caselist as l
+        JOIN
+            t_sys_fitupcase AS d
+        ON
+            l.caselist_uuid=d.caselist_uuid
+        SET
+            l.caselist_title=?,
+            l.caselist_author=?,
+            l.caselist_recommend=?,
+            l.caselist_img=?,
+            l.caselist_pageview=?,
+            d.fitupcase_content=?,
+            d.spend=?,
+            d.style=?,
+            d.area=?,
+            d.apartment=?,
+            d.company=?, 
+            d.fitupcase_update_time=NOW()
+        WHERE
+            l.caselist_id=?
+    `,
     /*
     *   秒杀活动查询 
     *   queryTwo    同时限制 spike_type 和 spike_place
