@@ -30,7 +30,7 @@
 module.exports = {
   "apps" : [
     {
-      name: "QRserver2222",
+      name: "QRserver",
       script: "./bin/www",
       cwd: "./",
       interpreter: "babel-node",

@@ -5,13 +5,13 @@ const adminCtrl = require('../../controllers/admin');
 const workerCtrl = require('../../controllers/api/worker');
 const goodsCtrl = require('./../../controllers/admin/goods');
 const shopcarCtrl = require('./../../controllers/api/shopcar');
-const UploadControllers = require('../../controllers/admin/upload');
+const UploadControllers = require('../../controllers/api/upload');
 
 router.prefix('/api')
 
 router
     // 上传图片的接口
-    .post('/upload', UploadControllers.upload)
+    .post('/upload/:pid', UploadControllers.upload)
     // 前端用户注册邮箱验证码接口
     .post('/v1/mailVerify', apiUserCtrl.mailVerify)
     // 前端用户注册接口

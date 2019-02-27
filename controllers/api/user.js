@@ -10,6 +10,7 @@ import M_USER_SQL from '../../sql/api/user';
 import { getToken, getJWTPayload } from '../../lib/user';
 import config from '../../config';
 import { md5 } from '../../lib/md5';
+import { hidePhone } from '../../lib';
 import * as types from '../../lib/types';
 
 let Store = new Redis().client;
@@ -22,7 +23,7 @@ class MUserControllers {
     */
     async mailVerify(ctx) {
         let { phone, email } = ctx.request.body;
-        const saveExpire = await Store.hget(`nodemail${phone}`, 'expire');
+        const saveExpire = await Store.hget(`nodemail${email}${phone}`, 'expire');
         if(saveExpire && new Date().getTime() - saveExpire < 0) {
             ctx.error({msg: '验证请求过于频繁，请稍后再试'});
             return;
@@ -48,8 +49,8 @@ class MUserControllers {
                 // 报警信息
                 return console.log(error)
             }else {
-                console.log(`注册邮件发送成功：${mailOptions.to}`, `nodemail${phone}`)
-                Store.hmset(`nodemail${phone}`, 'code', ko.code, 'expire', ko.expire, 'email', ko.email);
+                console.log(`注册邮件发送成功：${mailOptions.to}`, `nodemail${email}${phone}`)
+                Store.hmset(`nodemail${mailOptions.to}${phone}`, 'code', ko.code, 'expire', ko.expire, 'email', ko.email);
             }
         })
         ctx.success({msg: '邮件已发送，可能会有延迟，验证码有效期3分钟'});
@@ -79,8 +80,8 @@ class MUserControllers {
             ctx.error({msg: '请填写验证码'});
             return;
         }
-        const saveCode = await Store.hget(`nodemail${phone}`, 'code');
-        const saveExpire = await Store.hget(`nodemail${phone}`, 'expire');
+        const saveCode = await Store.hget(`nodemail${email}${phone}`, 'code');
+        const saveExpire = await Store.hget(`nodemail${email}${phone}`, 'expire');
         console.log(`saveCode:${saveCode},code:${code},saveExpire:${saveExpire}`)
         if(code === saveCode) {
             if(new Date().getTime() - saveExpire > 0) {
@@ -96,9 +97,9 @@ class MUserControllers {
         */
         // 1.验证手机号是否被注册
         try{
-            let res = await query(M_USER_SQL.queryUser, [phone]);
+            let res = await query(M_USER_SQL.queryUser, [phone, email]);
             if(res.length) {
-                ctx.error({msg: '该手机号已被注册'});
+                ctx.error({msg: '该手机号或邮箱已被注册'});
                 return;
             }
         }catch(err) {
@@ -184,7 +185,7 @@ class MUserControllers {
 
         try{
             let hasUser = await query(M_USER_SQL.queryUserInfo, [phone]);
-            if(hasUser.length === 0) {
+            if(!hasUser.length) {
                 ctx.error({msg: '登录失败，无此用户'});
                 return;
             }else if(hasUser[0].pwd !== password){
@@ -195,7 +196,7 @@ class MUserControllers {
                 console.log(`session中存储的userid是：${ctx.session.userid}`);
                 ctx.success({
                     msg: '登录成功',
-                    token: getToken({userid: hasUser[0].userid})
+                    token: getToken({userid: hasUser[0].userid, phone: hasUser[0].phone, email: hasUser[0].email, username: hasUser[0].username})
                 })
             }
         }catch(err) {
@@ -208,15 +209,20 @@ class MUserControllers {
     */
     async getmUserInfo(ctx) {
         let userid = ctx.user.userid;
+        console.log(ctx.user)
         console.log(`当前用户是:${ctx.user.username}, 当前用户userid是：${userid}`);
         try{
             let res = await query(M_USER_SQL.getmUserInfo, [userid]);
+            let data = res.length ? res[0] : {};
+            if(data.phone != null) data.phone =  hidePhone(data.phone);
+            // if(data.name != null) data.name = 
             ctx.success({
                 msg: '查询成功',
-                data: res
+                data
             })
         }catch(err) {
             ctx.error({msg: err.message});
+            return;
         }
     }
     /*

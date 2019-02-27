@@ -1,11 +1,12 @@
 module.exports = {
     queryUser: `
         SELECT 
-            phone
+            phone,
+            email
         FROM
             m_sys_user
         WHERE
-            phone=?
+            phone=? OR email=?
     `,
     /*
     *   查询前端用户用户信息
@@ -18,8 +19,7 @@ module.exports = {
             b.username,
             a.age,
             a.sex,
-            a.address,
-            a.name
+            a.address
         FROM
             m_sys_userinfo AS a
         JOIN

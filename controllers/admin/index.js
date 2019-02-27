@@ -422,11 +422,11 @@ class AdminControllers {
         let { place, type, page} = ctx.request.body;
         let queryValues = [], values = [],pageValues = [], sql, page_num, total_page;      
  
-        if(!!place && (place === '1' || place === '2'|| place === '3')) {
+        if(!!place && (place == 1 || place == 2|| place == 3)) {
             values.push('spike_place');
             values.push(place);
         }
-        if(!!type && (type === '1' || type === '2' || type === '3')) {
+        if(!!type && (type == 1 || type == 2 || type == 3)) {
             values.push('spike_type');
             values.push(type);
         }

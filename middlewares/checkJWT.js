@@ -13,6 +13,8 @@ module.exports = function () {
                 let payload = await getJWTPayload(token)
                 if (!!payload) {
                     ctx.user = {
+                        phone: payload.phone, 
+                        email: payload.email, 
                         username: payload.username,
                         userid: payload.userid
                     }
