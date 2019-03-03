@@ -36,7 +36,14 @@ module.exports = {
           return new Date().getTime()+3*60*60*1000
         }
       }
-    }
+    },
+    wechat: {
+      token: 'qingrui520dalaishuizuchongzhi258',//微信后台配置的token
+      appid: 'wx8b44732d0addeb4f',//微信公众号的appid
+      encodingAESKey: 'RwElu82ieB8rn8IwlDocSd3zAoO2YxOgKHzfpRgAnQm',//微信公众号的encodingAESKey
+      appSecret: 'd97f2f1e667c28368b34a78c631dd762',  //微信开发者密码AppSecret
+    },
+    wechatBaseUrl: 'https://api.weixin.qq.com/cgi-bin/',
   },
   production: {
     secret: 'jwt_secret',
@@ -75,6 +82,13 @@ module.exports = {
           return new Date().getTime()+3*60*60*1000
         }
       }
-    }
+    },
+    wechat: {
+      token: 'qingrui520dalaishuizuchongzhi258',//微信后台配置的token
+      appid: 'wx8b44732d0addeb4f',//微信公众号的appid
+      encodingAESKey: 'RwElu82ieB8rn8IwlDocSd3zAoO2YxOgKHzfpRgAnQm',//微信公众号的encodingAESKey
+      appSecret: 'd97f2f1e667c28368b34a78c631dd762',  //微信开发者密码AppSecret
+    },
+    wechatBaseUrl: 'https://api.weixin.qq.com/cgi-bin/',
   }
 }
