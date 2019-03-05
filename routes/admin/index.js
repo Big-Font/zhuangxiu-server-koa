@@ -3,6 +3,7 @@ const adminCtrl = require('../../controllers/admin');
 const workerCtrl = require('../../controllers/admin/worker');
 const apiUserCtrl = require('../../controllers/api/user');
 const goodsCtrl = require('./../../controllers/admin/goods');
+const wechatReplyAdminCtrl = require('./../../controllers/admin/wechat-reply');
 
 router.prefix('/admin')
 
@@ -73,5 +74,7 @@ router
     .post('/getSellersListNoPage', goodsCtrl.getSellersListNoPage)
     // 商品列表中品牌、商家、类别查询接口--用于商品信息修改和发布
     .post('/goodsInfoUpdateList', goodsCtrl.goodsInfoUpdateList)
+    // 微信回复策略  getALLReply
+    .post('/getALLReply', wechatReplyAdminCtrl.getALLReply)
 
 module.exports = router;

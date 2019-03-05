@@ -1,4 +1,5 @@
 import WeichatControllers from '../../controllers/wechat';
+import WeChatOAuth from '../../controllers/wechat/oauth';
 import config from '../../config';
 import { query } from '../../sql';
 import wechatSQL from '../../sql/wechat';
@@ -18,6 +19,9 @@ const wechatCfg = Object.assign({}, wechat, {
     } 
 });
 
-;(async function() {
-    const client = new WeichatControllers(wechatCfg);
-})()
+// ;(async function() {
+//     const client = new WeichatControllers(wechatCfg);
+// })()
+
+exports.getWeChat = () => new WeichatControllers(wechatCfg);
+exports.getOAuth = () => new WeChatOAuth(wechatCfg);

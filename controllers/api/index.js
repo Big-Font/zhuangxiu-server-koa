@@ -25,7 +25,7 @@ class ApiControllers {
     *   password  密码
     */
     async getBanner(ctx) {
-
+        
     }
     /*
     *   装修案例列表 --- caseList

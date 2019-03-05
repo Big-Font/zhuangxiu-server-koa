@@ -57,7 +57,7 @@ class WeichatControllers {
         const data = await this.request({url});
         console.log(data);        
         const now = new Date().getTime();
-        // 设置火气时间小于两个小时
+        // 设置过期时间小于两个小时
         const expires_in = now + (data.expires_in - 20) * 1000;
         data.expires_in = expires_in;
         console.log(data);

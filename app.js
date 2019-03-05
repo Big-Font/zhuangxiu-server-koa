@@ -14,15 +14,13 @@ const onerror = require('koa-onerror')
 const koaBody = require('koa-body')
 const logger = require('koa-logger')
 const config = require('./config');
-// 微信公众号的配置
-// const wechat = require('co-wechat');
 //  封装的中间件
 const errorHandle = require('./middlewares/errorHandle');
 const checkJWT = require('./middlewares/checkJWT');
 const wechat = require('./middlewares/wechat');
 
 const {reply} = require('./controllers/wechat/reply');
-const { adminRouter, apiRouter, ueditorRouter, uploadRouter } = require('./routes');
+const { adminRouter, apiRouter, ueditorRouter, uploadRouter, wechatRouter } = require('./routes');
 
 app.use(cors({
   credentials: true,
@@ -79,7 +77,7 @@ app.use(errorHandle);
 app.use(jwtKoa({
   secret: config[process.env.NODE_ENV].secret,
 }).unless({
-  path: [/\/register/, /\/login/, /^\/images\/*/, /^\/api\/v1\/*/,  '/admin/captcha', '/admin/login', /\/admin\/wangeditor\/upload\/*/, '/admin/upload','/wechat', /^\/wechat\/*/],
+  path: [/\/register/, /\/login/, /^\/images\/*/, /^\/api\/v1\/*/,  '/admin/captcha', '/admin/login', /\/admin\/wangeditor\/upload\/*/, '/admin/upload','/wechat', /^\/wechat\/*/,'/wx-hear','/wx-oauth', '/userinfo', '/favicon.ico'],
 }))
 
 app.use(checkJWT());
@@ -102,9 +100,9 @@ app.use(adminRouter.routes())
    .use(ueditorRouter.allowedMethods())
    .use(uploadRouter.routes())
    .use(uploadRouter.allowedMethods())
-   
-// 微信公众号的相关请求配置
-app.use(wechat(config[process.env.NODE_ENV].wechat, reply));
+   // 微信公众号的相关请求配置
+   .use(wechatRouter.routes())
+   .use(wechatRouter.allowedMethods())
 
 // error-handling
 app.on('error', (err, ctx) => {

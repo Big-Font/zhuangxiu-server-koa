@@ -39,11 +39,14 @@ module.exports = {
     },
     wechat: {
       token: 'qingrui520dalaishuizuchongzhi258',//微信后台配置的token
-      appid: 'wx8b44732d0addeb4f',//微信公众号的appid
+      // appid: 'wx8b44732d0addeb4f',//微信公众号的appid   jason
+      appid: 'wxc8d29a5949bd1de9',  // 测试
       encodingAESKey: 'RwElu82ieB8rn8IwlDocSd3zAoO2YxOgKHzfpRgAnQm',//微信公众号的encodingAESKey
-      appSecret: 'd97f2f1e667c28368b34a78c631dd762',  //微信开发者密码AppSecret
+      // appSecret: 'd97f2f1e667c28368b34a78c631dd762',  //微信开发者密码AppSecret  json
+      appSecret: '7f1e4dabc04919d9aab0712de9e1b33d',  //测试
     },
     wechatBaseUrl: 'https://api.weixin.qq.com/cgi-bin/',
+    baseUrl: 'https://qingruiserver.wangshen.top/wechat'
   },
   production: {
     secret: 'jwt_secret',
@@ -85,10 +88,13 @@ module.exports = {
     },
     wechat: {
       token: 'qingrui520dalaishuizuchongzhi258',//微信后台配置的token
-      appid: 'wx8b44732d0addeb4f',//微信公众号的appid
+      // appid: 'wx8b44732d0addeb4f',//微信公众号的appid   jason
+      appid: 'wxc8d29a5949bd1de9',  // 测试
       encodingAESKey: 'RwElu82ieB8rn8IwlDocSd3zAoO2YxOgKHzfpRgAnQm',//微信公众号的encodingAESKey
-      appSecret: 'd97f2f1e667c28368b34a78c631dd762',  //微信开发者密码AppSecret
+      // appSecret: 'd97f2f1e667c28368b34a78c631dd762',  //微信开发者密码AppSecret  json
+      appSecret: '7f1e4dabc04919d9aab0712de9e1b33d',  //测试
     },
     wechatBaseUrl: 'https://api.weixin.qq.com/cgi-bin/',
+    baseUrl: 'https://qingruiserver.wangshen.top/wechat'
   }
 }

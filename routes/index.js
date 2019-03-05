@@ -14,6 +14,6 @@ const adminRouter = require('./admin');
 const apiRouter = require('./api');
 const ueditorRouter = require('./admin/ueditor');
 const uploadRouter = require('./admin/upload');
-const wechatRouter = require('./wechat');
+const wechatRouter = require('./wechat/router');
 
 export { adminRouter, apiRouter, ueditorRouter, uploadRouter, wechatRouter };
