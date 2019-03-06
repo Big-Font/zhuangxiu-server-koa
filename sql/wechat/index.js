@@ -18,6 +18,27 @@ module.exports = {
         WHERE
             wechat_key='access_token'
     `,
+    // 获取ticket
+    getTicket: `
+        SELECT 
+            wechat_value,
+            expires_in
+        FROM
+            w_chat_base
+        WHERE
+            wechat_key='ticket'
+    `,
+    // 更新ticket
+    saveTicket: `
+        UPDATE
+            w_chat_base
+        SET
+            wechat_value=?,
+            expires_in=?,
+            update_time=NOW()
+        WHERE
+            wechat_key='ticket'
+    `,
     // 根据回复查找回复内容
     getReplyFromBase: `
         SELECT 

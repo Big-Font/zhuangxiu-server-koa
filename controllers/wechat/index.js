@@ -1,7 +1,9 @@
+// wechat-lib/index.js  微信 access_token ticket 的获取
 import request from 'request-promise';
 import config from '../../config';
 
 // https请求方式: GET
+// https://api.weixin.qq.com/cgi-bin/
 // https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=APPID&secret=APPSECRET
 const api = {
     accessToken: 'token?grant_type=client_credential'
@@ -14,6 +16,8 @@ class WeichatControllers {
         this.appSecret = opts.appSecret;
         this.getAccessToken = opts.getAccessToken;
         this.saveAccessToken = opts.saveAccessToken;
+        this.getTicket = opts.getTicket;
+        this.saveTicket = opts.saveTicket;
 
         this.fetchAccessToken();
     }
@@ -38,13 +42,10 @@ class WeichatControllers {
         // 先从数据库获取token并检查token是否过期
         let data = await this.getAccessToken();
         console.log('====>',JSON.stringify(data))
-        console.log(`检测acess_token的结果是： ${this.isValidToken(data)}`)
-        if(!this.isValidToken(data)) {
+        console.log(`检测acess_token的结果是： ${this.isValid(data, 'acess_token')}`)
+        if(!this.isValid(data, 'acess_token')) {
             data = await this.updatedAccessToken();
         }
-
-        // 存储token  
-        await this.saveAccessToken(data);
 
         return data;
     }
@@ -61,14 +62,49 @@ class WeichatControllers {
         const expires_in = now + (data.expires_in - 20) * 1000;
         data.expires_in = expires_in;
         console.log(data);
+
+        // 存储token  
+        await this.saveAccessToken(data);
         
         return data;
     }
+
     /*
-    *   验证token是否过期，返回true或者false
+    *   请求来以后获取 ticket
     */
-    isValidToken(data) {
-        if(!data || !data.expires_in || !data.access_token) {
+    async fetchTicket(token){
+        let data = await this.getTicket();
+        if(!this.isValid(data, 'ticket')){
+            data = await this.updateTicket(token);
+        }
+
+        // await this.saveTicket(data);
+
+        return data;
+    }
+
+    // 更新 ticket
+    async updateTicket(token){
+        const url = `${config[process.env.NODE_ENV].wechatBaseUrl}ticket/getticket?access_token=${token}&type=jsapi`;
+
+        const data = await this.request({ url });
+
+        const Now = new Date().getTime();
+        const ExpiresIn = Now + (data.expires_in - 20) * 1000;
+
+        data.expires_in = ExpiresIn;
+
+        await this.saveTicket(data);
+
+        return data;
+    }
+
+    /*
+    *   验证token 或者 ticket 是否过期，返回true或者false
+    *   @params 数据库里取出的对象 {access_token: xxx, expires_in: xxx}  或者  { ticket: xxx, expires_in: xxxx }
+    */
+    isValid(data, name) {
+        if(!data || !data.expires_in || !data[name]) {
             return false;
         }
 

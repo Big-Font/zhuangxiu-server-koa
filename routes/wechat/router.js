@@ -11,5 +11,7 @@ router
     .get('/wx-oauth', Wechat.oauth)
     // 通过 code 获取用户信息
     .get('/userinfo', Wechat.userinfo)
+    // 获取微信sdk延签
+    .post('/get-wechat-sign', Wechat.sdk)
     
 module.exports = router;
