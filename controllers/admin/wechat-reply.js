@@ -70,6 +70,40 @@ class WechatReplyAdminControllers {
             return;
         }
     }
+    /*
+    *   添加回复策略
+    */
+    async publicWechatReply(ctx) {
+        let { replyFrom, replyTo, type, title, description, picUrl, url} = ctx.request.body;
+        if(!from) {
+            ctx.error({msg: '用户发来的消息不能为空'});
+            return;
+        }
+        if(!type) {
+            ctx.error({msg: '回复类型不能为空'});
+            return;
+        }
+        if(type != 1 || type != 6) {
+            type = 1;
+        }
+        if(type == 1 && !to) {
+            ctx.error({msg: '回复类型为文本类型时，回复文本不能设置为空'});
+            return;
+        }
+        if(type == 6 && (!title || !description || !picUrl || !url)) {
+            ctx.error({msg: '回复类型为回复链接时，回复的标题、描述、缩略图、链接地址均不能为空'});
+            return;
+        }
+        
+        try{
+            let res = await query(wechatSQL.publicWechatReply, [replyFrom, replyTo, type, title, description, picUrl, url ]);
+            ctx.success({msg: '回复策略添加成功'})
+        }catch(err) {
+            ctx.error({msg: err.message});
+            return;
+        }
+    }
+
 }
 
 module.exports = new WechatReplyAdminControllers();

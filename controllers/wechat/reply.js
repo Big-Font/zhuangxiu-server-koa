@@ -7,7 +7,7 @@ exports.reply = async (ctx, next) => {
     if(message.MsgType === 'text') {
         // 消息型文本
         let content = message.Content;
-        let reply = `Oh？${content}？，你说的太复杂了，我听不懂诶！`;
+        let reply = null;
         try{
             let data = await query(wechatSQL.getReplyFromBase, [content]);
             if(data.length) {
@@ -24,10 +24,20 @@ exports.reply = async (ctx, next) => {
                                 url: res.url
                             }]
                 }
+            }else {
+                // 数据库中无匹配的时候转发到 客服
+                // message.MsgType = 'transfer_customer_service';
+                // reply = {
+                //     type: 'transfer_customer_service'
+                // }
             }
         }catch(err) {
             console.log(err)
             reply =  '抱歉，服务出现问题';
+        }
+
+        if(reply == null) {
+            reply = '抱歉，公众号目前联系不到客服，您可致电0312-xxxxxx联系我们';
         }
 
         // if(content === '王深') {

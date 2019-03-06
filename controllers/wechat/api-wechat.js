@@ -6,8 +6,8 @@ const WeChatOAuth = require('../../routes/wechat').getOAuth();
 // 获取 token ,根据 token 获取 ticket ，然后将 ticket 和 url进行签名，同时添加分享时需要的 appId
 exports.getSignature = async (url) => {
     const TokenData = await WeChat.fetchAccessToken();
-    const Token = TokenData.access_token;
-    const TicketData = await WeChat.fetchTicket(Token);
+    // const Token = TokenData.access_token;
+    const TicketData = await WeChat.fetchTicket(TokenData);
     const Ticket = TicketData.ticket;
     let params = sign(Ticket, url);
     params.appId = WeChat.appID;

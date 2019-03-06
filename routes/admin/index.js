@@ -76,5 +76,7 @@ router
     .post('/goodsInfoUpdateList', goodsCtrl.goodsInfoUpdateList)
     // 微信回复策略  getALLReply
     .post('/getALLReply', wechatReplyAdminCtrl.getALLReply)
+    // 添加微信恢复策略 publicWechatReply
+    .post('/publicWechatReply', wechatReplyAdminCtrl.publicWechatReply)
 
 module.exports = router;

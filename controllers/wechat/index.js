@@ -41,9 +41,8 @@ class WeichatControllers {
     async fetchAccessToken() {
         // 先从数据库获取token并检查token是否过期
         let data = await this.getAccessToken();
-        console.log('====>',JSON.stringify(data))
-        console.log(`检测acess_token的结果是： ${this.isValid(data, 'acess_token')}`)
-        if(!this.isValid(data, 'acess_token')) {
+        console.log(`检测acess_token的结果是： ${this.isValid(data, 'access_token')}`)
+        if(!this.isValid(data, 'access_token')) {
             data = await this.updatedAccessToken();
         }
 
@@ -55,13 +54,11 @@ class WeichatControllers {
     async updatedAccessToken() {
         const url = `${config[process.env.NODE_ENV].wechatBaseUrl}${api.accessToken}&appid=${this.appID}&secret=${this.appSecret}`;
         
-        const data = await this.request({url});
-        console.log(data);        
+        const data = await this.request({url});      
         const now = new Date().getTime();
         // 设置过期时间小于两个小时
         const expires_in = now + (data.expires_in - 20) * 1000;
         data.expires_in = expires_in;
-        console.log(data);
 
         // 存储token  
         await this.saveAccessToken(data);
@@ -74,6 +71,7 @@ class WeichatControllers {
     */
     async fetchTicket(token){
         let data = await this.getTicket();
+        console.log(`ticket目前的状态是======>${this.isValid(data, 'ticket') ? '没过期' : '过期了'}`)
         if(!this.isValid(data, 'ticket')){
             data = await this.updateTicket(token);
         }
@@ -85,7 +83,7 @@ class WeichatControllers {
 
     // 更新 ticket
     async updateTicket(token){
-        const url = `${config[process.env.NODE_ENV].wechatBaseUrl}ticket/getticket?access_token=${token}&type=jsapi`;
+        const url = `${config[process.env.NODE_ENV].wechatBaseUrl}ticket/getticket?access_token=${token.access_token}&type=jsapi`;
 
         const data = await this.request({ url });
 

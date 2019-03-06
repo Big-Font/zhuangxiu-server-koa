@@ -1,7 +1,7 @@
 module.exports = {
     getAccessToken: `
         SELECT 
-            wechat_value,
+            wechat_value AS access_token,
             expires_in
         FROM
             w_chat_base
@@ -21,7 +21,7 @@ module.exports = {
     // 获取ticket
     getTicket: `
         SELECT 
-            wechat_value,
+            wechat_value AS ticket,
             expires_in
         FROM
             w_chat_base
@@ -77,20 +77,25 @@ module.exports = {
                 ? OFFSET ? 
         `
     },
-    // getALLReply:  `
-    //     SELECT
-    //         id,
-    //         reply_from AS replyFrom,
-    //         reply_to AS replyTo,
-    //         type,
-    //         title,
-    //         description,
-    //         music_url AS musicUrl,
-    //         pic_url AS picUrl,
-    //         url,
-    //         del_flag AS delFlag,
-    //         Date_Format(update_time,'%Y-%m-%d') AS update_time
-    //     FROM
-    //         w_chat_relpy
-    // `
+    // 添加回复策略
+    publicWechatReply: `
+        INSERT INTO
+            w_chat_relpy
+            (
+                reply_from,
+                reply_to,
+                type,
+                title,
+                description,
+                pic_url,
+                url,
+                del_flag,
+                create_time,
+                update_time,
+                media_id,
+                music_url
+            )
+        VALUES
+            (?,?,?,?,?,?,?,0,NOW(),NOW(),null,null)
+    `
 }
