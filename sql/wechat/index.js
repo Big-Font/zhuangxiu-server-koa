@@ -62,6 +62,7 @@ module.exports = {
                 title,
                 description,
                 music_url AS musicUrl,
+                media_id As mediaId,
                 pic_url AS picUrl,
                 url,
                 del_flag AS delFlag,
@@ -97,5 +98,32 @@ module.exports = {
             )
         VALUES
             (?,?,?,?,?,?,?,0,NOW(),NOW(),null,null)
+    `,
+    // 修改回复策略 replyFrom, replyTo, type, title, description, picUrl, url, musicUrl, mediaId, delFlag, id
+    modifyWechatReply: `
+        UPDATE
+            w_chat_relpy
+        SET
+            reply_from=?,
+            reply_to=?,
+            type=?,
+            title=?,
+            description=?,
+            pic_url=?,
+            url=?,
+            music_url=?,
+            media_id=?,
+            del_flag=?,
+            update_time=NOW()
+        WHERE
+            id=?
+    `,
+    queryFromReply: `
+            SELECT 
+                reply_from 
+            FROM
+                w_chat_relpy  
+            WHERE
+                reply_from=?
     `
 }

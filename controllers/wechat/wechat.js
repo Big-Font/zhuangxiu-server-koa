@@ -4,6 +4,7 @@ import { getOAuth } from '../../routes/wechat';
 import wechatMiddle from '../../middlewares/wechat';
 import { UrlJoin, IsWeChat } from '../../lib/wechat';
 import { getSignature } from './api-wechat';
+import { getToken } from '../../lib/user';
 
 // 介入微信消息中间件
 exports.hear = async (ctx, next) => {
@@ -14,25 +15,51 @@ exports.hear = async (ctx, next) => {
 
 // 获取用户信息中间件
 exports.oauth = async (ctx, next) => {
-    const oauth = getOAuth();
-    // let target = config[process.env.NODE_ENV].baseUrl + '/userinfo';
-    let target = `${config[process.env.NODE_ENV].baseUrl}/userinfo`;
-    let scope = 'snsapi_userinfo';
-    let state = ctx.query.id;
-    
-    let url = oauth.getAuthorizeUrl(scope, target, state);
+    // const oauth = getOAuth();
+    // let target = `${config[process.env.NODE_ENV].baseUrl}/userinfo`;
+    // let scope = 'snsapi_userinfo';
+    // let state = ctx.query.id;
+    // let url = oauth.getAuthorizeUrl(scope, target, state);
 
-    ctx.redirect(url);
+    let { target } = ctx.request.query;
+    console.log(target)
+    target = decodeURIComponent(target)
+    const oauth = getOAuth();
+    const scope = 'snsapi_userinfo';
+    const state = '';
+    const url = oauth.getAuthorizeUrl(scope, target, state);
+    ctx.success({data: url});
+    // ctx.redirect(url);
 };
 
-// 获取用户信息
+// 获取用户信息  code作为换取access_token的票据，每次用户授权带上的code将不一样，code只能使用一次，5分钟未被使用自动过期。
 exports.userinfo = async (ctx, next) => {
-    const oauth = getOAuth();
-    const code = ctx.query.code;
-    const data = await oauth.fetchAccessToken(code);
-    const UserData = await oauth.getUserInfo(data.access_token, data.openid);
+    // const oauth = getOAuth();
+    // const code = ctx.query.code;
+    // const data = await oauth.fetchAccessToken(code);
+    // 返回值为
+    // { 
+    //     "access_token":"ACCESS_TOKEN",
+    //     "expires_in":7200,
+    //     "refresh_token":"REFRESH_TOKEN",
+    //     "openid":"OPENID",
+    //     "scope":"SCOPE" 
+    // }
+    // 获取用户信息：  https://api.weixin.qq.com/sns/userinfo?access_token=ACCESS_TOKEN&openid=OPENID&lang=zh_CN
+    // const UserData = await oauth.getUserInfo(data.access_token, data.openid);
+    // ctx.body = UserData;
 
-    ctx.body = UserData;
+    const oauth = getOAuth();
+    const { code } = ctx.request.query;
+    const data = await oauth.fetchAccessToken(code);
+    const userData = await oauth.getUserInfo(data.access_token, data.openid);
+
+    ctx.success({
+        msg: '获取微信用户信息成功',
+        token: getToken({userid: userData.openid, phone: null , email: null, username: userData.nickname}),
+        // 可以获取的是 openid, nickname,sex(1-男),language, city,province,country, headimgurl
+        userData,
+    })
 };
 
 // 微信sdk中间件 根据 接口传入的 url 进行签名

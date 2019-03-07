@@ -74,9 +74,11 @@ router
     .post('/getSellersListNoPage', goodsCtrl.getSellersListNoPage)
     // 商品列表中品牌、商家、类别查询接口--用于商品信息修改和发布
     .post('/goodsInfoUpdateList', goodsCtrl.goodsInfoUpdateList)
-    // 微信回复策略  getALLReply
+    // 微信回复策略  
     .post('/getALLReply', wechatReplyAdminCtrl.getALLReply)
-    // 添加微信恢复策略 publicWechatReply
+    // 添加微信恢复策略 
     .post('/publicWechatReply', wechatReplyAdminCtrl.publicWechatReply)
+    // 修改和删除微信回复策略 
+    .post('/modifyWechatReply', wechatReplyAdminCtrl.modifyWechatReply)
 
 module.exports = router;

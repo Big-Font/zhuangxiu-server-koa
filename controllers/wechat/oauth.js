@@ -43,18 +43,14 @@ class WeChatOAuth {
         return url;
     }
     async fetchAccessToken(code){
-        const Url = `${Api.accessToken}appid=${this.appID}&secret=${this.appSecret}&code=${code}&grant_type=authorization_code`;
-        const Res = await this.request({
-            url:Url,
-        });
-        return Res;
+        const url = `${Api.accessToken}appid=${this.appID}&secret=${this.appSecret}&code=${code}&grant_type=authorization_code`;
+        const res = await this.request({url});
+        return res;
     }
     async getUserInfo(token, openId, lang="zh_CN"){
-        const Url = `${Api.userInfo}access_token=${token}&openid=${openId}&lang=${lang}`;
-        const Res = await this.request({
-            url: Url,
-        });
-        return Res;
+        const url = `${Api.userInfo}access_token=${token}&openid=${openId}&lang=${lang}`;
+        const res = await this.request({url});
+        return res;
     }
 };
 

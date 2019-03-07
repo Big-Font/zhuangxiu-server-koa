@@ -46,7 +46,7 @@ module.exports = {
       appSecret: '7f1e4dabc04919d9aab0712de9e1b33d',  //测试
     },
     wechatBaseUrl: 'https://api.weixin.qq.com/cgi-bin/',
-    baseUrl: 'https://qingruiserver.wangshen.top/wechat'
+    baseUrl: 'https://qingrui.wangshen.top'
   },
   production: {
     secret: 'jwt_secret',
@@ -95,6 +95,6 @@ module.exports = {
       appSecret: '7f1e4dabc04919d9aab0712de9e1b33d',  //测试
     },
     wechatBaseUrl: 'https://api.weixin.qq.com/cgi-bin/',
-    baseUrl: 'https://qingruiserver.wangshen.top/wechat'
+    baseUrl: 'https://qingrui.wangshen.top'
   }
 }
