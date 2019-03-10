@@ -5,6 +5,7 @@ module.exports = {
             s.pid,
             s.label,
             s.tree,
+            s.img,
             p.label as type
         FROM
             c_sp_genre as s
@@ -25,12 +26,13 @@ module.exports = {
                 pid,
                 label,
                 tree,
+                img,
                 del_flag,
                 create_time,
                 update_time
             )
         VALUES
-            (?,?,?,0,NOW(),NOW())
+            (?,?,?,?,0,NOW(),NOW())
     `,
     /*
     *   商品分类的删除
@@ -50,7 +52,8 @@ module.exports = {
         UPDATE 
             c_sp_genre
         SET
-            label=?
+            label=?,
+            img=?
         WHERE
             id=?
     `,

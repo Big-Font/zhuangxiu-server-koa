@@ -82,7 +82,7 @@ class GoodsControllers {
             values.push(`%${brand}%`);
             console.log(values)
         }
-        if(!!typeId) {
+        if(!!typeId && typeId != 0) {
             values.push('g.id');
             values.push(typeId);
         }
@@ -683,7 +683,7 @@ class GoodsControllers {
     *   @params pid: 父级类别的id   label: 添加分类的名称
     */
     async publicCategory(ctx) {
-        let { pid, label, tree } = ctx.request.body;
+        let { pid, label, tree, img } = ctx.request.body;
         if(!pid) {
             ctx.error({msg: '父级id不能为空'});
             return;
@@ -696,10 +696,14 @@ class GoodsControllers {
             ctx.error({msg: 'tree不能为空'});
             return;
         }
+        if(!img) {
+            ctx.error({msg: '分类的图标不能为空'});
+            return;
+        }
 
         // 使用事物处理添加  1.添加新商品分类  2.修改tree
         try{
-            let res = await query(MGoodsSQL.publicCategory, [pid, label, tree]);
+            let res = await query(MGoodsSQL.publicCategory, [pid, label, tree, img]);
             ctx.success({msg: '商品分类添加成功'});
         }catch(err) {
             ctx.error({msg: err.message});
@@ -728,7 +732,7 @@ class GoodsControllers {
     *   商品分类的名称修改
     */
     async modeifyCategory(ctx) {
-        let { id, label } = ctx.request.body;
+        let { id, label, img } = ctx.request.body;
         if(!id) {
             ctx.error({msg: 'id不能为空'});
             return;
@@ -737,9 +741,13 @@ class GoodsControllers {
             ctx.error({msg: '类别名称不能为空'});
             return;
         }
+        if(!img) {
+            ctx.error({msg: '分类图标不能为空'});
+            return;
+        }
 
         try{
-            let res = await query(MGoodsSQL.modeifyCategory, [label, id]);
+            let res = await query(MGoodsSQL.modeifyCategory, [label, img, id]);
             ctx.success({msg: '商品分类更新成功'})
         }catch(err) {
             ctx.error({msg: err.message});

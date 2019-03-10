@@ -40,6 +40,8 @@ router
     .post('/v1/querySpikeDetail', adminCtrl.querySpikeDetail)
     // 发布找师傅资讯
     .post('/addWorkerMsg', workerCtrl.addWorkerMsg)
+    // 查询商品分类列表
+    .post('/v1/goodsTypeList', goodsCtrl.categoryList)
     // 查询商品列表
     .post('/v1/getGoods', goodsCtrl.getGoods)
     // 根据商品列表id查询商品详情 getGoodDetail
