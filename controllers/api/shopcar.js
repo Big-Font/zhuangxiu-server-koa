@@ -23,16 +23,17 @@ class ShopcarControllers {
             ctx.error({msg: '数量不能为空'});
             return;
         }
-        if(num < 0 && num%1 === 0) {
-            ctx.error({msg: '添加数量必须为正整数'});
+        if( typeof num === 'number' && num%1 != 0) {
+            ctx.error({msg: '添加数量必须为整数'});
             return;
         }
         console.log(`userid: ${userid}`)
         // 先查询此用户购物车中是否含有要添加的商品
         try{
             let carList = await query(ShopcarSQL.queryShopcarHasGood, [userid, goodId])
-            if(carList.length === 0) {
-                // 插入商品
+            console.log(`查询该用户下是否有这个产品的结果是: ${carList.length}`)
+            if(!carList.length) {
+                // 插入商品 没有该产品的情况用户添加产品num为正值
                 try{
                     let res = await query(ShopcarSQL.addShopcar, [userid, goodId, num]);
                     ctx.success({msg: '购物车添加成功'});
@@ -42,13 +43,30 @@ class ShopcarControllers {
                     return;
                 }
             }else {
-                // 修改商品数量
+                // 修改商品数量  用户添加过这个产品， num为值的变化量
+                console.log(`用户添加过这个产品，这个产品当前的数量为 ${carList[0].num} , 用户要添加的数量为 ${num} , 状态改变后的入库数量为 ${Number(carList[0].num) + Number(num)}`)
                 try{
                     let newNum = Number(carList[0].num) + Number(num);
                     let id = carList[0].id;
-                    let res = await query(ShopcarSQL.changeShopcarNum, [newNum, id]);
-                    ctx.success({msg: '购物车添加成功'})
-                    return;
+                    if(newNum > 0) {
+                        try{
+                            let res = await query(ShopcarSQL.changeShopcarNum, [newNum, id]);
+                            ctx.success({msg: '购物车添加成功'})
+                            return;
+                        }catch(e) {
+                            ctx.error({msg: e.message});
+                            return;
+                        }
+                    }else {
+                        try{
+                            let res = await query(ShopcarSQL.deleteShopcarCell, [id]);
+                            ctx.success({msg: `购物车数量小于0，已删除成功`});
+                            return;
+                        }catch(e) {
+                            ctx.error({msg: e.message});
+                            return;
+                        }
+                    }
                 }catch(err) {
                     ctx.error({msg: err.message});
                     return;
@@ -64,7 +82,7 @@ class ShopcarControllers {
     *   @params
     */
     async queryShopcarList(ctx) {
-        let total_num, total_price = 0, userid = ctx.user.userid;
+        let total_num = 0, total_price = 0, userid = ctx.user.userid;
         
         if(!userid) {
             ctx.error({msg: '用户信息获取错误'});
@@ -74,7 +92,7 @@ class ShopcarControllers {
         try{
             let list = await query(ShopcarSQL.queryShopcarList, [userid]);
             for(let item of list) {
-                total_price += Number(item.price);
+                total_price += Number(item.price) * Number(item.num);
             }
             ctx.success({
                 list,

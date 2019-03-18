@@ -46,7 +46,7 @@ router
     .post('/v1/getGoods', goodsCtrl.getGoods)
     // 根据商品列表id查询商品详情 getGoodDetail
     .post('/v1/getGoodDetail', goodsCtrl.getGoodDetail)
-    // 添加购物车 addShopcar
+    // 添加购物车 
     .post('/addShopcar', shopcarCtrl.addShopcar)
     // 查询购物车列表
     .post('/queryShopcarList', shopcarCtrl.queryShopcarList)

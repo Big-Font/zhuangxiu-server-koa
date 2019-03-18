@@ -17,6 +17,18 @@ module.exports = {
             (?,?,?,0,NOW(),NOW())
     `,
     /*
+    *   删除购物车数量的时候，当数量小于1的时候删除产品
+    */
+    deleteShopcarCell: `
+        UPDATE
+            c_sp_goods_shopcar
+        SET
+            num=0,
+            del_flag=-1
+        WHERE
+            id=?
+    `,
+    /*
     *   查询购物车中是否已添加过当前商品
     */
     queryShopcarHasGood: `
