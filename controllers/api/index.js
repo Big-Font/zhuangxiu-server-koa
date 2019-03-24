@@ -18,14 +18,37 @@ class ApiControllers {
         ctx.body = cap.data;
     }
     /*
-    *   banner 管理
-    *   @response  
-    *   capkey  图形验证码
-    *   username  账号
-    *   password  密码
+    *   获取首页内容接口 管理
+    *   {banner, spikeList, caseList}
     */
-    async getBanner(ctx) {
-        
+    async getIndex(ctx) {
+        try {
+            // 查询banner
+            let bannerList = await query(SQL.getBannerList);
+            try{
+                // 查询秒杀活动(首页)
+                let spikeList = await query(API_SQL.getIndex.spikeList);
+                try{
+                    // 查询装修案例（首页)
+                    let caseList = await query(API_SQL.getIndex.caseList);
+                    ctx.success({
+                        msg: '查询成功',
+                        bannerList,
+                        spikeList,
+                        caseList
+                    })
+                }catch(e) {
+                    ctx.error({msg: e.message});
+                    return;
+                }
+            }catch(err) {
+                ctx.error({msg: err.message});
+                return;
+            }
+        }catch(error) {
+            ctx.error({msg: error.message});
+            return;
+        }
     }
     /*
     *   装修案例列表 --- caseList
@@ -42,7 +65,7 @@ class ApiControllers {
         // 分页
         let queryValues = [],pageValues = [], page_num, total_page, results;
         try{
-            let res = await sqlPage(page, SQL.caseList, []);
+            let res = await sqlPage(page, API_SQL.caseList, []);
             pageValues = res.pageValues;
             page_num = res.page_num;
             total_page = res.total_page;
@@ -52,7 +75,7 @@ class ApiControllers {
         }
 
         try {
-            results = await query(SQL.caseList, pageValues)
+            results = await query(API_SQL.caseList, pageValues)
         }catch(err) {
             ctx.error({msg: err.message});
             return;

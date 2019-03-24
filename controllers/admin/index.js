@@ -7,6 +7,7 @@ import { getToken, getJWTPayload } from '../../lib/user';
 import config from '../../config';
 import { md5 } from '../../lib/md5';
 import { createTask } from '../../lib/task';
+import moment from 'moment';
 import $Date_Format from '../../lib/dateFormat';
 import * as types from '../../lib/types';
 
@@ -518,7 +519,7 @@ class AdminControllers {
             img,
             place,
         } = ctx.request.body;
-        let type=1;
+        let type=3;
         if(!goods) {
             ctx.error({msg: '商品介绍不能为空'});
             return;
@@ -540,19 +541,23 @@ class AdminControllers {
         }else if(!place) {
             place = 3;
         }
+        // 获取当前时间
+        let now = moment().format('YYYY-MM-DD HH:mm:ss');
+        if(moment(startTime).isBefore(now) && moment(endTime).isAfter(now)) {
+            // 进行中   spike_start_time 大于 当前时间  并且 spike_end_time 小于当前时间
+            type = 1;
+        }else if(moment(endTime).isBefore(now)){
+            // 已结束   spike_end_time 小于当前时间
+            type = 2;
+        }
         
-        // if(new Date(startTime).getTime() > new Date().getTime()) {
-        //     type = 1;
-        // }else{
-        //     type = 2
-        // }
         var spikeUUID = uuid.v1();
         let sqlArr = [];
         // let listSQL = `INSERT INTO t_sys_spikelist (spike_name, spike_start_time, spike_end_time, spike_update_time, spike_type, spike_img, spike_place) VALUES (?, ? , ?, NOW(), 3, ?, ?)`;
         // let listParams = [name, startTime, endTime, type, img, place];
         // let infoSQL = `INSERT INTO t_sys_spikes (spike_stock, spike_seller, spike_goods, spike_activity, spike_price) VALUES (?, ?, ?, ?, ?)`;
         // let infoParams = [stock, seller, goods, activity, price];
-        sqlArr.push(_getNewSqlParamEntity(SQL.spikeActivePublish.list, [spikeUUID, name, startTime, endTime, img, place]));
+        sqlArr.push(_getNewSqlParamEntity(SQL.spikeActivePublish.list, [spikeUUID, name, startTime, endTime, type, img, place]));
         sqlArr.push(_getNewSqlParamEntity(SQL.spikeActivePublish.detail, [spikeUUID, stock, seller, goods, activity, price]));
         
         try{
@@ -563,14 +568,14 @@ class AdminControllers {
             * 如果 startTime 大于当前任务， 开启两个定时任务， 一条用于创建活动，一条用于修改活动状态为已下架
             * 
             */
-            function spikeActiveStart() {
+            function spikeActiveStart(spikeUUID) {
                 try {
                     let start = query(TASK_SQL.spikeActiveStartTask, [spikeUUID]) 
                 }catch(e) {
                     console.log(`===> 定时活动开启失败， 活动uuid：${spikeUUID}`)
                 }
             }
-            function spikeActiveEnd() {
+            function spikeActiveEnd(spikeUUID) {
                 try{
                     let end = query(TASK_SQL.spikeActiveEndTask, [spikeUUID])
                 }catch(e) {
@@ -578,11 +583,24 @@ class AdminControllers {
                 }
             }
             // 2018-12-01 12:09:12  ===> return new Date(2012, 11, 21, 5, 30, 0);
-            function startTime(time) {
-                var oDate = new Date(time);
-                return new Date(oDate.getFullYear(), oDate.getMonth(), oDate.getDate(), oDate.getHours(), oDate.getMinutes(), oDate.getSeconds())
+            // function startTime(time) {
+            //     var oDate = new Date(time);
+            //     return new Date(oDate.getFullYear(), oDate.getMonth(), oDate.getDate(), oDate.getHours(), oDate.getMinutes(), oDate.getSeconds())
+            // }
+            if(moment(startTime).isBefore(now) && moment(endTime).isAfter(now)) {
+                // 进行中   spike_start_time 大于 当前时间  并且 spike_end_time 小于当前时间
+                // 进行中：只开启关闭的定时任务
+                createTask(spikeActiveEnd, $Date_Format.date2task(endTime))
+            }else if(moment(endTime).isBefore(now)){
+                // 已结束   spike_end_time 小于当前时间 
+                // 已结束的不进行任何定时任务
+            }else {
+                // 未开始   spike_start_time 大于 当前时间 ---- 开启定时任务
+                // 未开始： 开启开始定时任务和结束定时任务
+                createTask(spikeActiveStart, $Date_Format.date2task(startTime), spikeUUID)
+                createTask(spikeActiveEnd, $Date_Format.date2task(endTime), spikeUUID)
             }
-            createTask(spikeActiveStart, $Date_Format.date2task(startTime))
+            // createTask(spikeActiveStart, $Date_Format.date2task(startTime))
             ctx.success({msg: '发布成功'});
         }catch(err) {
             ctx.error({msg: err.message});
@@ -608,7 +626,7 @@ class AdminControllers {
         } = ctx.request.body;
         // startTime 是 mysql 的保留字
         let startTime2 = startTime;
-        let type=1, spikeUUID;
+        let type=3, spikeUUID;
         if(!id) {
             ctx.error({msg: '秒杀活动id不能为空'});
             return;
@@ -660,7 +678,16 @@ class AdminControllers {
         }catch(e) {
             ctx.error({msg: e.message});
         }
-        console.log(`开始时间====>${startTime2}`)
+        // 获取当前时间
+        let now = moment().format('YYYY-MM-DD HH:mm:ss');
+        if(moment(startTime).isBefore(now) && moment(endTime).isAfter(now)) {
+            // 进行中   spike_start_time 大于 当前时间  并且 spike_end_time 小于当前时间
+            type = 1;
+        }else if(moment(endTime).isBefore(now)){
+            // 已结束   spike_end_time 小于当前时间
+            type = 2;
+        }
+        
         try{
             console.log([name, startTime2, endTime, img, place, stock, seller, goods, activity, price, type, id])
             let info = await query(SQL.modifySpikeActive, [name, startTime2 , endTime, img, place, stock, seller, goods, activity, price, type, id]); 
@@ -670,26 +697,34 @@ class AdminControllers {
             * 如果 startTime 大于当前任务， 开启两个定时任务， 一条用于创建活动，一条用于修改活动状态为已下架
             * 
             */
-            function spikeActiveStart() {
+            async function spikeActiveStart(id) {
                 try {
-                    let start = query(TASK_SQL.spikeActiveStartTask, [spikeUUID]) 
+                    let start = await query(TASK_SQL.spikeInit.spikeInitStart, [id]) 
                 }catch(e) {
-                    console.log(`===> 定时活动开启失败， 活动uuid：${spikeUUID}`)
+                    console.log(`===> 定时活动开启失败， 活动id：${id}`)
                 }
             }
-            function spikeActiveEnd() {
+            async function spikeActiveEnd(id) {
                 try{
-                    let end = query(TASK_SQL.spikeActiveEndTask, [spikeUUID])
+                    let end = await query(TASK_SQL.spikeInit.spikeInitEnd, [id])
                 }catch(e) {
-                    console.log(`===> 定时活动结束失败， 活动uuid：${spikeUUID}`)
+                    console.log(`===> 定时活动结束失败， 活动uuid：${id}`)
                 }
             }
-            // 2018-12-01 12:09:12  ===> return new Date(2012, 11, 21, 5, 30, 0);
-            function startTime(time) {
-                var oDate = new Date(time);
-                return new Date(oDate.getFullYear(), oDate.getMonth(), oDate.getDate(), oDate.getHours(), oDate.getMinutes(), oDate.getSeconds())
+            if(moment(startTime).isBefore(now) && moment(endTime).isAfter(now)) {
+                // 进行中   spike_start_time 大于 当前时间  并且 spike_end_time 小于当前时间
+                // 进行中：只开启关闭的定时任务
+                createTask(spikeActiveEnd, $Date_Format.date2task(endTime))
+            }else if(moment(endTime).isBefore(now)){
+                // 已结束   spike_end_time 小于当前时间 
+                // 已结束的不进行任何定时任务
+            }else {
+                // 未开始   spike_start_time 大于 当前时间 ---- 开启定时任务
+                // 未开始： 开启开始定时任务和结束定时任务
+                createTask(spikeActiveStart, $Date_Format.date2task(startTime), id)
+                createTask(spikeActiveEnd, $Date_Format.date2task(endTime), id)
             }
-            createTask(spikeActiveStart, $Date_Format.date2task(startTime))
+            // createTask(spikeActiveStart, $Date_Format.date2task(startTime))
             ctx.success({msg: '更新成功'});
         }catch(err) {
             ctx.error({msg: err.message});

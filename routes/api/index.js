@@ -24,6 +24,8 @@ router
     .post('/getUserInfo', apiUserCtrl.getmUserInfo)
     // 修改前端用户个人信息 
     .post('/modeifymUserInfo', apiUserCtrl.modeifymUserInfo)
+    // 获取首页信息接口 getIndex
+    .post('/v1/getIndex', apiCtrl.getIndex)
     // 获取banner
     .get('/v1/banner', adminCtrl.getBannerList)
     // 获取资讯列表

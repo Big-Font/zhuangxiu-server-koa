@@ -492,7 +492,7 @@ module.exports = {
                 spike_img, 
                 spike_place) 
             VALUES  
-                (?, ?, ?, ?, NOW(), 3, ?, ?)`,
+                (?, ?, ?, ?, NOW(), ?, ?, ?)`,
         detail: `
             INSERT INTO 
                 t_sys_spikes 

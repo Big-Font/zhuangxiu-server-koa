@@ -36,4 +36,55 @@ module.exports = {
         WHERE
             a.caselist_uuid=?
     `,
+    /*
+    *   查询首页数据
+    */
+    getIndex: {
+        spikeList: `
+            SELECT 
+                spike_id AS id, 
+                spike_name AS name, 
+                Date_Format(spike_start_time,'%Y-%m-%d %H:%i:%s') as startTime, 
+                Date_Format(spike_end_time,'%Y-%m-%d %H:%i:%s') as endTime, 
+                spike_type AS type, 
+                spike_img AS img, 
+                spike_place AS place 
+            FROM 
+                t_sys_spikelist
+            WHERE
+                spike_type=1 AND spike_place=1
+            ORDER BY 
+                spike_id
+            `,
+        caseList:`
+            SELECT 
+                caselist_author,
+                caselist_id,
+                caselist_img,
+                caselist_pageview,
+                caselist_recommend,
+                caselist_title
+            FROM 
+                t_sys_caselist 
+            WHERE
+                caselist_recommend=1
+            ORDER BY 
+                caselist_id
+        `
+    },
+    /*
+    *   装修案例列表 
+    */
+   caseList: `
+        SELECT 
+            * 
+        FROM 
+            t_sys_caselist 
+        WHERE
+            caselist_recommend=0
+        ORDER BY 
+            caselist_id 
+        DESC
+        LIMIT 
+            ? OFFSET ?`,
 }

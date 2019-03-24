@@ -3,7 +3,7 @@ module.exports = {
         UPDATE 
             t_sys_spikelist
         SET 
-            spike_type=2
+            spike_type=1
         WHERE
             spike_uuid=?
     `,
@@ -11,7 +11,7 @@ module.exports = {
         UPDATE 
             t_sys_spikelist
         SET 
-            spike_type=3
+            spike_type=2
         WHERE
             spike_uuid=?
     `,
@@ -30,7 +30,7 @@ module.exports = {
             UPDATE 
                 t_sys_spikelist
             SET 
-                spike_type=2
+                spike_type=1
             WHERE
                 spike_id=?
         `,
@@ -38,10 +38,18 @@ module.exports = {
             UPDATE 
                 t_sys_spikelist
             SET 
-                spike_type=3
+                spike_type=2
             WHERE
                 spike_id=?
         `,
+        spikeInitPrepare: `
+            UPDATE 
+                t_sys_spikelist
+            SET 
+                spike_type=3
+            WHERE
+                spike_id=?
+        `
     },
     
 }
