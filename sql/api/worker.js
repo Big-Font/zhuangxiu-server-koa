@@ -165,5 +165,29 @@ module.exports = {
             WHERE
                 id=?
         `
-    }
+    },
+    // 查看用户当前发布的找师傅的状态列表
+    getUserFindWorkerList: `
+        SELECT
+            l.id
+            title,
+            address,
+            classify,
+            type,
+            createTime,
+            isOver,
+            imgs,
+            details
+        FROM
+            t_sys_workerlist AS l
+        JOIN
+            t_sys_workers AS d
+        ON
+            l.uuid=d.uuid
+        WHERE
+            l.userid=?
+        ORDER BY
+            createTime
+        DESC
+    `
 }

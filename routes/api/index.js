@@ -42,6 +42,8 @@ router
     .post('/v1/querySpikeDetail', adminCtrl.querySpikeDetail)
     // 发布找师傅资讯
     .post('/addWorkerMsg', workerCtrl.addWorkerMsg)
+    // 查询当前用户的找师傅发布记录  
+    .post('/getUserFindWorkerList', workerCtrl.getUserFindWorkerList)
     // 查询商品分类列表
     .post('/v1/goodsTypeList', goodsCtrl.categoryList)
     // 查询商品列表

@@ -195,5 +195,5 @@ module.exports = {
         DESC
         LIMIT 
             ? OFFSET ? 
-    `
+    `,
 }

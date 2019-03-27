@@ -14,12 +14,12 @@ class WorkerControllers {
     */
     async addWorkerMsg(ctx) {
         let {
-                title,
-                address,
-                type,
-                details,
-                imgs
-            } = ctx.request.body;
+            title,
+            address,
+            type,
+            details,
+            imgs
+        } = ctx.request.body;
         if(!title) {
             ctx.error({msg: '标题不能为空'});
             return;
@@ -55,8 +55,26 @@ class WorkerControllers {
         }
     }
     /*
-    *   根据用户查找用户发布的信息
-    */
+    *   查看用户当前发布的找师傅的状态列表
+    */  
+    async getUserFindWorkerList(ctx) {
+        let userid = ctx.user.userid;
+        console.log(`找师傅列表的用户id是 ${userid}`)
+        if(!userid) {
+            ctx.error({msg: '未查询到当前登录用户'});
+            return;
+        }
+        try{
+            let list = await query(MWorkerSQL.getUserFindWorkerList, [userid]);
+            ctx.success({
+                msg: '查询成功',
+                list
+            })
+        }catch(err) {
+            ctx.error({msg: err.message});
+            return;
+        }
+    }
 }
 
 module.exports = new WorkerControllers();

@@ -247,6 +247,7 @@ class MUserControllers {
             ctx.success({msg: '用户个人心修改成功'});
         }catch(err) {
             ctx.error({msg: err.error});
+            return;
         }
 
     }
@@ -302,7 +303,7 @@ class MUserControllers {
                 list,
             })
         }catch(err) {
-            ctx.error({msg: err.message})
+    ctx.error({msg: err.message})
         }
     }
 }
