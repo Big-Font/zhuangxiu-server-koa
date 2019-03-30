@@ -169,7 +169,7 @@ module.exports = {
     // 查看用户当前发布的找师傅的状态列表
     getUserFindWorkerList: `
         SELECT
-            l.id
+            l.id,
             title,
             address,
             classify,
