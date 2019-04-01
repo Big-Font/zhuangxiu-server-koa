@@ -12,7 +12,9 @@ const jwt = require('jsonwebtoken');
 const jwtKoa= require('koa-jwt');
 const onerror = require('koa-onerror')
 const koaBody = require('koa-body')
-const logger = require('koa-logger')
+// 日志系统
+// const logger = require('koa-logger')
+const logs4js = require('./middlewares/logs');
 const config = require('./config');
 //  封装的中间件
 const errorHandle = require('./middlewares/errorHandle');
@@ -47,7 +49,7 @@ app.use(session(CONFIG, app));
 
 // middlewares
 app.use(json())
-app.use(logger())
+// app.use(logger())
 app.use(require('koa-static')(__dirname + '/public'))
 
 // 处理post请求和文件上传
@@ -83,12 +85,13 @@ app.use(jwtKoa({
 app.use(checkJWT());
 
 // logger
-app.use(async (ctx, next) => {
-  const start = new Date()
-  await next()
-  const ms = new Date() - start
-  console.log(`${ctx.method} ${ctx.url} - ${ms}ms`)
-})
+app.use(logs4js());
+// app.use(async (ctx, next) => {
+//   const start = new Date()
+//   await next()
+//   const ms = new Date() - start
+//   console.log(`${ctx.method} ${ctx.url} - ${ms}ms`)
+// })
 // 
 app.use(require('./middlewares/response'));
 // routes uploadRouter
