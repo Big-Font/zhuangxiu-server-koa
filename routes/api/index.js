@@ -44,6 +44,10 @@ router
     .post('/addWorkerMsg', workerCtrl.addWorkerMsg)
     // 查询当前用户的找师傅发布记录  
     .post('/getUserFindWorkerList', workerCtrl.getUserFindWorkerList)
+    // 用户删除找师傅列表 
+    .post('/userDeleteFindWorker', workerCtrl.userDeleteFindWorker)
+    // 用户催单找师傅列表 
+    .post('/userHurryFindWorker', workerCtrl.userHurryFindWorker)
     // 查询商品分类列表
     .post('/v1/goodsTypeList', goodsCtrl.categoryList)
     // 查询商品列表

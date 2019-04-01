@@ -11,10 +11,11 @@ module.exports = {
                     classify,
                     type,
                     createTime,
-                    isOver 
+                    isOver,
+                    phone
                 )
             VALUES
-                (?,?,?,?,?,?,NOW(),?)     
+                (?,?,?,?,?,?,NOW(),?,?)     
         `,
         addDetail: `
             INSERT INTO
@@ -37,7 +38,8 @@ module.exports = {
                 a.createTime,
                 isOver,
                 username,
-                phone,
+                a.phone,
+                b.phone AS userPhone,
                 details,
                 imgs
             FROM
@@ -66,7 +68,8 @@ module.exports = {
                 a.createTime,
                 isOver,
                 username,
-                phone,
+                a.phone,
+                b.phone AS userPhone,
                 details,
                 imgs
             FROM
@@ -97,7 +100,8 @@ module.exports = {
                 a.createTime,
                 isOver,
                 username,
-                phone,
+                a.phone,
+                b.phone AS userPhone,
                 details,
                 imgs
             FROM
@@ -128,7 +132,8 @@ module.exports = {
                 a.createTime,
                 isOver,
                 username,
-                phone,
+                a.phone,
+                b.phone AS userPhone,
                 details,
                 imgs
             FROM
@@ -172,10 +177,13 @@ module.exports = {
             l.id,
             title,
             address,
+            phone,
             classify,
             type,
             createTime,
             isOver,
+            ishurry,
+            del_flag,
             imgs,
             details
         FROM
@@ -185,9 +193,18 @@ module.exports = {
         ON
             l.uuid=d.uuid
         WHERE
-            l.userid=?
+            l.userid=? AND del_flag=0
         ORDER BY
             createTime
         DESC
+    `,
+    // 用户操作改变找师傅列表状态 (催单和删除)
+    handleStatus: `
+        UPDATE
+            t_sys_workerlist
+        SET
+            ??=-1
+        WHERE
+            userid=? AND id=?
     `
 }

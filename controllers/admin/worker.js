@@ -54,6 +54,12 @@ class WorkerControllers {
 
         try {
             let results = await query(sql, sqlParams);
+            results.forEach( item => {
+                if(/\[/.test(item.imgs)) {
+                    item.imgs = eval(item.imgs);
+                    console.log(item.imgs, typeof item.imgs)
+                }
+            })
             ctx.success({
                 page,
                 total_page,
