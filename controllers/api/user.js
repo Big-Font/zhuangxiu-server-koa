@@ -143,7 +143,7 @@ class MUserControllers {
         const cap = captchapng.create({
             size: 4,
             ignoreChars: '0oli',
-            noise: 4,
+            noise: 2,
             color: true,
             background: '#fff'
         })
