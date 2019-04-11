@@ -15,7 +15,8 @@ module.exports = {
     *   后台管理登录接口
     */
     getList: `
-        SELECT * 
+        SELECT 
+            * 
         FROM 
             t_sys_articlelist 
         ORDER BY 
@@ -82,6 +83,8 @@ module.exports = {
             Date_Format(banner_update_time,'%Y-%m-%d %H:%i:%s') as banner_update_time
         FROM 
             t_sys_bannerlist 
+        WHERE
+            del_flag=0
         ORDER BY 
             banner_id 
         ASC`,
@@ -96,9 +99,10 @@ module.exports = {
             banner_name,
             banner_type,
             banner_info_id,
+            del_flag,
             banner_update_time) 
         VALUES 
-            (?, ?, ?, ?, ? NOW())`
+            (?, ?, ?, ?, ?, 0,NOW())`
     ,
     /*
     *   banner修改接口

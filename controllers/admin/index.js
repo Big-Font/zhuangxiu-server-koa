@@ -188,7 +188,7 @@ class AdminControllers {
             ctx.error({msg: 'banner图片地址不能为空'});
             return;
         }
-        if(!type) {
+        if(typeof type === 'number' && (type != 0 && type != 1 && type != 2)) {
             ctx.error({msg: 'banner类型不能为空'});
             return;
         }
@@ -196,7 +196,7 @@ class AdminControllers {
             let result = await query(SQL.bannerPublic, [url, path, name, type, infoId]);
             ctx.success({msg: 'banner更新成功'});
         }catch(err) {
-            ctx.err({msg: err});
+            ctx.error({msg: err});
         }
    }
    /*
@@ -689,7 +689,6 @@ class AdminControllers {
         }
         
         try{
-            console.log([name, startTime2, endTime, img, place, stock, seller, goods, activity, price, type, id])
             let info = await query(SQL.modifySpikeActive, [name, startTime2 , endTime, img, place, stock, seller, goods, activity, price, type, id]); 
             /*
             *

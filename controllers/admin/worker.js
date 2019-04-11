@@ -5,14 +5,20 @@ import MWorkerSQL from '../../sql/api/worker';
 class WorkerControllers {
     /*
     *   找师傅列表接口
-    *   @params  page   页码
-    *   @params  type   类型：1-安装，2-维修  0-全部
-    *   @params  isOver 是否已经结束： 1-未结束，2-已结束  0-全部
-    *   @params  phone  用户手机号
+    *   @params  page        页码
+    *   @params  type        类型：1-安装，2-维修  0-全部
+    *   @params  isOver      是否已经结束： 1-未结束，2-已结束  0-全部
+    *   @params  userPhone   注册手机号
+    *   @params  phone       填写的手机号
+    *   @params  ishurry     是否催单   -1-催单，0-正常，99-全部
     */
     async getWorkerList(ctx) {
-        let { page, type, isOver, phone } = ctx.request.body;
+        let { page, type, isOver, phone, userPhone, ishurry } = ctx.request.body;
         let sqlValues = [], sql;
+
+        // let filterSQL = MWorkerSQL.queryAdminWorkerList.filter;
+        let filterSQL = '';
+
         // 处理查询参数
         if(type && type !== '0') {
             // 查询全部类型：1-安装，2-维修
@@ -23,20 +29,35 @@ class WorkerControllers {
             sqlValues.push('isOver');
             sqlValues.push(`%${isOver}%`);
         }
+        if(ishurry && ishurry !== '99') {
+            sqlValues.push('a.ishurry');
+            sqlValues.push(`%${ishurry}%`);
+        }
+        if(!!userPhone) {
+            sqlValues.push('b.phone');
+            sqlValues.push(`%${userPhone}%`);
+        }
         if(!!phone) {
-            sqlValues.push('phone');
+            sqlValues.push('a.phone');
             sqlValues.push(`%${phone}%`);
         }
 
-        if(sqlValues.length === 2) {
-            sql = MWorkerSQL.worker.queryOne;
-        }else if(sqlValues.length === 4) {
-            sql = MWorkerSQL.worker.queryTwo;
+        if(sqlValues.length === 10){
+            filterSQL = `${MWorkerSQL.queryAdminWorkerList.sql} AND ?? like ? AND ?? like ? AND ?? like ? AND ?? like ? AND ?? like ?`;
+        }else if(sqlValues.length === 8) {
+            filterSQL = `${MWorkerSQL.queryAdminWorkerList.sql} AND ?? like ? AND ?? like ? AND ?? like ? AND ?? like ?`;
         }else if(sqlValues.length === 6) {
-            sql = MWorkerSQL.worker.queryThree;
+            filterSQL = `${MWorkerSQL.queryAdminWorkerList.sql} AND ?? like ? AND ?? like ? AND ?? like ? `;
+        }else if(sqlValues.length === 4) {
+            filterSQL = `${MWorkerSQL.queryAdminWorkerList.sql} AND ?? like ? AND ?? like ? `;
+        }else if(sqlValues.length === 2) {
+            filterSQL = `${MWorkerSQL.queryAdminWorkerList.sql} AND ?? like ? `;
         }else {
-            sql = MWorkerSQL.worker.query;
+            filterSQL = MWorkerSQL.queryAdminWorkerList.sql;
         }
+
+        sql = `${filterSQL} ${MWorkerSQL.queryAdminWorkerList.filter}`;
+        
         // 分页
         let queryValues = [],pageValues = [], page_num, total_page;
         try{
@@ -57,7 +78,6 @@ class WorkerControllers {
             results.forEach( item => {
                 if(/\[/.test(item.imgs)) {
                     item.imgs = eval(item.imgs);
-                    console.log(item.imgs, typeof item.imgs)
                 }
             })
             ctx.success({

@@ -1,0 +1,1961 @@
+[2019-04-08T09:23:55.579] [ERROR] errorLogger - 
+*************** error log start ***************
+request method: POST
+request originalUrl:  /api/v1/getIndex
+request client ip:  ::ffff:127.0.0.1
+request body: 
+{}
+response time: 16
+err name: TypeError
+err message: Cannot read property 'remoteAddress' of undefined
+err stack: TypeError: Cannot read property 'remoteAddress' of undefined
+    at getIp (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:27:77)
+    at formatRes (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:41:33)
+    at Object.logUtil.logResponse (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:22:24)
+    at /Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/middlewares/logs.js:16:21
+    at process._tickCallback (internal/process/next_tick.js:68:7)
+*************** error log end ***************
+
+[2019-04-08T09:24:55.477] [ERROR] errorLogger - 
+*************** error log start ***************
+request method: POST
+request originalUrl:  /api/v1/getIndex
+request client ip:  ::ffff:127.0.0.1
+request body: 
+{}
+response time: 5
+err name: TypeError
+err message: Cannot read property 'remoteAddress' of undefined
+err stack: TypeError: Cannot read property 'remoteAddress' of undefined
+    at getIp (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:27:77)
+    at formatRes (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:41:33)
+    at Object.logUtil.logResponse (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:22:24)
+    at /Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/middlewares/logs.js:16:21
+    at process._tickCallback (internal/process/next_tick.js:68:7)
+*************** error log end ***************
+
+[2019-04-08T09:25:01.173] [ERROR] errorLogger - 
+*************** error log start ***************
+request method: POST
+request originalUrl:  /api/v1/caseDetail
+request client ip:  ::ffff:127.0.0.1
+request body: 
+{"id":"1"}
+response time: 7
+err name: TypeError
+err message: Cannot read property 'remoteAddress' of undefined
+err stack: TypeError: Cannot read property 'remoteAddress' of undefined
+    at getIp (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:27:77)
+    at formatRes (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:41:33)
+    at Object.logUtil.logResponse (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:22:24)
+    at /Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/middlewares/logs.js:16:21
+    at process._tickCallback (internal/process/next_tick.js:68:7)
+*************** error log end ***************
+
+[2019-04-08T09:25:04.879] [ERROR] errorLogger - 
+*************** error log start ***************
+request method: POST
+request originalUrl:  /api/v1/getIndex
+request client ip:  ::ffff:127.0.0.1
+request body: 
+{}
+response time: 9
+err name: TypeError
+err message: Cannot read property 'remoteAddress' of undefined
+err stack: TypeError: Cannot read property 'remoteAddress' of undefined
+    at getIp (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:27:77)
+    at formatRes (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:41:33)
+    at Object.logUtil.logResponse (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:22:24)
+    at /Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/middlewares/logs.js:16:21
+    at process._tickCallback (internal/process/next_tick.js:68:7)
+*************** error log end ***************
+
+[2019-04-08T09:25:06.869] [ERROR] errorLogger - 
+*************** error log start ***************
+request method: POST
+request originalUrl:  /api/v1/caseDetail
+request client ip:  ::ffff:127.0.0.1
+request body: 
+{"id":"3"}
+response time: 3
+err name: TypeError
+err message: Cannot read property 'remoteAddress' of undefined
+err stack: TypeError: Cannot read property 'remoteAddress' of undefined
+    at getIp (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:27:77)
+    at formatRes (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:41:33)
+    at Object.logUtil.logResponse (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:22:24)
+    at /Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/middlewares/logs.js:16:21
+    at process._tickCallback (internal/process/next_tick.js:68:7)
+*************** error log end ***************
+
+[2019-04-08T09:25:16.210] [ERROR] errorLogger - 
+*************** error log start ***************
+request method: POST
+request originalUrl:  /api/v1/caseDetail
+request client ip:  ::ffff:127.0.0.1
+request body: 
+{"id":"3"}
+response time: 3
+err name: TypeError
+err message: Cannot read property 'remoteAddress' of undefined
+err stack: TypeError: Cannot read property 'remoteAddress' of undefined
+    at getIp (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:27:77)
+    at formatRes (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:41:33)
+    at Object.logUtil.logResponse (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:22:24)
+    at /Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/middlewares/logs.js:16:21
+    at process._tickCallback (internal/process/next_tick.js:68:7)
+*************** error log end ***************
+
+[2019-04-08T09:26:05.189] [ERROR] errorLogger - 
+*************** error log start ***************
+request method: POST
+request originalUrl:  /api/v1/caseDetail
+request client ip:  ::ffff:127.0.0.1
+request body: 
+{"id":"3"}
+response time: 3
+err name: TypeError
+err message: Cannot read property 'remoteAddress' of undefined
+err stack: TypeError: Cannot read property 'remoteAddress' of undefined
+    at getIp (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:27:77)
+    at formatRes (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:41:33)
+    at Object.logUtil.logResponse (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:22:24)
+    at /Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/middlewares/logs.js:16:21
+    at process._tickCallback (internal/process/next_tick.js:68:7)
+*************** error log end ***************
+
+[2019-04-08T09:26:24.984] [ERROR] errorLogger - 
+*************** error log start ***************
+request method: POST
+request originalUrl:  /api/v1/caseDetail
+request client ip:  ::ffff:127.0.0.1
+request body: 
+{"id":"3"}
+response time: 6
+err name: TypeError
+err message: Cannot read property 'remoteAddress' of undefined
+err stack: TypeError: Cannot read property 'remoteAddress' of undefined
+    at getIp (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:27:77)
+    at formatRes (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:41:33)
+    at Object.logUtil.logResponse (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:22:24)
+    at /Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/middlewares/logs.js:16:21
+    at process._tickCallback (internal/process/next_tick.js:68:7)
+*************** error log end ***************
+
+[2019-04-08T09:26:59.210] [ERROR] errorLogger - 
+*************** error log start ***************
+request method: POST
+request originalUrl:  /api/v1/caseDetail
+request client ip:  ::ffff:127.0.0.1
+request body: 
+{"id":"3"}
+response time: 3
+err name: TypeError
+err message: Cannot read property 'remoteAddress' of undefined
+err stack: TypeError: Cannot read property 'remoteAddress' of undefined
+    at getIp (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:27:77)
+    at formatRes (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:41:33)
+    at Object.logUtil.logResponse (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:22:24)
+    at /Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/middlewares/logs.js:16:21
+    at process._tickCallback (internal/process/next_tick.js:68:7)
+*************** error log end ***************
+
+[2019-04-08T09:32:25.141] [ERROR] errorLogger - 
+*************** error log start ***************
+request method: POST
+request originalUrl:  /api/v1/caseDetail
+request client ip:  ::ffff:127.0.0.1
+request body: 
+{"id":"3"}
+response time: 42
+err name: TypeError
+err message: Cannot read property 'remoteAddress' of undefined
+err stack: TypeError: Cannot read property 'remoteAddress' of undefined
+    at getIp (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:27:77)
+    at formatRes (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:41:33)
+    at Object.logUtil.logResponse (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:22:24)
+    at /Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/middlewares/logs.js:16:21
+    at process._tickCallback (internal/process/next_tick.js:68:7)
+*************** error log end ***************
+
+[2019-04-08T09:32:30.072] [ERROR] errorLogger - 
+*************** error log start ***************
+request method: POST
+request originalUrl:  /api/v1/caseDetail
+request client ip:  ::ffff:127.0.0.1
+request body: 
+{"id":"3"}
+response time: 18
+err name: TypeError
+err message: Cannot read property 'remoteAddress' of undefined
+err stack: TypeError: Cannot read property 'remoteAddress' of undefined
+    at getIp (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:27:77)
+    at formatRes (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:41:33)
+    at Object.logUtil.logResponse (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:22:24)
+    at /Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/middlewares/logs.js:16:21
+    at process._tickCallback (internal/process/next_tick.js:68:7)
+*************** error log end ***************
+
+[2019-04-08T09:33:53.303] [ERROR] errorLogger - 
+*************** error log start ***************
+request method: POST
+request originalUrl:  /api/v1/caseDetail
+request client ip:  ::ffff:127.0.0.1
+request body: 
+{"id":"3"}
+response time: 4
+err name: TypeError
+err message: Cannot read property 'remoteAddress' of undefined
+err stack: TypeError: Cannot read property 'remoteAddress' of undefined
+    at getIp (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:27:77)
+    at formatRes (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:41:33)
+    at Object.logUtil.logResponse (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:22:24)
+    at /Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/middlewares/logs.js:16:21
+    at process._tickCallback (internal/process/next_tick.js:68:7)
+*************** error log end ***************
+
+[2019-04-08T09:34:15.029] [ERROR] errorLogger - 
+*************** error log start ***************
+request method: POST
+request originalUrl:  /api/v1/caseDetail
+request client ip:  ::ffff:127.0.0.1
+request body: 
+{"id":"3"}
+response time: 3
+err name: TypeError
+err message: Cannot read property 'remoteAddress' of undefined
+err stack: TypeError: Cannot read property 'remoteAddress' of undefined
+    at getIp (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:27:77)
+    at formatRes (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:41:33)
+    at Object.logUtil.logResponse (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:22:24)
+    at /Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/middlewares/logs.js:16:21
+    at process._tickCallback (internal/process/next_tick.js:68:7)
+*************** error log end ***************
+
+[2019-04-08T09:34:30.830] [ERROR] errorLogger - 
+*************** error log start ***************
+request method: POST
+request originalUrl:  /api/v1/caseDetail
+request client ip:  ::ffff:127.0.0.1
+request body: 
+{"id":"3"}
+response time: 3
+err name: TypeError
+err message: Cannot read property 'remoteAddress' of undefined
+err stack: TypeError: Cannot read property 'remoteAddress' of undefined
+    at getIp (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:27:77)
+    at formatRes (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:41:33)
+    at Object.logUtil.logResponse (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:22:24)
+    at /Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/middlewares/logs.js:16:21
+    at process._tickCallback (internal/process/next_tick.js:68:7)
+*************** error log end ***************
+
+[2019-04-08T09:35:06.158] [ERROR] errorLogger - 
+*************** error log start ***************
+request method: POST
+request originalUrl:  /api/v1/caseDetail
+request client ip:  ::ffff:127.0.0.1
+request body: 
+{"id":"3"}
+response time: 3
+err name: TypeError
+err message: Cannot read property 'remoteAddress' of undefined
+err stack: TypeError: Cannot read property 'remoteAddress' of undefined
+    at getIp (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:27:77)
+    at formatRes (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:41:33)
+    at Object.logUtil.logResponse (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:22:24)
+    at /Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/middlewares/logs.js:16:21
+    at process._tickCallback (internal/process/next_tick.js:68:7)
+*************** error log end ***************
+
+[2019-04-08T09:36:16.122] [ERROR] errorLogger - 
+*************** error log start ***************
+request method: POST
+request originalUrl:  /api/v1/caseDetail
+request client ip:  ::ffff:127.0.0.1
+request body: 
+{"id":"3"}
+response time: 2
+err name: TypeError
+err message: Cannot read property 'remoteAddress' of undefined
+err stack: TypeError: Cannot read property 'remoteAddress' of undefined
+    at getIp (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:27:77)
+    at formatRes (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:41:33)
+    at Object.logUtil.logResponse (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:22:24)
+    at /Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/middlewares/logs.js:16:21
+    at process._tickCallback (internal/process/next_tick.js:68:7)
+*************** error log end ***************
+
+[2019-04-08T09:36:51.300] [ERROR] errorLogger - 
+*************** error log start ***************
+request method: POST
+request originalUrl:  /api/v1/caseDetail
+request client ip:  ::ffff:127.0.0.1
+request body: 
+{"id":"3"}
+response time: 3
+err name: TypeError
+err message: Cannot read property 'remoteAddress' of undefined
+err stack: TypeError: Cannot read property 'remoteAddress' of undefined
+    at getIp (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:27:77)
+    at formatRes (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:41:33)
+    at Object.logUtil.logResponse (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:22:24)
+    at /Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/middlewares/logs.js:16:21
+    at process._tickCallback (internal/process/next_tick.js:68:7)
+*************** error log end ***************
+
+[2019-04-08T09:37:37.724] [ERROR] errorLogger - 
+*************** error log start ***************
+request method: POST
+request originalUrl:  /api/v1/caseDetail
+request client ip:  ::ffff:127.0.0.1
+request body: 
+{"id":"3"}
+response time: 5
+err name: TypeError
+err message: Cannot read property 'remoteAddress' of undefined
+err stack: TypeError: Cannot read property 'remoteAddress' of undefined
+    at getIp (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:27:77)
+    at formatRes (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:41:33)
+    at Object.logUtil.logResponse (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:22:24)
+    at /Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/middlewares/logs.js:16:21
+    at process._tickCallback (internal/process/next_tick.js:68:7)
+*************** error log end ***************
+
+[2019-04-08T09:45:07.627] [ERROR] errorLogger - 
+*************** error log start ***************
+request method: POST
+request originalUrl:  /api/v1/caseDetail
+request client ip:  ::ffff:127.0.0.1
+request body: 
+{"id":"3"}
+response time: 3
+err name: TypeError
+err message: Cannot read property 'remoteAddress' of undefined
+err stack: TypeError: Cannot read property 'remoteAddress' of undefined
+    at getIp (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:27:77)
+    at formatRes (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:41:33)
+    at Object.logUtil.logResponse (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:22:24)
+    at /Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/middlewares/logs.js:16:21
+    at process._tickCallback (internal/process/next_tick.js:68:7)
+*************** error log end ***************
+
+[2019-04-08T09:45:51.229] [ERROR] errorLogger - 
+*************** error log start ***************
+request method: POST
+request originalUrl:  /api/v1/caseDetail
+request client ip:  ::ffff:127.0.0.1
+request body: 
+{"id":"3"}
+response time: 5
+err name: TypeError
+err message: Cannot read property 'remoteAddress' of undefined
+err stack: TypeError: Cannot read property 'remoteAddress' of undefined
+    at getIp (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:27:77)
+    at formatRes (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:41:33)
+    at Object.logUtil.logResponse (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:22:24)
+    at /Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/middlewares/logs.js:16:21
+    at process._tickCallback (internal/process/next_tick.js:68:7)
+*************** error log end ***************
+
+[2019-04-08T09:51:37.367] [ERROR] errorLogger - 
+*************** error log start ***************
+request method: POST
+request originalUrl:  /api/v1/caseDetail
+request client ip:  ::ffff:127.0.0.1
+request body: 
+{"id":"3"}
+response time: 193
+err name: TypeError
+err message: Cannot read property 'remoteAddress' of undefined
+err stack: TypeError: Cannot read property 'remoteAddress' of undefined
+    at getIp (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:27:77)
+    at formatRes (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:41:33)
+    at Object.logUtil.logResponse (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:22:24)
+    at /Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/middlewares/logs.js:16:21
+    at process._tickCallback (internal/process/next_tick.js:68:7)
+*************** error log end ***************
+
+[2019-04-08T09:51:49.258] [ERROR] errorLogger - 
+*************** error log start ***************
+request method: POST
+request originalUrl:  /api/v1/caseDetail
+request client ip:  ::ffff:127.0.0.1
+request body: 
+{"id":"3"}
+response time: 3
+err name: TypeError
+err message: Cannot read property 'remoteAddress' of undefined
+err stack: TypeError: Cannot read property 'remoteAddress' of undefined
+    at getIp (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:27:77)
+    at formatRes (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:41:33)
+    at Object.logUtil.logResponse (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:22:24)
+    at /Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/middlewares/logs.js:16:21
+    at process._tickCallback (internal/process/next_tick.js:68:7)
+*************** error log end ***************
+
+[2019-04-08T09:53:09.048] [ERROR] errorLogger - 
+*************** error log start ***************
+request method: POST
+request originalUrl:  /api/v1/caseDetail
+request client ip:  ::ffff:127.0.0.1
+request body: 
+{"id":"3"}
+response time: 30
+err name: TypeError
+err message: Cannot read property 'remoteAddress' of undefined
+err stack: TypeError: Cannot read property 'remoteAddress' of undefined
+    at getIp (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:27:77)
+    at formatRes (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:41:33)
+    at Object.logUtil.logResponse (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:22:24)
+    at /Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/middlewares/logs.js:16:21
+    at process._tickCallback (internal/process/next_tick.js:68:7)
+*************** error log end ***************
+
+[2019-04-08T09:53:42.395] [ERROR] errorLogger - 
+*************** error log start ***************
+request method: POST
+request originalUrl:  /api/v1/caseDetail
+request client ip:  ::ffff:127.0.0.1
+request body: 
+{"id":"3"}
+response time: 3
+err name: TypeError
+err message: Cannot read property 'remoteAddress' of undefined
+err stack: TypeError: Cannot read property 'remoteAddress' of undefined
+    at getIp (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:27:77)
+    at formatRes (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:41:33)
+    at Object.logUtil.logResponse (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:22:24)
+    at /Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/middlewares/logs.js:16:21
+    at process._tickCallback (internal/process/next_tick.js:68:7)
+*************** error log end ***************
+
+[2019-04-08T09:53:44.905] [ERROR] errorLogger - 
+*************** error log start ***************
+request method: POST
+request originalUrl:  /api/v1/caseDetail
+request client ip:  ::ffff:127.0.0.1
+request body: 
+{"id":"3"}
+response time: 3
+err name: TypeError
+err message: Cannot read property 'remoteAddress' of undefined
+err stack: TypeError: Cannot read property 'remoteAddress' of undefined
+    at getIp (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:27:77)
+    at formatRes (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:41:33)
+    at Object.logUtil.logResponse (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:22:24)
+    at /Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/middlewares/logs.js:16:21
+    at process._tickCallback (internal/process/next_tick.js:68:7)
+*************** error log end ***************
+
+[2019-04-08T09:53:52.001] [ERROR] errorLogger - 
+*************** error log start ***************
+request method: POST
+request originalUrl:  /api/v1/getIndex
+request client ip:  ::ffff:127.0.0.1
+request body: 
+{}
+response time: 24
+err name: TypeError
+err message: Cannot read property 'remoteAddress' of undefined
+err stack: TypeError: Cannot read property 'remoteAddress' of undefined
+    at getIp (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:27:77)
+    at formatRes (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:41:33)
+    at Object.logUtil.logResponse (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:22:24)
+    at /Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/middlewares/logs.js:16:21
+    at process._tickCallback (internal/process/next_tick.js:68:7)
+*************** error log end ***************
+
+[2019-04-08T09:53:54.678] [ERROR] errorLogger - 
+*************** error log start ***************
+request method: POST
+request originalUrl:  /api/v1/caseDetail
+request client ip:  ::ffff:127.0.0.1
+request body: 
+{"id":"3"}
+response time: 4
+err name: TypeError
+err message: Cannot read property 'remoteAddress' of undefined
+err stack: TypeError: Cannot read property 'remoteAddress' of undefined
+    at getIp (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:27:77)
+    at formatRes (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:41:33)
+    at Object.logUtil.logResponse (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:22:24)
+    at /Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/middlewares/logs.js:16:21
+    at process._tickCallback (internal/process/next_tick.js:68:7)
+*************** error log end ***************
+
+[2019-04-08T09:54:11.283] [ERROR] errorLogger - 
+*************** error log start ***************
+request method: POST
+request originalUrl:  /api/v1/caseDetail
+request client ip:  ::ffff:127.0.0.1
+request body: 
+{"id":"3"}
+response time: 5
+err name: TypeError
+err message: Cannot read property 'remoteAddress' of undefined
+err stack: TypeError: Cannot read property 'remoteAddress' of undefined
+    at getIp (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:27:77)
+    at formatRes (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:41:33)
+    at Object.logUtil.logResponse (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:22:24)
+    at /Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/middlewares/logs.js:16:21
+    at process._tickCallback (internal/process/next_tick.js:68:7)
+*************** error log end ***************
+
+[2019-04-08T11:10:28.873] [ERROR] errorLogger - 
+*************** error log start ***************
+request method: GET
+request originalUrl:  /admin/captcha
+request client ip:  ::ffff:127.0.0.1
+request query:  {}
+response time: 9
+err name: TypeError
+err message: Cannot read property 'remoteAddress' of undefined
+err stack: TypeError: Cannot read property 'remoteAddress' of undefined
+    at getIp (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:27:77)
+    at formatRes (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:41:33)
+    at Object.logUtil.logResponse (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:22:24)
+    at /Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/middlewares/logs.js:16:21
+*************** error log end ***************
+
+[2019-04-08T11:10:33.647] [ERROR] errorLogger - 
+*************** error log start ***************
+request method: POST
+request originalUrl:  /admin/login
+request client ip:  ::ffff:127.0.0.1
+request body: 
+{"username":"jason","password":"123456","capkey":"5kvp"}
+response time: 6
+err name: TypeError
+err message: Cannot read property 'remoteAddress' of undefined
+err stack: TypeError: Cannot read property 'remoteAddress' of undefined
+    at getIp (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:27:77)
+    at formatRes (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:41:33)
+    at Object.logUtil.logResponse (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:22:24)
+    at /Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/middlewares/logs.js:16:21
+    at process._tickCallback (internal/process/next_tick.js:68:7)
+*************** error log end ***************
+
+[2019-04-08T11:10:36.385] [ERROR] errorLogger - 
+*************** error log start ***************
+request method: GET
+request originalUrl:  /admin/getBannerList
+request client ip:  ::ffff:127.0.0.1
+request query:  {}
+response time: 2
+err name: TypeError
+err message: Cannot read property 'remoteAddress' of undefined
+err stack: TypeError: Cannot read property 'remoteAddress' of undefined
+    at getIp (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:27:77)
+    at formatRes (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:41:33)
+    at Object.logUtil.logResponse (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:22:24)
+    at /Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/middlewares/logs.js:16:21
+    at process._tickCallback (internal/process/next_tick.js:68:7)
+*************** error log end ***************
+
+[2019-04-08T11:11:54.263] [ERROR] errorLogger - 
+*************** error log start ***************
+request method: GET
+request originalUrl:  /admin/getBannerList
+request client ip:  ::ffff:127.0.0.1
+request query:  {}
+response time: 1
+err name: TypeError
+err message: Cannot read property 'remoteAddress' of undefined
+err stack: TypeError: Cannot read property 'remoteAddress' of undefined
+    at getIp (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:27:77)
+    at formatRes (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:41:33)
+    at Object.logUtil.logResponse (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:22:24)
+    at /Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/middlewares/logs.js:16:21
+    at process._tickCallback (internal/process/next_tick.js:68:7)
+*************** error log end ***************
+
+[2019-04-08T11:17:38.603] [ERROR] errorLogger - 
+*************** error log start ***************
+request method: GET
+request originalUrl:  /admin/getBannerList
+request client ip:  ::ffff:127.0.0.1
+request query:  {}
+response time: 13
+err name: TypeError
+err message: Cannot read property 'remoteAddress' of undefined
+err stack: TypeError: Cannot read property 'remoteAddress' of undefined
+    at getIp (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:27:77)
+    at formatRes (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:41:33)
+    at Object.logUtil.logResponse (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:22:24)
+    at /Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/middlewares/logs.js:16:21
+    at process._tickCallback (internal/process/next_tick.js:68:7)
+*************** error log end ***************
+
+[2019-04-08T15:38:27.097] [ERROR] errorLogger - 
+*************** error log start ***************
+request method: GET
+request originalUrl:  /admin/getBannerList
+request client ip:  ::ffff:127.0.0.1
+request query:  {}
+response time: 3
+err name: TypeError
+err message: Cannot read property 'remoteAddress' of undefined
+err stack: TypeError: Cannot read property 'remoteAddress' of undefined
+    at getIp (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:27:77)
+    at formatRes (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:41:33)
+    at Object.logUtil.logResponse (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:22:24)
+    at /Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/middlewares/logs.js:16:21
+    at process._tickCallback (internal/process/next_tick.js:68:7)
+*************** error log end ***************
+
+[2019-04-08T15:39:50.139] [ERROR] errorLogger - 
+*************** error log start ***************
+request method: GET
+request originalUrl:  /admin/getBannerList
+request client ip:  ::ffff:127.0.0.1
+request query:  {}
+response time: 2
+err name: TypeError
+err message: Cannot read property 'remoteAddress' of undefined
+err stack: TypeError: Cannot read property 'remoteAddress' of undefined
+    at getIp (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:27:77)
+    at formatRes (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:41:33)
+    at Object.logUtil.logResponse (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:22:24)
+    at /Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/middlewares/logs.js:16:21
+    at process._tickCallback (internal/process/next_tick.js:68:7)
+*************** error log end ***************
+
+[2019-04-08T16:29:45.281] [ERROR] errorLogger - 
+*************** error log start ***************
+request method: GET
+request originalUrl:  /admin/getBannerList
+request client ip:  ::ffff:127.0.0.1
+request query:  {}
+response time: 1
+err name: TypeError
+err message: Cannot read property 'remoteAddress' of undefined
+err stack: TypeError: Cannot read property 'remoteAddress' of undefined
+    at getIp (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:27:77)
+    at formatRes (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:41:33)
+    at Object.logUtil.logResponse (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:22:24)
+    at /Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/middlewares/logs.js:16:21
+    at process._tickCallback (internal/process/next_tick.js:68:7)
+*************** error log end ***************
+
+[2019-04-08T16:34:16.357] [ERROR] errorLogger - 
+*************** error log start ***************
+request method: GET
+request originalUrl:  /admin/getBannerList
+request client ip:  ::ffff:127.0.0.1
+request query:  {}
+response time: 3
+err name: TypeError
+err message: Cannot read property 'remoteAddress' of undefined
+err stack: TypeError: Cannot read property 'remoteAddress' of undefined
+    at getIp (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:27:77)
+    at formatRes (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:41:33)
+    at Object.logUtil.logResponse (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:22:24)
+    at /Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/middlewares/logs.js:16:21
+    at process._tickCallback (internal/process/next_tick.js:68:7)
+*************** error log end ***************
+
+[2019-04-08T16:37:50.141] [ERROR] errorLogger - 
+*************** error log start ***************
+request method: GET
+request originalUrl:  /admin/getBannerList
+request client ip:  ::ffff:127.0.0.1
+request query:  {}
+response time: 2
+err name: TypeError
+err message: Cannot read property 'remoteAddress' of undefined
+err stack: TypeError: Cannot read property 'remoteAddress' of undefined
+    at getIp (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:27:77)
+    at formatRes (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:41:33)
+    at Object.logUtil.logResponse (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:22:24)
+    at /Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/middlewares/logs.js:16:21
+    at process._tickCallback (internal/process/next_tick.js:68:7)
+*************** error log end ***************
+
+[2019-04-08T16:55:36.925] [ERROR] errorLogger - 
+*************** error log start ***************
+request method: GET
+request originalUrl:  /admin/getBannerList
+request client ip:  ::ffff:127.0.0.1
+request query:  {}
+response time: 1
+err name: TypeError
+err message: Cannot read property 'remoteAddress' of undefined
+err stack: TypeError: Cannot read property 'remoteAddress' of undefined
+    at getIp (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:27:77)
+    at formatRes (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:41:33)
+    at Object.logUtil.logResponse (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:22:24)
+    at /Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/middlewares/logs.js:16:21
+    at process._tickCallback (internal/process/next_tick.js:68:7)
+*************** error log end ***************
+
+[2019-04-08T17:34:46.961] [ERROR] errorLogger - 
+*************** error log start ***************
+request method: GET
+request originalUrl:  /admin/getBannerList
+request client ip:  ::ffff:127.0.0.1
+request query:  {}
+response time: 1
+err name: TypeError
+err message: Cannot read property 'remoteAddress' of undefined
+err stack: TypeError: Cannot read property 'remoteAddress' of undefined
+    at getIp (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:27:77)
+    at formatRes (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:41:33)
+    at Object.logUtil.logResponse (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:22:24)
+    at /Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/middlewares/logs.js:16:21
+    at process._tickCallback (internal/process/next_tick.js:68:7)
+*************** error log end ***************
+
+[2019-04-08T17:35:05.305] [ERROR] errorLogger - 
+*************** error log start ***************
+request method: GET
+request originalUrl:  /admin/getBannerList
+request client ip:  ::ffff:127.0.0.1
+request query:  {}
+response time: 1
+err name: TypeError
+err message: Cannot read property 'remoteAddress' of undefined
+err stack: TypeError: Cannot read property 'remoteAddress' of undefined
+    at getIp (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:27:77)
+    at formatRes (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:41:33)
+    at Object.logUtil.logResponse (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:22:24)
+    at /Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/middlewares/logs.js:16:21
+    at process._tickCallback (internal/process/next_tick.js:68:7)
+*************** error log end ***************
+
+[2019-04-08T17:37:02.642] [ERROR] errorLogger - 
+*************** error log start ***************
+request method: GET
+request originalUrl:  /admin/getBannerList
+request client ip:  ::ffff:127.0.0.1
+request query:  {}
+response time: 1
+err name: TypeError
+err message: Cannot read property 'remoteAddress' of undefined
+err stack: TypeError: Cannot read property 'remoteAddress' of undefined
+    at getIp (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:27:77)
+    at formatRes (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:41:33)
+    at Object.logUtil.logResponse (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:22:24)
+    at /Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/middlewares/logs.js:16:21
+    at process._tickCallback (internal/process/next_tick.js:68:7)
+*************** error log end ***************
+
+[2019-04-08T17:37:06.293] [ERROR] errorLogger - 
+*************** error log start ***************
+request method: GET
+request originalUrl:  /admin/getBannerList
+request client ip:  ::ffff:127.0.0.1
+request query:  {}
+response time: 2
+err name: TypeError
+err message: Cannot read property 'remoteAddress' of undefined
+err stack: TypeError: Cannot read property 'remoteAddress' of undefined
+    at getIp (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:27:77)
+    at formatRes (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:41:33)
+    at Object.logUtil.logResponse (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:22:24)
+    at /Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/middlewares/logs.js:16:21
+    at process._tickCallback (internal/process/next_tick.js:68:7)
+*************** error log end ***************
+
+[2019-04-08T17:37:23.849] [ERROR] errorLogger - 
+*************** error log start ***************
+request method: GET
+request originalUrl:  /admin/getBannerList
+request client ip:  ::ffff:127.0.0.1
+request query:  {}
+response time: 2
+err name: TypeError
+err message: Cannot read property 'remoteAddress' of undefined
+err stack: TypeError: Cannot read property 'remoteAddress' of undefined
+    at getIp (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:27:77)
+    at formatRes (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:41:33)
+    at Object.logUtil.logResponse (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:22:24)
+    at /Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/middlewares/logs.js:16:21
+    at process._tickCallback (internal/process/next_tick.js:68:7)
+*************** error log end ***************
+
+[2019-04-08T17:54:28.148] [ERROR] errorLogger - 
+*************** error log start ***************
+request method: GET
+request originalUrl:  /admin/getBannerList
+request client ip:  ::ffff:127.0.0.1
+request query:  {}
+response time: 1
+err name: TypeError
+err message: Cannot read property 'remoteAddress' of undefined
+err stack: TypeError: Cannot read property 'remoteAddress' of undefined
+    at getIp (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:27:77)
+    at formatRes (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:41:33)
+    at Object.logUtil.logResponse (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:22:24)
+    at /Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/middlewares/logs.js:16:21
+    at process._tickCallback (internal/process/next_tick.js:68:7)
+*************** error log end ***************
+
+[2019-04-08T17:58:42.267] [ERROR] errorLogger - 
+*************** error log start ***************
+request method: GET
+request originalUrl:  /admin/getBannerList
+request client ip:  ::ffff:127.0.0.1
+request query:  {}
+response time: 1
+err name: TypeError
+err message: Cannot read property 'remoteAddress' of undefined
+err stack: TypeError: Cannot read property 'remoteAddress' of undefined
+    at getIp (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:27:77)
+    at formatRes (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:41:33)
+    at Object.logUtil.logResponse (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:22:24)
+    at /Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/middlewares/logs.js:16:21
+    at process._tickCallback (internal/process/next_tick.js:68:7)
+*************** error log end ***************
+
+[2019-04-08T17:59:01.333] [ERROR] errorLogger - 
+*************** error log start ***************
+request method: GET
+request originalUrl:  /admin/getBannerList
+request client ip:  ::ffff:127.0.0.1
+request query:  {}
+response time: 2
+err name: TypeError
+err message: Cannot read property 'remoteAddress' of undefined
+err stack: TypeError: Cannot read property 'remoteAddress' of undefined
+    at getIp (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:27:77)
+    at formatRes (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:41:33)
+    at Object.logUtil.logResponse (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:22:24)
+    at /Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/middlewares/logs.js:16:21
+    at process._tickCallback (internal/process/next_tick.js:68:7)
+*************** error log end ***************
+
+[2019-04-08T17:59:08.189] [ERROR] errorLogger - 
+*************** error log start ***************
+request method: GET
+request originalUrl:  /admin/getBannerList
+request client ip:  ::ffff:127.0.0.1
+request query:  {}
+response time: 3
+err name: TypeError
+err message: Cannot read property 'remoteAddress' of undefined
+err stack: TypeError: Cannot read property 'remoteAddress' of undefined
+    at getIp (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:27:77)
+    at formatRes (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:41:33)
+    at Object.logUtil.logResponse (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:22:24)
+    at /Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/middlewares/logs.js:16:21
+    at process._tickCallback (internal/process/next_tick.js:68:7)
+*************** error log end ***************
+
+[2019-04-08T18:05:11.942] [ERROR] errorLogger - 
+*************** error log start ***************
+request method: GET
+request originalUrl:  /admin/getBannerList
+request client ip:  ::ffff:127.0.0.1
+request query:  {}
+response time: 2
+err name: TypeError
+err message: Cannot read property 'remoteAddress' of undefined
+err stack: TypeError: Cannot read property 'remoteAddress' of undefined
+    at getIp (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:27:77)
+    at formatRes (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:41:33)
+    at Object.logUtil.logResponse (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:22:24)
+    at /Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/middlewares/logs.js:16:21
+    at process._tickCallback (internal/process/next_tick.js:68:7)
+*************** error log end ***************
+
+[2019-04-08T18:05:36.858] [ERROR] errorLogger - 
+*************** error log start ***************
+request method: POST
+request originalUrl:  /admin/upload/banner
+request client ip:  ::ffff:127.0.0.1
+request body: 
+{}
+response time: 5
+err name: TypeError
+err message: Cannot read property 'remoteAddress' of undefined
+err stack: TypeError: Cannot read property 'remoteAddress' of undefined
+    at getIp (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:27:77)
+    at formatRes (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:41:33)
+    at Object.logUtil.logResponse (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:22:24)
+    at /Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/middlewares/logs.js:16:21
+    at process._tickCallback (internal/process/next_tick.js:68:7)
+*************** error log end ***************
+
+[2019-04-08T18:05:48.507] [ERROR] errorLogger - 
+*************** error log start ***************
+request method: POST
+request originalUrl:  /admin/upload/banner
+request client ip:  ::ffff:127.0.0.1
+request body: 
+{}
+response time: 1
+err name: TypeError
+err message: Cannot read property 'remoteAddress' of undefined
+err stack: TypeError: Cannot read property 'remoteAddress' of undefined
+    at getIp (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:27:77)
+    at formatRes (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:41:33)
+    at Object.logUtil.logResponse (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:22:24)
+    at /Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/middlewares/logs.js:16:21
+    at process._tickCallback (internal/process/next_tick.js:68:7)
+*************** error log end ***************
+
+[2019-04-08T18:08:16.514] [ERROR] errorLogger - 
+*************** error log start ***************
+request method: GET
+request originalUrl:  /admin/getBannerList
+request client ip:  ::ffff:127.0.0.1
+request query:  {}
+response time: 2
+err name: TypeError
+err message: Cannot read property 'remoteAddress' of undefined
+err stack: TypeError: Cannot read property 'remoteAddress' of undefined
+    at getIp (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:27:77)
+    at formatRes (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:41:33)
+    at Object.logUtil.logResponse (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:22:24)
+    at /Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/middlewares/logs.js:16:21
+    at process._tickCallback (internal/process/next_tick.js:68:7)
+*************** error log end ***************
+
+[2019-04-08T18:08:21.443] [ERROR] errorLogger - 
+*************** error log start ***************
+request method: POST
+request originalUrl:  /admin/upload/banner
+request client ip:  ::ffff:127.0.0.1
+request body: 
+{}
+response time: 2
+err name: TypeError
+err message: Cannot read property 'remoteAddress' of undefined
+err stack: TypeError: Cannot read property 'remoteAddress' of undefined
+    at getIp (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:27:77)
+    at formatRes (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:41:33)
+    at Object.logUtil.logResponse (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:22:24)
+    at /Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/middlewares/logs.js:16:21
+    at process._tickCallback (internal/process/next_tick.js:68:7)
+*************** error log end ***************
+
+[2019-04-08T18:10:37.272] [ERROR] errorLogger - 
+*************** error log start ***************
+request method: GET
+request originalUrl:  /admin/getBannerList
+request client ip:  ::ffff:127.0.0.1
+request query:  {}
+response time: 2
+err name: TypeError
+err message: Cannot read property 'remoteAddress' of undefined
+err stack: TypeError: Cannot read property 'remoteAddress' of undefined
+    at getIp (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:27:77)
+    at formatRes (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:41:33)
+    at Object.logUtil.logResponse (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:22:24)
+    at /Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/middlewares/logs.js:16:21
+    at process._tickCallback (internal/process/next_tick.js:68:7)
+*************** error log end ***************
+
+[2019-04-08T18:11:35.943] [ERROR] errorLogger - 
+*************** error log start ***************
+request method: GET
+request originalUrl:  /admin/getBannerList
+request client ip:  ::ffff:127.0.0.1
+request query:  {}
+response time: 2
+err name: TypeError
+err message: Cannot read property 'remoteAddress' of undefined
+err stack: TypeError: Cannot read property 'remoteAddress' of undefined
+    at getIp (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:27:77)
+    at formatRes (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:41:33)
+    at Object.logUtil.logResponse (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:22:24)
+    at /Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/middlewares/logs.js:16:21
+    at process._tickCallback (internal/process/next_tick.js:68:7)
+*************** error log end ***************
+
+[2019-04-08T18:11:53.633] [ERROR] errorLogger - 
+*************** error log start ***************
+request method: GET
+request originalUrl:  /admin/getBannerList
+request client ip:  ::ffff:127.0.0.1
+request query:  {}
+response time: 3
+err name: TypeError
+err message: Cannot read property 'remoteAddress' of undefined
+err stack: TypeError: Cannot read property 'remoteAddress' of undefined
+    at getIp (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:27:77)
+    at formatRes (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:41:33)
+    at Object.logUtil.logResponse (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:22:24)
+    at /Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/middlewares/logs.js:16:21
+    at process._tickCallback (internal/process/next_tick.js:68:7)
+*************** error log end ***************
+
+[2019-04-08T18:12:07.395] [ERROR] errorLogger - 
+*************** error log start ***************
+request method: GET
+request originalUrl:  /admin/getBannerList
+request client ip:  ::ffff:127.0.0.1
+request query:  {}
+response time: 2
+err name: TypeError
+err message: Cannot read property 'remoteAddress' of undefined
+err stack: TypeError: Cannot read property 'remoteAddress' of undefined
+    at getIp (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:27:77)
+    at formatRes (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:41:33)
+    at Object.logUtil.logResponse (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:22:24)
+    at /Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/middlewares/logs.js:16:21
+    at process._tickCallback (internal/process/next_tick.js:68:7)
+*************** error log end ***************
+
+[2019-04-08T18:14:28.522] [ERROR] errorLogger - 
+*************** error log start ***************
+request method: GET
+request originalUrl:  /admin/getBannerList
+request client ip:  ::ffff:127.0.0.1
+request query:  {}
+response time: 2
+err name: TypeError
+err message: Cannot read property 'remoteAddress' of undefined
+err stack: TypeError: Cannot read property 'remoteAddress' of undefined
+    at getIp (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:27:77)
+    at formatRes (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:41:33)
+    at Object.logUtil.logResponse (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:22:24)
+    at /Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/middlewares/logs.js:16:21
+    at process._tickCallback (internal/process/next_tick.js:68:7)
+*************** error log end ***************
+
+[2019-04-08T18:18:02.585] [ERROR] errorLogger - 
+*************** error log start ***************
+request method: GET
+request originalUrl:  /admin/getBannerList
+request client ip:  ::ffff:127.0.0.1
+request query:  {}
+response time: 3
+err name: TypeError
+err message: Cannot read property 'remoteAddress' of undefined
+err stack: TypeError: Cannot read property 'remoteAddress' of undefined
+    at getIp (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:27:77)
+    at formatRes (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:41:33)
+    at Object.logUtil.logResponse (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:22:24)
+    at /Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/middlewares/logs.js:16:21
+    at process._tickCallback (internal/process/next_tick.js:68:7)
+*************** error log end ***************
+
+[2019-04-08T18:18:18.910] [ERROR] errorLogger - 
+*************** error log start ***************
+request method: GET
+request originalUrl:  /admin/getBannerList
+request client ip:  ::ffff:127.0.0.1
+request query:  {}
+response time: 3
+err name: TypeError
+err message: Cannot read property 'remoteAddress' of undefined
+err stack: TypeError: Cannot read property 'remoteAddress' of undefined
+    at getIp (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:27:77)
+    at formatRes (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:41:33)
+    at Object.logUtil.logResponse (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:22:24)
+    at /Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/middlewares/logs.js:16:21
+    at process._tickCallback (internal/process/next_tick.js:68:7)
+*************** error log end ***************
+
+[2019-04-08T18:19:18.422] [ERROR] errorLogger - 
+*************** error log start ***************
+request method: GET
+request originalUrl:  /admin/getBannerList
+request client ip:  ::ffff:127.0.0.1
+request query:  {}
+response time: 2
+err name: TypeError
+err message: Cannot read property 'remoteAddress' of undefined
+err stack: TypeError: Cannot read property 'remoteAddress' of undefined
+    at getIp (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:27:77)
+    at formatRes (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:41:33)
+    at Object.logUtil.logResponse (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:22:24)
+    at /Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/middlewares/logs.js:16:21
+    at process._tickCallback (internal/process/next_tick.js:68:7)
+*************** error log end ***************
+
+[2019-04-08T18:19:21.621] [ERROR] errorLogger - 
+*************** error log start ***************
+request method: GET
+request originalUrl:  /admin/getBannerList
+request client ip:  ::ffff:127.0.0.1
+request query:  {}
+response time: 1
+err name: TypeError
+err message: Cannot read property 'remoteAddress' of undefined
+err stack: TypeError: Cannot read property 'remoteAddress' of undefined
+    at getIp (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:27:77)
+    at formatRes (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:41:33)
+    at Object.logUtil.logResponse (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:22:24)
+    at /Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/middlewares/logs.js:16:21
+    at process._tickCallback (internal/process/next_tick.js:68:7)
+*************** error log end ***************
+
+[2019-04-08T18:19:50.655] [ERROR] errorLogger - 
+*************** error log start ***************
+request method: GET
+request originalUrl:  /admin/getBannerList
+request client ip:  ::ffff:127.0.0.1
+request query:  {}
+response time: 1
+err name: TypeError
+err message: Cannot read property 'remoteAddress' of undefined
+err stack: TypeError: Cannot read property 'remoteAddress' of undefined
+    at getIp (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:27:77)
+    at formatRes (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:41:33)
+    at Object.logUtil.logResponse (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:22:24)
+    at /Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/middlewares/logs.js:16:21
+    at process._tickCallback (internal/process/next_tick.js:68:7)
+*************** error log end ***************
+
+[2019-04-08T18:20:45.459] [ERROR] errorLogger - 
+*************** error log start ***************
+request method: GET
+request originalUrl:  /admin/getBannerList
+request client ip:  ::ffff:127.0.0.1
+request query:  {}
+response time: 1
+err name: TypeError
+err message: Cannot read property 'remoteAddress' of undefined
+err stack: TypeError: Cannot read property 'remoteAddress' of undefined
+    at getIp (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:27:77)
+    at formatRes (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:41:33)
+    at Object.logUtil.logResponse (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:22:24)
+    at /Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/middlewares/logs.js:16:21
+    at process._tickCallback (internal/process/next_tick.js:68:7)
+*************** error log end ***************
+
+[2019-04-08T18:21:03.775] [ERROR] errorLogger - 
+*************** error log start ***************
+request method: GET
+request originalUrl:  /admin/getBannerList
+request client ip:  ::ffff:127.0.0.1
+request query:  {}
+response time: 5
+err name: TypeError
+err message: Cannot read property 'remoteAddress' of undefined
+err stack: TypeError: Cannot read property 'remoteAddress' of undefined
+    at getIp (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:27:77)
+    at formatRes (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:41:33)
+    at Object.logUtil.logResponse (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:22:24)
+    at /Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/middlewares/logs.js:16:21
+    at process._tickCallback (internal/process/next_tick.js:68:7)
+*************** error log end ***************
+
+[2019-04-08T18:21:07.115] [ERROR] errorLogger - 
+*************** error log start ***************
+request method: GET
+request originalUrl:  /admin/getBannerList
+request client ip:  ::ffff:127.0.0.1
+request query:  {}
+response time: 2
+err name: TypeError
+err message: Cannot read property 'remoteAddress' of undefined
+err stack: TypeError: Cannot read property 'remoteAddress' of undefined
+    at getIp (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:27:77)
+    at formatRes (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:41:33)
+    at Object.logUtil.logResponse (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:22:24)
+    at /Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/middlewares/logs.js:16:21
+    at process._tickCallback (internal/process/next_tick.js:68:7)
+*************** error log end ***************
+
+[2019-04-08T18:21:35.813] [ERROR] errorLogger - 
+*************** error log start ***************
+request method: GET
+request originalUrl:  /admin/getBannerList
+request client ip:  ::ffff:127.0.0.1
+request query:  {}
+response time: 2
+err name: TypeError
+err message: Cannot read property 'remoteAddress' of undefined
+err stack: TypeError: Cannot read property 'remoteAddress' of undefined
+    at getIp (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:27:77)
+    at formatRes (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:41:33)
+    at Object.logUtil.logResponse (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:22:24)
+    at /Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/middlewares/logs.js:16:21
+    at process._tickCallback (internal/process/next_tick.js:68:7)
+*************** error log end ***************
+
+[2019-04-08T18:23:02.333] [ERROR] errorLogger - 
+*************** error log start ***************
+request method: GET
+request originalUrl:  /admin/getBannerList
+request client ip:  ::ffff:127.0.0.1
+request query:  {}
+response time: 2
+err name: TypeError
+err message: Cannot read property 'remoteAddress' of undefined
+err stack: TypeError: Cannot read property 'remoteAddress' of undefined
+    at getIp (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:27:77)
+    at formatRes (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:41:33)
+    at Object.logUtil.logResponse (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:22:24)
+    at /Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/middlewares/logs.js:16:21
+    at process._tickCallback (internal/process/next_tick.js:68:7)
+*************** error log end ***************
+
+[2019-04-08T18:23:17.337] [ERROR] errorLogger - 
+*************** error log start ***************
+request method: GET
+request originalUrl:  /admin/getBannerList
+request client ip:  ::ffff:127.0.0.1
+request query:  {}
+response time: 2
+err name: TypeError
+err message: Cannot read property 'remoteAddress' of undefined
+err stack: TypeError: Cannot read property 'remoteAddress' of undefined
+    at getIp (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:27:77)
+    at formatRes (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:41:33)
+    at Object.logUtil.logResponse (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:22:24)
+    at /Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/middlewares/logs.js:16:21
+    at process._tickCallback (internal/process/next_tick.js:68:7)
+*************** error log end ***************
+
+[2019-04-08T18:25:45.650] [ERROR] errorLogger - 
+*************** error log start ***************
+request method: GET
+request originalUrl:  /admin/getBannerList
+request client ip:  ::ffff:127.0.0.1
+request query:  {}
+response time: 2
+err name: TypeError
+err message: Cannot read property 'remoteAddress' of undefined
+err stack: TypeError: Cannot read property 'remoteAddress' of undefined
+    at getIp (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:27:77)
+    at formatRes (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:41:33)
+    at Object.logUtil.logResponse (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:22:24)
+    at /Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/middlewares/logs.js:16:21
+    at process._tickCallback (internal/process/next_tick.js:68:7)
+*************** error log end ***************
+
+[2019-04-08T18:25:50.561] [ERROR] errorLogger - 
+*************** error log start ***************
+request method: POST
+request originalUrl:  /admin/bannerModify
+request client ip:  ::ffff:127.0.0.1
+request body: 
+{"banner_id":"1","banner_url":"http://127.0.0.1:5000/images/banner/028a0d603a4f11e9a2edf346c693055c0031c771-71bb-4978-8c45-9ab9f5e6c4e4.png","banner_path":"","banner_name":"祖冲之中学","type":"1","infoId":"6"}
+response time: 23
+err name: TypeError
+err message: Cannot read property 'remoteAddress' of undefined
+err stack: TypeError: Cannot read property 'remoteAddress' of undefined
+    at getIp (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:27:77)
+    at formatRes (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:41:33)
+    at Object.logUtil.logResponse (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:22:24)
+    at /Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/middlewares/logs.js:16:21
+    at process._tickCallback (internal/process/next_tick.js:68:7)
+*************** error log end ***************
+
+[2019-04-08T18:25:50.588] [ERROR] errorLogger - 
+*************** error log start ***************
+request method: GET
+request originalUrl:  /admin/getBannerList
+request client ip:  ::ffff:127.0.0.1
+request query:  {}
+response time: 7
+err name: TypeError
+err message: Cannot read property 'remoteAddress' of undefined
+err stack: TypeError: Cannot read property 'remoteAddress' of undefined
+    at getIp (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:27:77)
+    at formatRes (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:41:33)
+    at Object.logUtil.logResponse (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:22:24)
+    at /Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/middlewares/logs.js:16:21
+    at process._tickCallback (internal/process/next_tick.js:68:7)
+*************** error log end ***************
+
+[2019-04-08T18:26:54.004] [ERROR] errorLogger - 
+*************** error log start ***************
+request method: GET
+request originalUrl:  /admin/getBannerList
+request client ip:  ::ffff:127.0.0.1
+request query:  {}
+response time: 1
+err name: TypeError
+err message: Cannot read property 'remoteAddress' of undefined
+err stack: TypeError: Cannot read property 'remoteAddress' of undefined
+    at getIp (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:27:77)
+    at formatRes (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:41:33)
+    at Object.logUtil.logResponse (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:22:24)
+    at /Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/middlewares/logs.js:16:21
+    at process._tickCallback (internal/process/next_tick.js:68:7)
+*************** error log end ***************
+
+[2019-04-08T18:30:48.245] [ERROR] errorLogger - 
+*************** error log start ***************
+request method: GET
+request originalUrl:  /admin/getBannerList
+request client ip:  ::ffff:127.0.0.1
+request query:  {}
+response time: 2
+err name: TypeError
+err message: Cannot read property 'remoteAddress' of undefined
+err stack: TypeError: Cannot read property 'remoteAddress' of undefined
+    at getIp (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:27:77)
+    at formatRes (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:41:33)
+    at Object.logUtil.logResponse (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:22:24)
+    at /Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/middlewares/logs.js:16:21
+    at process._tickCallback (internal/process/next_tick.js:68:7)
+*************** error log end ***************
+
+[2019-04-08T18:32:53.569] [ERROR] errorLogger - 
+*************** error log start ***************
+request method: POST
+request originalUrl:  /admin/upload/banner
+request client ip:  ::ffff:127.0.0.1
+request body: 
+{}
+response time: 11
+err name: TypeError
+err message: Cannot read property 'remoteAddress' of undefined
+err stack: TypeError: Cannot read property 'remoteAddress' of undefined
+    at getIp (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:27:77)
+    at formatRes (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:41:33)
+    at Object.logUtil.logResponse (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:22:24)
+    at /Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/middlewares/logs.js:16:21
+    at process._tickCallback (internal/process/next_tick.js:68:7)
+*************** error log end ***************
+
+[2019-04-08T18:33:36.053] [ERROR] errorLogger - 
+*************** error log start ***************
+request method: POST
+request originalUrl:  /admin/bannerPublic
+request client ip:  ::ffff:127.0.0.1
+request body: 
+{"url":"http://127.0.0.1:5000/images/banner/aa938f4059e911e996d31d1a6bd3696d微信图片_20180410153020.jpg","path":"","name":"banner秒杀活动1","type":"2","infoId":"2"}
+response time: 86
+err name: TypeError
+err message: Cannot read property 'remoteAddress' of undefined
+err stack: TypeError: Cannot read property 'remoteAddress' of undefined
+    at getIp (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:27:77)
+    at formatRes (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:41:33)
+    at Object.logUtil.logResponse (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:22:24)
+    at /Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/middlewares/logs.js:16:21
+    at process._tickCallback (internal/process/next_tick.js:68:7)
+*************** error log end ***************
+
+[2019-04-08T18:33:36.087] [ERROR] errorLogger - 
+*************** error log start ***************
+request method: GET
+request originalUrl:  /admin/getBannerList
+request client ip:  ::ffff:127.0.0.1
+request query:  {}
+response time: 7
+err name: TypeError
+err message: Cannot read property 'remoteAddress' of undefined
+err stack: TypeError: Cannot read property 'remoteAddress' of undefined
+    at getIp (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:27:77)
+    at formatRes (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:41:33)
+    at Object.logUtil.logResponse (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:22:24)
+    at /Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/middlewares/logs.js:16:21
+    at process._tickCallback (internal/process/next_tick.js:68:7)
+*************** error log end ***************
+
+[2019-04-08T18:33:42.392] [ERROR] errorLogger - 
+*************** error log start ***************
+request method: POST
+request originalUrl:  /api/v1/getIndex
+request client ip:  ::ffff:127.0.0.1
+request body: 
+{}
+response time: 19
+err name: TypeError
+err message: Cannot read property 'remoteAddress' of undefined
+err stack: TypeError: Cannot read property 'remoteAddress' of undefined
+    at getIp (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:27:77)
+    at formatRes (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:41:33)
+    at Object.logUtil.logResponse (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:22:24)
+    at /Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/middlewares/logs.js:16:21
+    at process._tickCallback (internal/process/next_tick.js:68:7)
+*************** error log end ***************
+
+[2019-04-08T18:33:46.674] [ERROR] errorLogger - 
+*************** error log start ***************
+request method: POST
+request originalUrl:  /api/v1/querySpikeDetail
+request client ip:  ::ffff:127.0.0.1
+request body: 
+{"id":"2"}
+response time: 5
+err name: TypeError
+err message: Cannot read property 'remoteAddress' of undefined
+err stack: TypeError: Cannot read property 'remoteAddress' of undefined
+    at getIp (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:27:77)
+    at formatRes (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:41:33)
+    at Object.logUtil.logResponse (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:22:24)
+    at /Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/middlewares/logs.js:16:21
+    at process._tickCallback (internal/process/next_tick.js:68:7)
+*************** error log end ***************
+
+[2019-04-08T18:33:50.267] [ERROR] errorLogger - 
+*************** error log start ***************
+request method: POST
+request originalUrl:  /api/v1/getIndex
+request client ip:  ::ffff:127.0.0.1
+request body: 
+{}
+response time: 13
+err name: TypeError
+err message: Cannot read property 'remoteAddress' of undefined
+err stack: TypeError: Cannot read property 'remoteAddress' of undefined
+    at getIp (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:27:77)
+    at formatRes (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:41:33)
+    at Object.logUtil.logResponse (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:22:24)
+    at /Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/middlewares/logs.js:16:21
+    at process._tickCallback (internal/process/next_tick.js:68:7)
+*************** error log end ***************
+
+[2019-04-08T23:37:18.617] [ERROR] errorLogger - 
+*************** error log start ***************
+request method: POST
+request originalUrl:  /api/v1/querySpikeDetail
+request client ip:  ::ffff:127.0.0.1
+request body: 
+{"id":"2"}
+response time: 4
+err name: TypeError
+err message: Cannot read property 'remoteAddress' of undefined
+err stack: TypeError: Cannot read property 'remoteAddress' of undefined
+    at getIp (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:27:77)
+    at formatRes (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:41:33)
+    at Object.logUtil.logResponse (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:22:24)
+    at /Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/middlewares/logs.js:16:21
+    at process._tickCallback (internal/process/next_tick.js:68:7)
+*************** error log end ***************
+
+[2019-04-08T23:37:20.402] [ERROR] errorLogger - 
+*************** error log start ***************
+request method: POST
+request originalUrl:  /api/v1/getIndex
+request client ip:  ::ffff:127.0.0.1
+request body: 
+{}
+response time: 9
+err name: TypeError
+err message: Cannot read property 'remoteAddress' of undefined
+err stack: TypeError: Cannot read property 'remoteAddress' of undefined
+    at getIp (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:27:77)
+    at formatRes (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:41:33)
+    at Object.logUtil.logResponse (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:22:24)
+    at /Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/middlewares/logs.js:16:21
+    at process._tickCallback (internal/process/next_tick.js:68:7)
+*************** error log end ***************
+
+[2019-04-08T23:38:41.407] [ERROR] errorLogger - 
+*************** error log start ***************
+request method: POST
+request originalUrl:  /admin/getFindWorkerList
+request client ip:  ::ffff:127.0.0.1
+request body: 
+{"page":"1","type":"0","isOver":"0","ishurry":"99","phone":"","userPhone":""}
+response time: 13
+err name: TypeError
+err message: Cannot read property 'remoteAddress' of undefined
+err stack: TypeError: Cannot read property 'remoteAddress' of undefined
+    at getIp (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:27:77)
+    at formatRes (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:41:33)
+    at Object.logUtil.logResponse (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:22:24)
+    at /Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/middlewares/logs.js:16:21
+    at process._tickCallback (internal/process/next_tick.js:68:7)
+*************** error log end ***************
+
+[2019-04-08T23:38:51.334] [ERROR] errorLogger - 
+*************** error log start ***************
+request method: GET
+request originalUrl:  /admin/getBannerList
+request client ip:  ::ffff:127.0.0.1
+request query:  {}
+response time: 2
+err name: TypeError
+err message: Cannot read property 'remoteAddress' of undefined
+err stack: TypeError: Cannot read property 'remoteAddress' of undefined
+    at getIp (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:27:77)
+    at formatRes (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:41:33)
+    at Object.logUtil.logResponse (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:22:24)
+    at /Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/middlewares/logs.js:16:21
+    at process._tickCallback (internal/process/next_tick.js:68:7)
+*************** error log end ***************
+
+[2019-04-08T23:40:27.292] [ERROR] errorLogger - 
+*************** error log start ***************
+request method: GET
+request originalUrl:  /admin/getBannerList
+request client ip:  ::ffff:127.0.0.1
+request query:  {}
+response time: 2
+err name: TypeError
+err message: Cannot read property 'remoteAddress' of undefined
+err stack: TypeError: Cannot read property 'remoteAddress' of undefined
+    at getIp (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:27:77)
+    at formatRes (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:41:33)
+    at Object.logUtil.logResponse (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:22:24)
+    at /Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/middlewares/logs.js:16:21
+    at process._tickCallback (internal/process/next_tick.js:68:7)
+*************** error log end ***************
+
+[2019-04-08T23:41:30.423] [ERROR] errorLogger - 
+*************** error log start ***************
+request method: POST
+request originalUrl:  /admin/upload/banner
+request client ip:  ::ffff:127.0.0.1
+request body: 
+{}
+response time: 1
+err name: TypeError
+err message: Cannot read property 'remoteAddress' of undefined
+err stack: TypeError: Cannot read property 'remoteAddress' of undefined
+    at getIp (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:27:77)
+    at formatRes (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:41:33)
+    at Object.logUtil.logResponse (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:22:24)
+    at /Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/middlewares/logs.js:16:21
+    at process._tickCallback (internal/process/next_tick.js:68:7)
+*************** error log end ***************
+
+[2019-04-08T23:41:51.515] [ERROR] errorLogger - 
+*************** error log start ***************
+request method: POST
+request originalUrl:  /admin/bannerPublic
+request client ip:  ::ffff:127.0.0.1
+request body: 
+{"url":"http://127.0.0.1:5000/images/banner/c77cee505a1411e996d31d1a6bd3696d2.jpg","path":"https://www.jd.com","name":"外部链接测试1","type":"0","infoId":""}
+response time: 20
+err name: TypeError
+err message: ctx.err is not a function
+err stack: TypeError: ctx.err is not a function
+    at bannerPublic (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/controllers/admin/index.js:199:17)
+    at process._tickCallback (internal/process/next_tick.js:68:7)
+*************** error log end ***************
+
+[2019-04-08T23:41:54.927] [ERROR] errorLogger - 
+*************** error log start ***************
+request method: POST
+request originalUrl:  /admin/bannerPublic
+request client ip:  ::ffff:127.0.0.1
+request body: 
+{"url":"http://127.0.0.1:5000/images/banner/c77cee505a1411e996d31d1a6bd3696d2.jpg","path":"https://www.jd.com","name":"外部链接测试1","type":"0","infoId":""}
+response time: 5
+err name: TypeError
+err message: ctx.err is not a function
+err stack: TypeError: ctx.err is not a function
+    at bannerPublic (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/controllers/admin/index.js:199:17)
+    at process._tickCallback (internal/process/next_tick.js:68:7)
+*************** error log end ***************
+
+[2019-04-08T23:41:56.570] [ERROR] errorLogger - 
+*************** error log start ***************
+request method: POST
+request originalUrl:  /admin/bannerPublic
+request client ip:  ::ffff:127.0.0.1
+request body: 
+{"url":"http://127.0.0.1:5000/images/banner/c77cee505a1411e996d31d1a6bd3696d2.jpg","path":"https://www.jd.com","name":"外部链接测试1","type":"0","infoId":""}
+response time: 3
+err name: TypeError
+err message: ctx.err is not a function
+err stack: TypeError: ctx.err is not a function
+    at bannerPublic (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/controllers/admin/index.js:199:17)
+    at process._tickCallback (internal/process/next_tick.js:68:7)
+*************** error log end ***************
+
+[2019-04-08T23:41:56.858] [ERROR] errorLogger - 
+*************** error log start ***************
+request method: POST
+request originalUrl:  /admin/bannerPublic
+request client ip:  ::ffff:127.0.0.1
+request body: 
+{"url":"http://127.0.0.1:5000/images/banner/c77cee505a1411e996d31d1a6bd3696d2.jpg","path":"https://www.jd.com","name":"外部链接测试1","type":"0","infoId":""}
+response time: 8
+err name: TypeError
+err message: ctx.err is not a function
+err stack: TypeError: ctx.err is not a function
+    at bannerPublic (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/controllers/admin/index.js:199:17)
+    at process._tickCallback (internal/process/next_tick.js:68:7)
+*************** error log end ***************
+
+[2019-04-08T23:41:57.118] [ERROR] errorLogger - 
+*************** error log start ***************
+request method: POST
+request originalUrl:  /admin/bannerPublic
+request client ip:  ::ffff:127.0.0.1
+request body: 
+{"url":"http://127.0.0.1:5000/images/banner/c77cee505a1411e996d31d1a6bd3696d2.jpg","path":"https://www.jd.com","name":"外部链接测试1","type":"0","infoId":""}
+response time: 6
+err name: TypeError
+err message: ctx.err is not a function
+err stack: TypeError: ctx.err is not a function
+    at bannerPublic (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/controllers/admin/index.js:199:17)
+    at process._tickCallback (internal/process/next_tick.js:68:7)
+*************** error log end ***************
+
+[2019-04-08T23:41:57.333] [ERROR] errorLogger - 
+*************** error log start ***************
+request method: POST
+request originalUrl:  /admin/bannerPublic
+request client ip:  ::ffff:127.0.0.1
+request body: 
+{"url":"http://127.0.0.1:5000/images/banner/c77cee505a1411e996d31d1a6bd3696d2.jpg","path":"https://www.jd.com","name":"外部链接测试1","type":"0","infoId":""}
+response time: 4
+err name: TypeError
+err message: ctx.err is not a function
+err stack: TypeError: ctx.err is not a function
+    at bannerPublic (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/controllers/admin/index.js:199:17)
+    at process._tickCallback (internal/process/next_tick.js:68:7)
+*************** error log end ***************
+
+[2019-04-08T23:41:57.589] [ERROR] errorLogger - 
+*************** error log start ***************
+request method: POST
+request originalUrl:  /admin/bannerPublic
+request client ip:  ::ffff:127.0.0.1
+request body: 
+{"url":"http://127.0.0.1:5000/images/banner/c77cee505a1411e996d31d1a6bd3696d2.jpg","path":"https://www.jd.com","name":"外部链接测试1","type":"0","infoId":""}
+response time: 2
+err name: TypeError
+err message: ctx.err is not a function
+err stack: TypeError: ctx.err is not a function
+    at bannerPublic (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/controllers/admin/index.js:199:17)
+    at process._tickCallback (internal/process/next_tick.js:68:7)
+*************** error log end ***************
+
+[2019-04-08T23:41:57.855] [ERROR] errorLogger - 
+*************** error log start ***************
+request method: POST
+request originalUrl:  /admin/bannerPublic
+request client ip:  ::ffff:127.0.0.1
+request body: 
+{"url":"http://127.0.0.1:5000/images/banner/c77cee505a1411e996d31d1a6bd3696d2.jpg","path":"https://www.jd.com","name":"外部链接测试1","type":"0","infoId":""}
+response time: 5
+err name: TypeError
+err message: ctx.err is not a function
+err stack: TypeError: ctx.err is not a function
+    at bannerPublic (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/controllers/admin/index.js:199:17)
+    at process._tickCallback (internal/process/next_tick.js:68:7)
+*************** error log end ***************
+
+[2019-04-08T23:41:58.146] [ERROR] errorLogger - 
+*************** error log start ***************
+request method: POST
+request originalUrl:  /admin/bannerPublic
+request client ip:  ::ffff:127.0.0.1
+request body: 
+{"url":"http://127.0.0.1:5000/images/banner/c77cee505a1411e996d31d1a6bd3696d2.jpg","path":"https://www.jd.com","name":"外部链接测试1","type":"0","infoId":""}
+response time: 4
+err name: TypeError
+err message: ctx.err is not a function
+err stack: TypeError: ctx.err is not a function
+    at bannerPublic (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/controllers/admin/index.js:199:17)
+    at process._tickCallback (internal/process/next_tick.js:68:7)
+*************** error log end ***************
+
+[2019-04-08T23:41:58.614] [ERROR] errorLogger - 
+*************** error log start ***************
+request method: POST
+request originalUrl:  /admin/bannerPublic
+request client ip:  ::ffff:127.0.0.1
+request body: 
+{"url":"http://127.0.0.1:5000/images/banner/c77cee505a1411e996d31d1a6bd3696d2.jpg","path":"https://www.jd.com","name":"外部链接测试1","type":"0","infoId":""}
+response time: 4
+err name: TypeError
+err message: ctx.err is not a function
+err stack: TypeError: ctx.err is not a function
+    at bannerPublic (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/controllers/admin/index.js:199:17)
+    at process._tickCallback (internal/process/next_tick.js:68:7)
+*************** error log end ***************
+
+[2019-04-08T23:41:58.865] [ERROR] errorLogger - 
+*************** error log start ***************
+request method: POST
+request originalUrl:  /admin/bannerPublic
+request client ip:  ::ffff:127.0.0.1
+request body: 
+{"url":"http://127.0.0.1:5000/images/banner/c77cee505a1411e996d31d1a6bd3696d2.jpg","path":"https://www.jd.com","name":"外部链接测试1","type":"0","infoId":""}
+response time: 4
+err name: TypeError
+err message: ctx.err is not a function
+err stack: TypeError: ctx.err is not a function
+    at bannerPublic (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/controllers/admin/index.js:199:17)
+    at process._tickCallback (internal/process/next_tick.js:68:7)
+*************** error log end ***************
+
+[2019-04-08T23:41:59.093] [ERROR] errorLogger - 
+*************** error log start ***************
+request method: POST
+request originalUrl:  /admin/bannerPublic
+request client ip:  ::ffff:127.0.0.1
+request body: 
+{"url":"http://127.0.0.1:5000/images/banner/c77cee505a1411e996d31d1a6bd3696d2.jpg","path":"https://www.jd.com","name":"外部链接测试1","type":"0","infoId":""}
+response time: 3
+err name: TypeError
+err message: ctx.err is not a function
+err stack: TypeError: ctx.err is not a function
+    at bannerPublic (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/controllers/admin/index.js:199:17)
+    at process._tickCallback (internal/process/next_tick.js:68:7)
+*************** error log end ***************
+
+[2019-04-08T23:42:11.208] [ERROR] errorLogger - 
+*************** error log start ***************
+request method: POST
+request originalUrl:  /admin/bannerPublic
+request client ip:  ::ffff:127.0.0.1
+request body: 
+{"url":"http://127.0.0.1:5000/images/banner/c77cee505a1411e996d31d1a6bd3696d2.jpg","path":"https://www.jd.com","name":"外部链接测试1","type":"0","infoId":""}
+response time: 3
+err name: TypeError
+err message: ctx.err is not a function
+err stack: TypeError: ctx.err is not a function
+    at bannerPublic (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/controllers/admin/index.js:199:17)
+    at process._tickCallback (internal/process/next_tick.js:68:7)
+*************** error log end ***************
+
+[2019-04-08T23:42:57.902] [ERROR] errorLogger - 
+*************** error log start ***************
+request method: POST
+request originalUrl:  /admin/bannerPublic
+request client ip:  ::ffff:127.0.0.1
+request body: 
+{"url":"http://127.0.0.1:5000/images/banner/c77cee505a1411e996d31d1a6bd3696d2.jpg","path":"https://www.jd.com","name":"外部链接测试1","type":"0","infoId":""}
+response time: 26
+err name: TypeError
+err message: ctx.err is not a function
+err stack: TypeError: ctx.err is not a function
+    at bannerPublic (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/controllers/admin/index.js:199:17)
+    at process._tickCallback (internal/process/next_tick.js:68:7)
+*************** error log end ***************
+
+[2019-04-08T23:43:45.758] [ERROR] errorLogger - 
+*************** error log start ***************
+request method: POST
+request originalUrl:  /admin/bannerPublic
+request client ip:  ::ffff:127.0.0.1
+request body: 
+{"url":"http://127.0.0.1:5000/images/banner/c77cee505a1411e996d31d1a6bd3696d2.jpg","path":"https://www.jd.com","name":"外部链接测试1","type":"0","infoId":""}
+response time: 16
+err name: TypeError
+err message: Cannot read property 'remoteAddress' of undefined
+err stack: TypeError: Cannot read property 'remoteAddress' of undefined
+    at getIp (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:27:77)
+    at formatRes (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:41:33)
+    at Object.logUtil.logResponse (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:22:24)
+    at /Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/middlewares/logs.js:16:21
+    at process._tickCallback (internal/process/next_tick.js:68:7)
+*************** error log end ***************
+
+[2019-04-08T23:48:23.777] [ERROR] errorLogger - 
+*************** error log start ***************
+request method: POST
+request originalUrl:  /admin/bannerPublic
+request client ip:  ::ffff:127.0.0.1
+request body: 
+{"url":"http://127.0.0.1:5000/images/banner/c77cee505a1411e996d31d1a6bd3696d2.jpg","path":"https://www.jd.com","name":"外部链接测试1","type":"0","infoId":""}
+response time: 6
+err name: TypeError
+err message: Cannot read property 'remoteAddress' of undefined
+err stack: TypeError: Cannot read property 'remoteAddress' of undefined
+    at getIp (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:27:77)
+    at formatRes (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:41:33)
+    at Object.logUtil.logResponse (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:22:24)
+    at /Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/middlewares/logs.js:16:21
+    at process._tickCallback (internal/process/next_tick.js:68:7)
+*************** error log end ***************
+
+[2019-04-08T23:48:34.285] [ERROR] errorLogger - 
+*************** error log start ***************
+request method: POST
+request originalUrl:  /admin/bannerPublic
+request client ip:  ::ffff:127.0.0.1
+request body: 
+{"url":"http://127.0.0.1:5000/images/banner/c77cee505a1411e996d31d1a6bd3696d2.jpg","path":"https://www.jd.com","name":"外部链接测试1","type":"0","infoId":""}
+response time: 25
+err name: TypeError
+err message: Cannot read property 'remoteAddress' of undefined
+err stack: TypeError: Cannot read property 'remoteAddress' of undefined
+    at getIp (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:27:77)
+    at formatRes (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:41:33)
+    at Object.logUtil.logResponse (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:22:24)
+    at /Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/middlewares/logs.js:16:21
+    at process._tickCallback (internal/process/next_tick.js:68:7)
+*************** error log end ***************
+
+[2019-04-08T23:50:40.606] [ERROR] errorLogger - 
+*************** error log start ***************
+request method: GET
+request originalUrl:  /admin/getBannerList
+request client ip:  ::ffff:127.0.0.1
+request query:  {}
+response time: 4
+err name: TypeError
+err message: Cannot read property 'remoteAddress' of undefined
+err stack: TypeError: Cannot read property 'remoteAddress' of undefined
+    at getIp (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:27:77)
+    at formatRes (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:41:33)
+    at Object.logUtil.logResponse (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:22:24)
+    at /Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/middlewares/logs.js:16:21
+    at process._tickCallback (internal/process/next_tick.js:68:7)
+*************** error log end ***************
+
+[2019-04-08T23:50:59.027] [ERROR] errorLogger - 
+*************** error log start ***************
+request method: POST
+request originalUrl:  /admin/upload/banner
+request client ip:  ::ffff:127.0.0.1
+request body: 
+{}
+response time: 5
+err name: TypeError
+err message: Cannot read property 'remoteAddress' of undefined
+err stack: TypeError: Cannot read property 'remoteAddress' of undefined
+    at getIp (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:27:77)
+    at formatRes (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:41:33)
+    at Object.logUtil.logResponse (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:22:24)
+    at /Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/middlewares/logs.js:16:21
+    at process._tickCallback (internal/process/next_tick.js:68:7)
+*************** error log end ***************
+
+[2019-04-08T23:51:19.692] [ERROR] errorLogger - 
+*************** error log start ***************
+request method: POST
+request originalUrl:  /admin/bannerPublic
+request client ip:  ::ffff:127.0.0.1
+request body: 
+{"url":"http://127.0.0.1:5000/images/banner/1a66dd005a1611e9addf156e334b84f93.jpg","path":"https://www.baidu.com","name":"外部链接地址","type":"0","infoId":""}
+response time: 36
+err name: TypeError
+err message: Cannot read property 'remoteAddress' of undefined
+err stack: TypeError: Cannot read property 'remoteAddress' of undefined
+    at getIp (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:27:77)
+    at formatRes (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:41:33)
+    at Object.logUtil.logResponse (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:22:24)
+    at /Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/middlewares/logs.js:16:21
+    at process._tickCallback (internal/process/next_tick.js:68:7)
+*************** error log end ***************
+
+[2019-04-08T23:54:55.178] [ERROR] errorLogger - 
+*************** error log start ***************
+request method: GET
+request originalUrl:  /admin/getBannerList
+request client ip:  ::ffff:127.0.0.1
+request query:  {}
+response time: 4
+err name: TypeError
+err message: Cannot read property 'remoteAddress' of undefined
+err stack: TypeError: Cannot read property 'remoteAddress' of undefined
+    at getIp (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:27:77)
+    at formatRes (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:41:33)
+    at Object.logUtil.logResponse (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:22:24)
+    at /Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/middlewares/logs.js:16:21
+    at process._tickCallback (internal/process/next_tick.js:68:7)
+*************** error log end ***************
+
+[2019-04-08T23:55:00.707] [ERROR] errorLogger - 
+*************** error log start ***************
+request method: GET
+request originalUrl:  /admin/getBannerList
+request client ip:  ::ffff:127.0.0.1
+request query:  {}
+response time: 2
+err name: TypeError
+err message: Cannot read property 'remoteAddress' of undefined
+err stack: TypeError: Cannot read property 'remoteAddress' of undefined
+    at getIp (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:27:77)
+    at formatRes (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:41:33)
+    at Object.logUtil.logResponse (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:22:24)
+    at /Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/middlewares/logs.js:16:21
+    at process._tickCallback (internal/process/next_tick.js:68:7)
+*************** error log end ***************
+
+[2019-04-08T23:55:55.507] [ERROR] errorLogger - 
+*************** error log start ***************
+request method: POST
+request originalUrl:  /admin/upload/banner
+request client ip:  ::ffff:127.0.0.1
+request body: 
+{}
+response time: 4
+err name: TypeError
+err message: Cannot read property 'remoteAddress' of undefined
+err stack: TypeError: Cannot read property 'remoteAddress' of undefined
+    at getIp (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:27:77)
+    at formatRes (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:41:33)
+    at Object.logUtil.logResponse (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:22:24)
+    at /Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/middlewares/logs.js:16:21
+    at process._tickCallback (internal/process/next_tick.js:68:7)
+*************** error log end ***************
+
+[2019-04-08T23:56:13.426] [ERROR] errorLogger - 
+*************** error log start ***************
+request method: POST
+request originalUrl:  /admin/bannerPublic
+request client ip:  ::ffff:127.0.0.1
+request body: 
+{"url":"http://127.0.0.1:5000/images/banner/cb1e46105a1611e9918c8dc128dce5e63.jpg","path":"https://www.baidu.com","name":"外部链接测试1","type":"0","infoId":""}
+response time: 8
+err name: TypeError
+err message: Cannot read property 'remoteAddress' of undefined
+err stack: TypeError: Cannot read property 'remoteAddress' of undefined
+    at getIp (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:27:77)
+    at formatRes (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:41:33)
+    at Object.logUtil.logResponse (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:22:24)
+    at /Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/middlewares/logs.js:16:21
+    at process._tickCallback (internal/process/next_tick.js:68:7)
+*************** error log end ***************
+
+[2019-04-08T23:56:31.963] [ERROR] errorLogger - 
+*************** error log start ***************
+request method: GET
+request originalUrl:  /admin/getBannerList
+request client ip:  ::ffff:127.0.0.1
+request query:  {}
+response time: 2
+err name: TypeError
+err message: Cannot read property 'remoteAddress' of undefined
+err stack: TypeError: Cannot read property 'remoteAddress' of undefined
+    at getIp (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:27:77)
+    at formatRes (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:41:33)
+    at Object.logUtil.logResponse (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:22:24)
+    at /Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/middlewares/logs.js:16:21
+    at process._tickCallback (internal/process/next_tick.js:68:7)
+*************** error log end ***************
+
+[2019-04-08T23:56:58.382] [ERROR] errorLogger - 
+*************** error log start ***************
+request method: POST
+request originalUrl:  /admin/upload/banner
+request client ip:  ::ffff:127.0.0.1
+request body: 
+{}
+response time: 1
+err name: TypeError
+err message: Cannot read property 'remoteAddress' of undefined
+err stack: TypeError: Cannot read property 'remoteAddress' of undefined
+    at getIp (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:27:77)
+    at formatRes (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:41:33)
+    at Object.logUtil.logResponse (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:22:24)
+    at /Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/middlewares/logs.js:16:21
+    at process._tickCallback (internal/process/next_tick.js:68:7)
+*************** error log end ***************
+
+[2019-04-08T23:57:12.542] [ERROR] errorLogger - 
+*************** error log start ***************
+request method: POST
+request originalUrl:  /admin/bannerPublic
+request client ip:  ::ffff:127.0.0.1
+request body: 
+{"url":"http://127.0.0.1:5000/images/banner/f09863d05a1611e9918c8dc128dce5e63.jpg","path":"https://www.baidu.com","name":"外部链接测试1","type":0,"infoId":null}
+response time: 0
+err name: TypeError
+err message: Cannot read property 'remoteAddress' of undefined
+err stack: TypeError: Cannot read property 'remoteAddress' of undefined
+    at getIp (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:27:77)
+    at formatRes (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:41:33)
+    at Object.logUtil.logResponse (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:22:24)
+    at /Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/middlewares/logs.js:16:21
+    at process._tickCallback (internal/process/next_tick.js:68:7)
+*************** error log end ***************
+
+[2019-04-08T23:59:35.719] [ERROR] errorLogger - 
+*************** error log start ***************
+request method: POST
+request originalUrl:  /admin/bannerPublic
+request client ip:  ::ffff:127.0.0.1
+request body: 
+{"url":"http://127.0.0.1:5000/images/banner/f09863d05a1611e9918c8dc128dce5e63.jpg","path":"https://www.baidu.com","name":"外部链接测试1","type":0,"infoId":null}
+response time: 5
+err name: TypeError
+err message: Cannot read property 'remoteAddress' of undefined
+err stack: TypeError: Cannot read property 'remoteAddress' of undefined
+    at getIp (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:27:77)
+    at formatRes (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:41:33)
+    at Object.logUtil.logResponse (/Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/lib/logs.js:22:24)
+    at /Users/shenwang/Documents/myDoucuments/jasonBlog/zhuangxiu/server/middlewares/logs.js:16:21
+    at process._tickCallback (internal/process/next_tick.js:68:7)
+*************** error log end ***************
+
